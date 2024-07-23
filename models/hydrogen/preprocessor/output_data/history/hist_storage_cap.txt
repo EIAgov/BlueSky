@@ -1,0 +1,39 @@
+! Note: multiple sources, see data readme
+! Unit: kg of usable h2
+Composite Table:
+histyear    regCen         storageTech     hist_storage_cap
+1990        WSCentral      SaltCavern      46400
+1991        WSCentral      SaltCavern      46400
+1992        WSCentral      SaltCavern      46400
+1993        WSCentral      SaltCavern      46400
+1994        WSCentral      SaltCavern      46400
+1995        WSCentral      SaltCavern      46400
+1996        WSCentral      SaltCavern      46400
+1997        WSCentral      SaltCavern      46400
+1998        WSCentral      SaltCavern      46400
+1999        WSCentral      SaltCavern      46400
+2000        WSCentral      SaltCavern      46400
+2001        WSCentral      SaltCavern      46400
+2002        WSCentral      SaltCavern      46400
+2003        WSCentral      SaltCavern      46400
+2004        WSCentral      SaltCavern      46400
+2005        WSCentral      SaltCavern      46400
+2006        WSCentral      SaltCavern      46400
+2007        WSCentral      SaltCavern      91680
+2008        WSCentral      SaltCavern      91680
+2009        WSCentral      SaltCavern      91680
+2010        WSCentral      SaltCavern      91680
+2011        WSCentral      SaltCavern      91680
+2012        WSCentral      SaltCavern      91680
+2013        WSCentral      SaltCavern      91680
+2014        WSCentral      SaltCavern      164160
+2015        WSCentral      SaltCavern      164160
+2016        WSCentral      SaltCavern      164160
+2017        WSCentral      SaltCavern      164160
+2018        WSCentral      SaltCavern      164160
+2019        WSCentral      SaltCavern      164160
+2020        WSCentral      SaltCavern      164160
+2021        WSCentral      SaltCavern      164160
+2022        WSCentral      SaltCavern      164160
+2023        WSCentral      SaltCavern      164160
+;

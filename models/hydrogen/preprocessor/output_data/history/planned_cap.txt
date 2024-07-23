@@ -1,0 +1,7 @@
+! Note: From refined frame a announced projects
+! Unit: Annual NEW capacity in kg of hydrogen. Not cumulative
+Composite Table:
+i_calYear    regCEN         prodTech     planned_cap
+2025         WSCentral      SMR_CCS      2.00602e+08
+2026         ENCentral      SMR_CCS      1.65496e+08
+;
