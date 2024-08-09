@@ -181,19 +181,12 @@ After each run, a separate run folder with a timestamp should be created within 
 
 Minimize total cost
 
-$$
-        \min \mathbf{C_{tot}} =  C_{disp}+ C_{unload} \\
-        (+ C_{exp} + C_{fom} \quad if \quad sw\_expansion = 1 )\\ 
-        (+ C_{tra} \quad if \quad sw\_trade = 1 )\\
-        (+ C_{ramp} \quad if \quad sw\_ramp = 1 )\\
-        (+ C_{or}\quad if \quad sw\_reserves = 1 )
-        \tag{1}
-$$
+$$ \min \mathbf{C_{tot}} =  C_{disp}+ C_{unload} (+ C_{exp} + C_{fom} \quad if \quad sw\_expansion = 1 )(+ C_{tra} \quad if \quad sw\_trade = 1 )(+ C_{ramp} \quad if \quad sw\_ramp = 1 ) (+ C_{or}\quad if \quad sw\_reserves = 1 ) \tag{1} $$
 
 where:
 
 Dispatch cost: 
-$$C_{disp} = 
+$$ C_{disp} = 
         \sum_{h \in H | s=MHS_h}{}
         (WD_h \times 
         \sum_{{t,y,r,s} \in \theta^{GSH}_h}{WY_y \times SPR_{r,seas,t,s,y} \times \mathbf{GEN}_{t,y,r,s,h}}\\
