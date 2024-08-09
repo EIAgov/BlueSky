@@ -181,8 +181,14 @@ After each run, a separate run folder with a timestamp should be created within 
 
 Minimize total cost
 
-$$ \min \mathbf{C_{tot}} =  C_{disp}+ C_{unload} (+ C_{exp} + C_{fom} \quad if \quad sw\_expansion = 1 )(+ C_{tra} \quad if \quad sw\_trade = 1 )(+ C_{ramp} \quad if \quad sw\_ramp = 1 ) (+ C_{or}\quad if \quad sw\_reserves = 1 ) \tag{1} $$
-
+$$
+        \min C_{tot} =  C_{disp}+ C_{unload} \\
+        (+ C_{exp} + C_{fom} \quad if \quad sw\_expansion = 1 )\\ 
+        (+ C_{tra} \quad if \quad sw\_trade = 1 )\\
+        (+ C_{ramp} \quad if \quad sw\_ramp = 1 )\\
+        (+ C_{or}\quad if \quad sw\_reserves = 1 )
+        \tag{1}
+$$
 where:
 
 Dispatch cost: 
