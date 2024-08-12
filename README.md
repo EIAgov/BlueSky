@@ -200,7 +200,7 @@ After each run, a separate run folder with a timestamp should be created within 
 
 Dispatch cost:
 
-$$
+```math
 \begin{align*}
     C_{disp} = 
         \sum_{h \in H | s=MHS_h}{}
@@ -210,7 +210,7 @@ $$
         + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
         +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}} 
 \end{align*}
-$$
+```
 
 Unmet load cost:
 
