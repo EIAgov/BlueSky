@@ -200,7 +200,6 @@ where:
 Dispatch cost:
 
 ```math
-\tag{2}
 C_{disp} = 
     \sum_{h \in H | s=MHS_h}{}
     (WD_h \times 
