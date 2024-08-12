@@ -200,7 +200,8 @@ where:
 Dispatch cost:
 
 ```math
-\begin{align*}
+
+\begin{equation*}
     C_{disp} = 
         \sum_{h \in H | s=MHS_h}{}
         (WD_h \times 
@@ -209,8 +210,7 @@ Dispatch cost:
         + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
         +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}} 
         \label{eq2}
-\end{align*}
-\tag{2}
+\end{equation*}
 ```
 
 Unmet load cost:
@@ -220,7 +220,7 @@ $$
         \sum_{{r,y,h} \in \Theta_{um}}{
         WD_h \times 
         WY_y \times UMLPEN \times \mathbf{UNLOAD}_{r,y,h}}\\
-        \tag{3}
+
 $$
 
 Capacity expansion cost: 
