@@ -183,13 +183,13 @@ Minimize total cost
 
 ```math
 \begin{align}
-    \tag{1}\\
     \min \mathbf{C_{tot}} =  C_{disp}+ C_{unload}\\
     (+ C_{exp} + C_{fom} \quad if \quad sw\_ expansion = 1 )\\
     (+ C_{tra} \quad if \quad sw\_ trade = 1 )\\
     (+ C_{ramp} \quad if \quad sw\_ ramp = 1 )\\
     (+ C_{or}\quad if \quad sw\_ reserves = 1 )
 \end{align}
+\tag{1}
 ```
 
 where:
