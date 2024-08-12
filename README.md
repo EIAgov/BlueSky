@@ -234,7 +234,7 @@ $$
 
 $$
 \begin{align*}
-    \left( \frac{SCL_t + 0.001 \times (y-YR0) + \sum_{{r,t1,s} \in \Theta_{cc0} | t1 = t}{ \sum_{y1 \in Y | y1<y}{\mathbf{CAP^{new}}_{r,t1,y1,s}}}}{SCL_t} \right) ^{-LR_t}
+    \left(\frac{SCL_t + 0.001 \times (y-YR0) + \sum_{{r,t1,s} \in \Theta_{cc0} | t1 = t}{ \sum_{y1 \in Y | y1<y}{\mathbf{CAP^{new}}_{r,t1,y1,s}}}{SCL_t} \right) ^{-LR_t}
 \end{align*}
 $$
 
@@ -246,8 +246,8 @@ $$
        ( CAPC0_{r,t,y,s}\\
        \times \left( \frac{
             SCL_t + 0.001 \times (y-YR0) 
-            + \sum_{{r,t1,s} \in \Theta_{cc0} | t1 = t}{ \sum_{y1 \in Y | y1<y}{\mathbf{CAP^{new}}_{r,t1,y1,s}}}
-            }{SCL_t} \right) ^{-LR_t}\\
+            + \sum_{{r,t1,s} \in \Theta_{cc0} | t1 = t}{ \sum_{y1 \in Y | y1<y}{\mathbf{CAP^{new}}_{r,t1,y1,s}}}}
+            {SCL_t} \right) ^{-LR_t}\\
             \times \mathbf{CAP^{new}}_{r,t,y,s} )\\
         \quad if \quad sw\_learning = 2
 \end{align*}
