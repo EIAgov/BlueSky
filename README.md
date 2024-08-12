@@ -214,6 +214,7 @@ Dispatch cost:
 ```
 
 Unmet load cost:
+
 $$
         C_{unload} = 
         \sum_{{r,y,h} \in \Theta_{um}}{
