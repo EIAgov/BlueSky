@@ -234,6 +234,7 @@ $$
         \quad if \quad sw\_learning = 2
 \end{align*}
 $$
+
 <br />
 
 $$
