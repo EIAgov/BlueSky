@@ -183,7 +183,7 @@ Minimize total cost
 
 ```math
 \begin{align}
-    \tag{1}
+    \tag{1}\\
     \min \mathbf{C_{tot}} =  C_{disp}+ C_{unload}\\
     (+ C_{exp} + C_{fom} \quad if \quad sw\_ expansion = 1 )\\
     (+ C_{tra} \quad if \quad sw\_ trade = 1 )\\
