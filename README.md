@@ -184,21 +184,11 @@ Minimize total cost
 $$
 \begin{align}
 \min \mathbf{C_{tot}} =  C_{disp}+ C_{unload}\\
-(+ C_{exp} + C_{fom} \quad if \quad sw\_expansion = 1 )\\
-(+ C_{tra} \quad if \quad sw\_trade = 1 )\\
-(+ C_{ramp} \quad if \quad sw\_ramp = 1 )\\
-(+ C_{or}\quad if \quad sw\_reserves = 1 )
+(+ C_{exp} + C_{fom} \quad if \quad sw\_ expansion = 1 )\\
+(+ C_{tra} \quad if \quad sw\_ trade = 1 )\\
+(+ C_{ramp} \quad if \quad sw\_ ramp = 1 )\\
+(+ C_{or}\quad if \quad sw\_ reserves = 1 )
 \end{align}
-$$
-
-
-
-$$
-\min C_{tot} =  C_{disp}+ C_{unload} \\
-(+ C_{exp} + C_{fom} \quad if \quad sw\_expansion = 1 )\\ 
-(+ C_{tra} \quad if \quad sw\_trade = 1 )\\
-(+ C_{ramp} \quad if \quad sw\_ramp = 1 )\\
-(+ C_{or}\quad if \quad sw\_reserves = 1 )
 $$
 
 where:
