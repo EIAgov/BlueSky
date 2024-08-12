@@ -230,7 +230,7 @@ Unmet load cost:
 \end{equation}
 
 $$
-\begin{equation}
+\begin{equation}\tag{1}\label{eq-a}
     C_{unload} = 
     \sum_{{r,y,h} \in \Theta_{um}}{
     WD_h \times 
