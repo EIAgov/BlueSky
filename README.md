@@ -220,10 +220,16 @@ $$
     \sum_{{r,y,h} \in \Theta_{um}}{
     WD_h \times 
     WY_y \times UMLPEN \times \mathbf{UNLOAD}_{r,y,h}}\\
-\end{align}
+\end{align*}
 $$
 
 Capacity expansion cost: 
+
+```math
+\begin{align*}
+    \left( \quad \right)
+\end{align*}
+```
 
 ```math
 \begin{align*}
