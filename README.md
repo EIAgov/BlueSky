@@ -181,7 +181,6 @@ After each run, a separate run folder with a timestamp should be created within 
 
 Minimize total cost
 
-$$ \min C_{tot} $$
 
 $$
 \min C_{tot} =  C_{disp}+ C_{unload} \\
@@ -201,7 +200,6 @@ $$ C_{disp} =
         +\sum_{{t,y,r,s} \in \theta^{SSH}_h}{(WY_y \times (0.5 \times SPR_{r,seas,t,s,y} \times (\mathbf{STOR^{in}}_{t,y,r,s,h} + \mathbf{STOR^{out}}_{t,y,r,s,h})}\\
         + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
         +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}}) 
-        \tag{2}
 $$
 
 Unmet load cost:
