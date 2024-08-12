@@ -183,7 +183,7 @@ Minimize total cost
 
 $$
 \begin{align*}
-\min \mathbf{C_{tot}} =  C_{disp}+ C_{unload}\\\\
+\min \mathbf{C_{tot}} =  C_{disp}+ C_{unload}\\
 (+ C_{exp} + C_{fom} \quad if \quad sw\_expansion = 1 )\\\\ 
 (+ C_{tra} \quad if \quad sw\_trade = 1 )\\\\
 (+ C_{ramp} \quad if \quad sw\_ramp = 1 )\\\\
