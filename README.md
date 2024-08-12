@@ -197,15 +197,21 @@ Minimize total cost
 
 where:
 
-Dispatch cost: 
-$$ C_{disp} = 
+Dispatch cost:
+
+```math
+\begin{align*}
+    C_{disp} = 
         \sum_{h \in H | s=MHS_h}{}
         (WD_h \times 
         \sum_{{t,y,r,s} \in \theta^{GSH}_h}{WY_y \times SPR_{r,seas,t,s,y} \times \mathbf{GEN}_{t,y,r,s,h}}\\
         +\sum_{{t,y,r,s} \in \theta^{SSH}_h}{(WY_y \times (0.5 \times SPR_{r,seas,t,s,y} \times (\mathbf{STOR^{in}}_{t,y,r,s,h} + \mathbf{STOR^{out}}_{t,y,r,s,h})}\\
         + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
         +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}}) 
-$$
+        \label{eq2}
+    \tag{2}
+\end{align*}
+```
 
 Unmet load cost:
 $$
