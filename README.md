@@ -187,7 +187,6 @@ Minimize total cost
 (+ C_{tra} \quad if \quad sw\_ trade = 1 )\\
 (+ C_{ramp} \quad if \quad sw\_ ramp = 1 )\\
 (+ C_{or}\quad if \quad sw\_ reserves = 1 )
-\tag{1}
 ```
 
 where:
