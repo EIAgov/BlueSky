@@ -199,7 +199,8 @@ where:
 
 Dispatch cost:
 
-\begin{equation*}
+```math
+\begin{equation}
     C_{disp} = 
         \sum_{h \in H | s=MHS_h}{}
         (WD_h \times 
@@ -208,7 +209,8 @@ Dispatch cost:
         + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
         +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}} 
         \label{eq2}
-\end{equation*}
+\end{equation}
+```
 
 Unmet load cost:
 
