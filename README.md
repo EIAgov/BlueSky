@@ -225,7 +225,9 @@ $$
 
 Capacity expansion cost: 
 
-$$        C_{exp} = 
+$$
+\begin{align*}
+C_{exp} = 
         \sum_{{r,t,y,s} \in \Theta_{cc}}
        ( CAPC0_{r,t,y,s} 
        \\
@@ -236,7 +238,8 @@ $$        C_{exp} =
             \\
             \times \mathbf{CAP^{new}}_{r,t,y,s} )
          \\
-        \quad if \quad sw\_learning = 2 
+        \quad if \quad sw\_learning = 2
+\end{align*}
 $$
 <br />
 
