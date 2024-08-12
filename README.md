@@ -227,14 +227,6 @@ Capacity expansion cost:
 
 $$
 \begin{align*}
-    \sum_{{r,t,y,s} \in \Theta_{cc}}
-    ( CAPC0_{r,t,y,s}\\
-\end{align*}
-$$
-
-
-$$
-\begin{align*}
     C_{exp} = 
         \sum_{{r,t,y,s} \in \Theta_{cc}}
        ( CAPC0_{r,t,y,s}\\
