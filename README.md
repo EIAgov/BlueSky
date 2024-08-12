@@ -181,9 +181,7 @@ After each run, a separate run folder with a timestamp should be created within 
 
 Minimize total cost
 
-```math
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
-```
+
 
 ```math
 \begin{align*}
@@ -191,8 +189,10 @@ Minimize total cost
     (+ C_{exp} + C_{fom} \quad if \quad sw\_ expansion = 1 )\\
     (+ C_{tra} \quad if \quad sw\_ trade = 1 )\\
     (+ C_{ramp} \quad if \quad sw\_ ramp = 1 )\\
-    (+ C_{or}\quad if \quad sw\_ reserves = 1 ) \numberthis
+    (+ C_{or}\quad if \quad sw\_ reserves = 1 )
+    \label{eq1}
 \end{align*}
+\tag{1}
 ```
 
 where:
