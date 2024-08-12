@@ -189,22 +189,19 @@ After each run, a separate run folder with a timestamp should be created within 
 **Minimize total cost**
 
 ```math
-\begin{align*}
+\begin{align*} \label{total_cost}
     \min \mathbf{C_{tot}} =  C_{disp}+ C_{unload}\\
     (+ C_{exp} + C_{fom} \quad if \quad sw\_ expansion = 1 )\\
     (+ C_{tra} \quad if \quad sw\_ trade = 1 )\\
     (+ C_{ramp} \quad if \quad sw\_ ramp = 1 )\\
     (+ C_{or}\quad if \quad sw\_ reserves = 1 )
-    \label{total_cost}
 \end{align*}
 ```
-
-**where:**
 
 Dispatch cost:
 
 ```math
-\begin{align*}
+\begin{align*} \label{dispatch_cost}
     C_{disp} = 
         \sum_{h \in H | s=MHS_h}{}
         (WD_h \times 
@@ -212,22 +209,36 @@ Dispatch cost:
         +\sum_{{t,y,r,s} \in \theta^{SSH}_h}{(WY_y \times (0.5 \times SPR_{r,seas,t,s,y} \times (\mathbf{STOR^{in}}_{t,y,r,s,h} + \mathbf{STOR^{out}}_{t,y,r,s,h})}\\
         + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
         +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}} 
-        \label{dispatch_cost}
 \end{align*}
 ```
 
 Unmet load cost:
 
 $$
-\begin{equation}
+\begin{equation} \label{unmet_load_cost}
     C_{unload} = 
     \sum_{{r,y,h} \in \Theta_{um}}{
     WD_h \times 
-    WY_y \times UMLPEN \times **\mathbf{UNLOAD}**_{r,y,h}}\\
+    WY_y \times UMLPEN \times \mathbf{UNLOAD}_{r,y,h}}\\
 \end{equation}
 $$
 
 Capacity expansion cost: 
+```math
+\begin{align*} \label{cap_expansion_cost}
+    C_{exp} = 
+        \sum_{{r,t,y,s} \in \Theta_{cc}}
+       ( CAPC0_{r,t,y,s}\\
+       \times \left( \frac{
+            SCL_t + 0.001 \times (y-YR0) 
+            + \sum_{{r,t1,s} \in \Theta_{cc0} | t1 = t}{ \sum_{y1 \in Y | y1<y}{\mathbf{CAP^{new}}_{r,t1,y1,s}}}
+            }{SCL_t} \right) ^{-LR_t} 
+            \\
+            \times \mathbf{CAP^{new}}_{r,t,y,s} )\\
+        \quad if \quad sw\_learning = 2 
+\end{align*}
+```
+
 $$        C_{exp} = 
         \sum_{{r,t,y,s} \in \Theta_{cc}}
        ( CAPC0_{r,t,y,s} 
