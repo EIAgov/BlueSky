@@ -186,9 +186,7 @@ After each run, a separate run folder with a timestamp should be created within 
 
 ## Objective function
 
-Minimize total cost
-
-
+**Minimize total cost**
 
 ```math
 \begin{align*}
@@ -197,17 +195,15 @@ Minimize total cost
     (+ C_{tra} \quad if \quad sw\_ trade = 1 )\\
     (+ C_{ramp} \quad if \quad sw\_ ramp = 1 )\\
     (+ C_{or}\quad if \quad sw\_ reserves = 1 )
-    \label{eq1}
+    \label{total_cost}
 \end{align*}
-\tag{1}
 ```
 
-where:
+**where:**
 
 Dispatch cost:
 
 ```math
-\tag{2}
 \begin{align*}
     C_{disp} = 
         \sum_{h \in H | s=MHS_h}{}
@@ -216,25 +212,18 @@ Dispatch cost:
         +\sum_{{t,y,r,s} \in \theta^{SSH}_h}{(WY_y \times (0.5 \times SPR_{r,seas,t,s,y} \times (\mathbf{STOR^{in}}_{t,y,r,s,h} + \mathbf{STOR^{out}}_{t,y,r,s,h})}\\
         + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
         +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}} 
-        \label{eq2}
+        \label{dispatch_cost}
 \end{align*}
 ```
 
 Unmet load cost:
 
+$$
 \begin{equation}
     C_{unload} = 
     \sum_{{r,y,h} \in \Theta_{um}}{
     WD_h \times 
-    WY_y \times UMLPEN \times \mathbf{UNLOAD}_{r,y,h}}\\
-\end{equation}
-
-$$
-\begin{equation}\tag{1}\label{eq-a}
-    C_{unload} = 
-    \sum_{{r,y,h} \in \Theta_{um}}{
-    WD_h \times 
-    WY_y \times UMLPEN \times \mathbf{UNLOAD}_{r,y,h}}\\
+    WY_y \times UMLPEN \times \textbf{UNLOAD}_{r,y,h}}\\
 \end{equation}
 $$
 
