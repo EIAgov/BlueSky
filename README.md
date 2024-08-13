@@ -228,7 +228,7 @@ $$
     C_{unload} =\\
     \sum_{{r,y,h} \in \Theta_{um}}{
     WD_h \times 
-    WY_y \times UMLPEN \times \mathbf{UNLOAD}_{r,y,h}}\\
+    WY_y \times UML2PEN \times \mathbf{UNLOAD}_{r,y,h}}\\
 \end{align*}
 $$
 
