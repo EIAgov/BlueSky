@@ -212,6 +212,18 @@ Dispatch cost:
 \end{align*}
 ```
 
+$$
+\begin{align*}
+    C_{disp} = 
+        \sum_{h \in H | s=MHS_h}{}
+        (WD_h \times 
+        \sum_{{t,y,r,s} \in \theta^{GSH}_h}{WY_y \times SPR_{r,seas,t,s,y} \times \mathbf{GEN}_{t,y,r,s,h}}\\
+        +\sum_{{t,y,r,s} \in \theta^{SSH}_h}{(WY_y \times (0.5 \times SPR_{r,seas,t,s,y} \times (\mathbf{STOR^{in}}_{t,y,r,s,h} + \mathbf{STOR^{out}}_{t,y,r,s,h})}\\
+        + (HW_h \times STORLC) \times \mathbf{STOR^{level}}_{t,y,r,s,h}))\\
+        +\sum_{{t,y,r,s} \in \theta^{H2SH}_h}{WY_y \times H2PR_{r,seas,t,s,y} \times H2HR \times \mathbf{GEN}_{t,y,r,1,h}} 
+\end{align*}
+$$
+
 Unmet load cost:
 
 $$
@@ -225,19 +237,17 @@ $$
 
 Capacity expansion cost: 
 
-```math
-\begin{align*}
+$$
     C_{exp} = 
         \sum_{{r,t,y,s} \in \Theta_{cc}}
        ( CAPC0_{r,t,y,s}\\
        \times \left( \frac{
             SCL_t + 0.001 \times (y-YR0) 
             + \sum_{{r,t1,s} \in \Theta_{cc0} | t1 = t}{ \sum_{y1 \in Y | y1<y}{\mathbf{CAP^{new}}_{r,t1,y1,s}}}
-            }{SCL_t} \right)^{-LR_t}\\
+            }{SCL_t} \right) ^{-LR_t}\\
             \times \mathbf{CAP^{new}}_{r,t,y,s} )\\
         \quad if \quad sw\_learning = 2
-\end{align*}
-```
+$$
 
 <br />
 
