@@ -1,7 +1,0 @@
-! Note: H2a sourced. Electricity only.
-! Unit: kWh/kg H2
-Composite Table:
-prodTech    fuel             ElectrolyzerFuelConsumption
-PEM         electricity      54.3
-PEM         NG               0
-;

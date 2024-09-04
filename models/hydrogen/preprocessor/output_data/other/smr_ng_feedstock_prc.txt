@@ -1,2 +1,0 @@
-! Note: Source: GREET 2019
-smr_ng_feedstock_prc := 0.83

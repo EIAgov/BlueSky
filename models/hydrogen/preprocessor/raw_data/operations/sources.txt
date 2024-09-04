@@ -1,7 +1,0 @@
-base_FixedOMCostElectrolyzer and base_FixedOMCost_nonElectrolyzer
---------------------------------------------------------------
-fixed operating costs from H2A
-
-base_VarOMCostElectrolzyer and base_VarOM_nonElectrolyzer
--------------------------------------------------------
-H2a - calculated by subtracting energy for feedstocks/utilities from Total Variable Operating Costs
