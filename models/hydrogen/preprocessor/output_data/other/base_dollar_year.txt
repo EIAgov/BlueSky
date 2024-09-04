@@ -1,0 +1,3 @@
+! Note: all dollar values deflated to this year
+! Unit: $2022
+base_dollar_year := '2022'

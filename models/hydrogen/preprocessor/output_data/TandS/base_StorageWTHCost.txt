@@ -1,0 +1,23 @@
+! Note: Sourced from FECM
+! Unit: BasisYear_$/kg mile
+Composite Table:
+regCen           storageTech     base_StorageWTHCost
+NewEngland       SaltCavern      0.00149888
+NewEngland       RockCavern      0.00172948
+MidAtlantic      SaltCavern      0.00149888
+MidAtlantic      RockCavern      0.00172948
+ENCentral        SaltCavern      0.00149888
+ENCentral        RockCavern      0.00172948
+WNCentral        SaltCavern      0.00149888
+WNCentral        RockCavern      0.00172948
+SAtlantic        SaltCavern      0.00149888
+SAtlantic        RockCavern      0.00172948
+ESCentral        SaltCavern      0.00149888
+ESCentral        RockCavern      0.00172948
+WSCentral        SaltCavern      0.00149888
+WSCentral        RockCavern      0.00172948
+Mountain         SaltCavern      0.00149888
+Mountain         RockCavern      0.00172948
+Pacific          SaltCavern      0.00149888
+Pacific          RockCavern      0.00172948
+;

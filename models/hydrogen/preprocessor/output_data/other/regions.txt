@@ -1,0 +1,4 @@
+CensusRegions_ := DATA {NewEngland,MidAtlantic,ENCentral,WNCentral,SAtlantic,ESCentral,WSCentral,Mountain,Pacific};
+
+NERCRegions_ := DATA {TRE,FRCC,MISW,MISC,MISE,MISS,ISNE,NYCW,NYUP,PJME,PJMW,PJMC,PJMD,SRCA,SRSE,SRCE,SPPS,SPPC,SPPN,SRSG,CANO,CASO,NWPP,RMRG,BASN};
+
