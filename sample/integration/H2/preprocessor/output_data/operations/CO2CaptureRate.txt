@@ -1,0 +1,8 @@
+! Note: Sourced from H2A
+! Unit: kg CO2/kg H2
+Composite Table:
+prodTech         CO2CaptureRate
+SMR              0
+SMR_CCS          9.96
+SMR_CCS_OFF      0
+;

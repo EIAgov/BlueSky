@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.integrator.unified_solver &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.integrator.unified_solver</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.integrator.unified_solver</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A first crack at unifying the solve of both H2 and Elec</span>
+
+<span class="sd">Dev Note:  This works, but needs a lot of cleanup and probably some</span>
+<span class="sd">restructuring if it were to include the Res model as well in some format</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">tomllib</span>
+<span class="kn">import</span> <span class="nn">pyomo.environ</span> <span class="k">as</span> <span class="nn">pyo</span>
+
+<span class="kn">from</span> <span class="nn">definitions</span> <span class="kn">import</span> <span class="n">PROJECT_ROOT</span>
+<span class="kn">from</span> <span class="nn">src.integrator.jacobi_elec_hyd_solver</span> <span class="kn">import</span> <span class="n">simple_solve</span>
+<span class="kn">from</span> <span class="nn">src.integrator.progress_plot</span> <span class="kn">import</span> <span class="n">plot_it</span>
+<span class="kn">from</span> <span class="nn">src.integrator.utilities</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">HI</span><span class="p">,</span>
+    <span class="n">convert_h2_price_records</span><span class="p">,</span>
+    <span class="n">regional_annual_prices</span><span class="p">,</span>
+    <span class="n">poll_hydrogen_price</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">src.models.electricity.scripts.electricity_model</span> <span class="kn">import</span> <span class="n">PowerModel</span>
+<span class="kn">from</span> <span class="nn">src.models.electricity.scripts.runner</span> <span class="kn">import</span> <span class="n">run_model</span>
+<span class="kn">from</span> <span class="nn">src.models.hydrogen.model</span> <span class="kn">import</span> <span class="n">actions</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">HYDROGEN_ROOT</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;src/models/hydrogen&#39;</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">HYDROGEN_ROOT</span> <span class="o">/</span> <span class="s1">&#39;inputs/single_region&#39;</span>  <span class="c1"># has a bit of regions 7 data</span>
+
+
+<div class="viewcode-block" id="run_unified">
+<a class="viewcode-back" href="../../../src.integrator.html#src.integrator.unified_solver.run_unified">[docs]</a>
+<span class="k">def</span> <span class="nf">run_unified</span><span class="p">(</span><span class="n">config_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+    <span class="c1"># some data gathering</span>
+    <span class="n">h2_price_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">elec_price_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">h2_obj_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">elec_obj_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">h2_demand_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">elec_demand_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting Iterative ELEC-HYD run&#39;</span><span class="p">)</span>
+    <span class="c1"># ------------------ 1.  get the regions &amp; years of interest...</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">tomllib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieved config data: </span><span class="si">{</span><span class="n">config</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;years&#39;</span><span class="p">]]</span>
+        <span class="n">regions</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;regions&#39;</span><span class="p">]</span>
+
+    <span class="c1"># ------------------ 2.  H2 model</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Making H2 Model&#39;</span><span class="p">)</span>
+    <span class="n">grid_data</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">regions_of_interest</span><span class="o">=</span><span class="n">regions</span><span class="p">)</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">build_grid</span><span class="p">(</span><span class="n">grid_data</span><span class="o">=</span><span class="n">grid_data</span><span class="p">)</span>
+    <span class="n">h2_model</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">build_model</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="n">years</span><span class="p">)</span>
+    <span class="n">h2_model</span><span class="o">.</span><span class="n">demand_constraint</span>
+
+    <span class="c1"># ------------------ 4.  ELEC model</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Doing initial solve on Elec&#39;</span><span class="p">)</span>
+    <span class="n">elec_model</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">years</span><span class="p">,</span> <span class="n">regions</span><span class="o">=</span><span class="n">regions</span><span class="p">,</span> <span class="n">solve</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># ------------------ 5.  Unified Model</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">ConcreteModel</span><span class="p">(</span><span class="s1">&#39;meta&#39;</span><span class="p">)</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">h2</span> <span class="o">=</span> <span class="n">h2_model</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">elec</span> <span class="o">=</span> <span class="n">elec_model</span>
+
+    <span class="c1"># ------------------ 6.  Update the ELEC model</span>
+    <span class="c1"># Now, we need to augment several things</span>
+    <span class="c1"># add the &quot;dormant&quot; variable demand to the ELEC model...</span>
+    <span class="c1"># note:  This &quot;deactivation&quot; below will need to be re-instated when</span>
+    <span class="c1">#        the constraint is reinstated.  For now, we don&#39;t need</span>
+    <span class="c1">#        to worry about it or the replacement.  Both monkey</span>
+    <span class="c1">#        with the cost capture from duals...</span>
+
+    <span class="c1"># elec_model.Annual_balance.deactivate()</span>
+
+    <span class="c1"># re-work the annual demand in the elec model with the variable instead of the parameter</span>
+    <span class="k">def</span> <span class="nf">Annual_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">PowerModel</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;A quick &amp; ugly summation to balance load on an annual basis if there are</span>
+<span class="sd">        external, annual demands for electricity</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">annual_demand</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Load</span><span class="p">[(</span><span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">annual_count</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span> <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr</span><span class="p">)</span>
+            <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_elec_request</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span>  <span class="c1"># &lt;--------------- this is the big change</span>
+        <span class="p">)</span>
+
+        <span class="n">annual_production</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">sum</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Generation</span><span class="p">[(</span><span class="n">tech</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">annual_count</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">tech</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">GenSetDemandBalance</span><span class="p">[(</span><span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Storage_outflow</span><span class="p">[(</span><span class="n">tech</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">annual_count</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>
+                <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">Storage_inflow</span><span class="p">[(</span><span class="n">tech</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">annual_count</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">tech</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">StorageSetDemandBalance</span><span class="p">[(</span><span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span>
+            <span class="p">)</span>
+            <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unmet_Load</span><span class="p">[(</span><span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">annual_count</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span> <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr</span><span class="p">)</span>
+            <span class="o">+</span> <span class="p">(</span>
+                <span class="nb">sum</span><span class="p">(</span>
+                    <span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">TradeToFrom</span><span class="p">[(</span><span class="n">r</span><span class="p">,</span> <span class="n">reg1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">setA</span><span class="o">.</span><span class="n">TransLoss</span><span class="p">)</span>
+                        <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">TradeToFrom</span><span class="p">[(</span><span class="n">reg1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span>
+                    <span class="p">)</span>
+                    <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">annual_count</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="n">reg1</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">TradeSetDemandBalance</span><span class="p">[(</span><span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw_trade</span> <span class="ow">and</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">setA</span><span class="o">.</span><span class="n">trade_regs</span>
+                <span class="k">else</span> <span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="o">+</span> <span class="p">(</span>
+                <span class="nb">sum</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">TradeToFromCan</span><span class="p">[(</span><span class="n">r</span><span class="p">,</span> <span class="n">r_can</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">CSteps</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span>
+                    <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">setA</span><span class="o">.</span><span class="n">TransLoss</span><span class="p">)</span>
+                    <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">annual_count</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="n">r_can</span><span class="p">,</span> <span class="n">CSteps</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">TradeCanSetDemandBalance</span><span class="p">[(</span><span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">hr</span><span class="p">)]</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sw_trade</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">setA</span><span class="o">.</span><span class="n">r_can_conn</span><span class="p">)</span>
+                <span class="k">else</span> <span class="mi">0</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">annual_production</span> <span class="o">&gt;=</span> <span class="n">annual_demand</span>
+
+    <span class="c1"># elec_model.Annual_balance = pyo.Constraint(elec_model.r, elec_model.y, rule=Annual_balance)</span>
+
+    <span class="c1"># ------------------ 7.  Update the H2 model</span>
+    <span class="c1"># hook the var_elec_demand to what the H2 model&#39;s request...</span>
+
+    <span class="c1"># TODO:  Note that the below is part of linking the elec demand back to the elec model</span>
+    <span class="c1">#        and per comment above, that is disabled for now.  This linking constraint does</span>
+    <span class="c1">#        work, but is not needed until we feed elec demand back into the model, turn on</span>
+    <span class="c1">#        constraint above, etc.</span>
+
+    <span class="c1"># # helper... this could be moved.  We need to identify which hubs are in each region</span>
+    <span class="c1"># regional_hubs = defaultdict(list)  # {region_1: [hub_1, hub_2, ...], region_2: ...}</span>
+    <span class="c1"># for idx in h2_model.h2_volume:</span>
+    <span class="c1">#     hub, _, _ = idx</span>
+    <span class="c1">#     region = h2_model.grid.registry.hubs[hub].region</span>
+    <span class="c1">#     regional_hubs[region].append(hub)</span>
+
+    <span class="c1"># def link_elec_demand(meta, r, y):</span>
+    <span class="c1">#     return elec_model.var_elec_request[r, y] &gt;= sum(</span>
+    <span class="c1">#         h2_model.h2_volume[hub, tech, y] * 1 / h2_model.efficiencies[tech]</span>
+    <span class="c1">#         for hub in regional_hubs[r]</span>
+    <span class="c1">#         for tech in h2_model.technology</span>
+    <span class="c1">#     )</span>
+
+    <span class="c1"># meta.link_elec_demand = pyo.Constraint(elec_model.r, elec_model.y, rule=link_elec_demand)</span>
+
+    <span class="c1"># now, connect disable the demand param in the H2 model and hook up the variable demand to what the Elec wants...</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">h2_model</span><span class="o">.</span><span class="n">demand</span><span class="p">:</span>
+        <span class="n">h2_model</span><span class="o">.</span><span class="n">demand</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># this retrieval from the elec model could be made into just 1 function in the future....  the orig used &quot;value()&quot;,</span>
+    <span class="c1"># it *could* return the variable and we could get the value later in that case</span>
+    <span class="c1"># it is borrowed from the elec model</span>
+    <span class="n">h2_consuming_techs</span> <span class="o">=</span> <span class="p">{</span><span class="mi">5</span><span class="p">}</span>  <span class="c1"># TODO:  get rid of this hard-coding</span>
+
+    <span class="c1"># gather results</span>
+    <span class="n">res</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">HI</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="c1"># iterate over the Generation variable and screen out the H2 &quot;demanders&quot; and build a</span>
+    <span class="c1"># summary expression for all the demands in the (region, year) index of the H2 model</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">elec_model</span><span class="o">.</span><span class="n">Generation</span><span class="o">.</span><span class="n">index_set</span><span class="p">():</span>
+        <span class="n">tech</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">idx</span>
+        <span class="k">if</span> <span class="n">tech</span> <span class="ow">in</span> <span class="n">h2_consuming_techs</span><span class="p">:</span>
+            <span class="n">h2_demand_weighted</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">elec_model</span><span class="o">.</span><span class="n">Generation</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                <span class="o">*</span> <span class="n">elec_model</span><span class="o">.</span><span class="n">Idaytq</span><span class="p">[</span><span class="n">elec_model</span><span class="o">.</span><span class="n">Map_hr_d</span><span class="p">[</span><span class="n">hr</span><span class="p">]]</span>
+                <span class="o">*</span> <span class="n">elec_model</span><span class="o">.</span><span class="n">h2_conversion_eff</span>
+            <span class="p">)</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">HI</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="n">reg</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="n">y</span><span class="p">)]</span> <span class="o">+=</span> <span class="n">h2_demand_weighted</span>
+
+    <span class="c1"># hook &#39;em up with a constraint</span>
+    <span class="k">def</span> <span class="nf">link_h2_demand</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">h2_model</span><span class="o">.</span><span class="n">var_demand</span><span class="p">[</span><span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">res</span><span class="p">[</span><span class="n">HI</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">y</span><span class="p">)]</span>
+
+    <span class="n">meta</span><span class="o">.</span><span class="n">link_h2_demand</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">h2_model</span><span class="o">.</span><span class="n">regions</span><span class="p">,</span> <span class="n">h2_model</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">link_h2_demand</span><span class="p">)</span>
+
+    <span class="c1"># ------------------ 8.  Update the objective</span>
+    <span class="n">h2_model</span><span class="o">.</span><span class="n">total_cost</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
+    <span class="n">elec_model</span><span class="o">.</span><span class="n">totalCost</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="n">h2_model</span><span class="o">.</span><span class="n">total_cost</span> <span class="o">+</span> <span class="n">elec_model</span><span class="o">.</span><span class="n">totalCost</span><span class="p">)</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">dual</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Suffix</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="n">pyo</span><span class="o">.</span><span class="n">Suffix</span><span class="o">.</span><span class="n">IMPORT</span><span class="p">)</span>
+
+    <span class="c1"># let&#39;s just iterate...</span>
+
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">old_obj_sum</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># some fake old objective sum to support iteration</span>
+    <span class="n">tol</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting iteration: </span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">iter</span><span class="p">)</span>
+
+        <span class="n">simple_solve</span><span class="p">(</span><span class="n">meta</span><span class="p">)</span>
+        <span class="c1"># meta.display()</span>
+
+        <span class="c1"># ------------------ 9.  Catch Metrics...</span>
+        <span class="c1"># catch metrics from H2 Model</span>
+
+        <span class="c1"># elec_demand = h2_model.poll_electric_demand()</span>
+        <span class="c1"># tot_e_demand = sum(elec_demand.values())</span>
+        <span class="c1"># elec_demand_records.append((iter + 1, tot_e_demand))</span>
+        <span class="n">h2_obj_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span><span class="p">,</span> <span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">h2_model</span><span class="o">.</span><span class="n">total_cost</span><span class="p">())))</span>
+        <span class="n">new_h2_prices</span> <span class="o">=</span> <span class="n">poll_hydrogen_price</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">h2</span><span class="p">)</span>
+        <span class="n">avg_hyd_price</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">new_h2_prices</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_h2_prices</span><span class="p">)</span>
+        <span class="n">h2_price_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">avg_hyd_price</span><span class="p">))</span>  <span class="c1"># price for &quot;next&quot; iter</span>
+
+        <span class="c1"># catch metrics from Elec</span>
+        <span class="n">tot_h2_demand</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">elec_model</span><span class="o">.</span><span class="n">poll_h2_demand</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">h2_demand_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tot_h2_demand</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Tot H2 Demand for iteration </span><span class="si">%d</span><span class="s1">: </span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">iter</span><span class="p">,</span> <span class="n">tot_h2_demand</span><span class="p">)</span>
+        <span class="n">elec_obj_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span><span class="p">,</span> <span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">elec_model</span><span class="o">.</span><span class="n">totalCost</span><span class="p">)))</span>
+
+        <span class="n">rap</span> <span class="o">=</span> <span class="n">regional_annual_prices</span><span class="p">(</span><span class="n">meta</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="n">meta</span><span class="o">.</span><span class="n">elec</span><span class="p">)</span>
+        <span class="n">grand_avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rap</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">rap</span><span class="p">)</span>
+        <span class="n">elec_price_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grand_avg</span><span class="p">))</span>
+
+        <span class="c1"># ------------------ 10.  Info swap</span>
+        <span class="c1"># H2 prices</span>
+        <span class="n">elec_model</span><span class="o">.</span><span class="n">update_h2_prices</span><span class="p">(</span><span class="n">h2_prices</span><span class="o">=</span><span class="n">convert_h2_price_records</span><span class="p">(</span><span class="n">new_h2_prices</span><span class="p">))</span>
+        <span class="c1"># Elec prices</span>
+        <span class="n">h2_model</span><span class="o">.</span><span class="n">update_exchange_params</span><span class="p">(</span><span class="n">new_electricity_price</span><span class="o">=</span><span class="n">rap</span><span class="p">)</span>
+
+        <span class="c1"># ------------------ 11.  Check termination criteria</span>
+        <span class="n">meta_obj</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">old_obj_sum</span> <span class="o">=</span> <span class="n">meta_obj</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">(</span><span class="n">meta_obj</span> <span class="o">-</span> <span class="n">old_obj_sum</span><span class="p">)</span> <span class="o">/</span> <span class="n">old_obj_sum</span> <span class="o">&lt;=</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">old_obj_sum</span> <span class="o">=</span> <span class="n">meta_obj</span>
+
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Terminating iterative solve based on iteration count &gt; 20!&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Finished Iteration </span><span class="si">{</span><span class="nb">iter</span><span class="si">}</span><span class="s1"> with meta obj value: </span><span class="si">{</span><span class="n">meta_obj</span><span class="si">:</span><span class="s1">0.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">iter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">plot_it</span><span class="p">(</span>
+        <span class="n">h2_price_records</span><span class="o">=</span><span class="n">h2_price_records</span><span class="p">,</span>
+        <span class="n">elec_price_records</span><span class="o">=</span><span class="n">elec_price_records</span><span class="p">,</span>
+        <span class="n">h2_obj_records</span><span class="o">=</span><span class="n">h2_obj_records</span><span class="p">,</span>
+        <span class="n">elec_obj_records</span><span class="o">=</span><span class="n">elec_obj_records</span><span class="p">,</span>
+        <span class="n">h2_demand_records</span><span class="o">=</span><span class="n">h2_demand_records</span><span class="p">,</span>
+        <span class="n">elec_demand_records</span><span class="o">=</span><span class="n">elec_demand_records</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

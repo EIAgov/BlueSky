@@ -1,0 +1,25 @@
+! Note: Sourced from FECM
+! Unit: BasisYear_$/kg mile
+Composite Table:
+regCen           regCen_j         base_TransportationCost
+NewEngland       MidAtlantic      0.00115299
+MidAtlantic      NewEngland       0.00115299
+MidAtlantic      ENCentral        0.00115299
+MidAtlantic      Satlantic        0.00115299
+ENCentral        MidAtlantic      0.00115299
+Satlantic        MidAtlantic      0.00115299
+Satlantic        ENCentral        0.00115299
+Satlantic        ENCentral        0.00115299
+ENCentral        Satlantic        0.00115299
+ENCentral        ESCentral        0.00115299
+WNCentral        WSCentral        0.00115299
+ESCentral        WNCentral        0.00115299
+ESCentral        WSCentral        0.00115299
+WSCentral        Mountain         0.00115299
+WNCentral        WSCentral        0.00115299
+WSCentral        Mountain         0.00115299
+Mountain         WNCentral        0.00115299
+WNCentral        Mountain         0.00115299
+Mountain         Pacific          0.00115299
+Pacific          Mountain         0.00115299
+;

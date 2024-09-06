@@ -1,0 +1,39 @@
+# RUN CONFIGURATIONS
+# This file is used to establish the main model configurations users can edit when running
+
+###################################################################################################
+# Universial Inputs
+
+#SETTINGS
+# Mode choices=['elec','h2','unified-combo','gs-combo']
+# The default mode is only used when --mode argument is not passed by the user when running main.py
+default_mode = 'gs-combo'
+
+force_10 = false  # forces 10 iterations in solves that iterate, specify true or false (lowercase)
+tol = 0.05  # percent tolerance allowed between iterations, specify a number less than 1
+max_iter = 12 # max number of iterations 
+
+sw_temporal = 'd4h1'
+
+# note: these settings below are csvs for now, future version may be directly specified in toml
+
+# CSV SWITCHES
+# These inputs are switches, edit the CSV file, adding a 1 next to the years, regions, etc. 
+# in which you would like to run the model for
+
+years = 'src/integrator/input/sw_year.csv'
+regions = 'src/integrator/input/sw_reg.csv'
+
+
+###################################################################################################
+# Electricity Inputs
+
+#TODO: Move scedes settings here
+
+sw_trade = 1
+sw_expansion = 1
+sw_agg_years = 1
+sw_rm = 1
+sw_ramp = 0
+sw_reserves = 1
+sw_learning = 1

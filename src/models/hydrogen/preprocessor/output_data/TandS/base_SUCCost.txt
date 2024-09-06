@@ -1,0 +1,23 @@
+! Note: Sourced from FECM
+! Unit: BasisYear_$/kg mile
+Composite Table:
+regCen           storageTech     base_SUCCost
+NewEngland       SaltCavern      1.15299
+NewEngland       RockCavern      2.30597
+MidAtlantic      SaltCavern      1.15299
+MidAtlantic      RockCavern      2.30597
+ENCentral        SaltCavern      1.15299
+ENCentral        RockCavern      2.30597
+WNCentral        SaltCavern      1.15299
+WNCentral        RockCavern      2.30597
+SAtlantic        SaltCavern      1.15299
+SAtlantic        RockCavern      2.30597
+ESCentral        SaltCavern      1.15299
+ESCentral        RockCavern      2.30597
+WSCentral        SaltCavern      1.15299
+WSCentral        RockCavern      2.30597
+Mountain         SaltCavern      1.15299
+Mountain         RockCavern      2.30597
+Pacific          SaltCavern      1.15299
+Pacific          RockCavern      2.30597
+;

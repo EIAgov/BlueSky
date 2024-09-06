@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.hydrogen.network package &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.models.hydrogen.region_network package" href="src.models.hydrogen.region_network.html" />
+    <link rel="prev" title="src.models.hydrogen.model package" href="src.models.hydrogen.model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.models.hydrogen.network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">src.models.hydrogen.network package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src.models.hydrogen.network package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+          <li class="breadcrumb-item"><a href="src.models.html">src.models package</a></li>
+          <li class="breadcrumb-item"><a href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+      <li class="breadcrumb-item active">src.models.hydrogen.network package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.models.hydrogen.network.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-models-hydrogen-network-package">
+<h1>src.models.hydrogen.network package<a class="headerlink" href="#src-models-hydrogen-network-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.models.hydrogen.network.grid">
+<span id="src-models-hydrogen-network-grid-module"></span><h2>src.models.hydrogen.network.grid module<a class="headerlink" href="#module-src.models.hydrogen.network.grid" title="Link to this heading"></a></h2>
+<section id="grid-class">
+<h3>GRID CLASS<a class="headerlink" href="#grid-class" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This is the central class that binds all the other classes together. No class
+instance exists in a reference that isn’t fundamentally contained in a grid.
+The grid is used to instantiate a model, read data, create the regionality
+and hub / arc network within that regionality, assign data to objects and more.</p>
+<p>notably, the grid is used to coordinate internal methods in various classes to
+make sure that their combined actions keep the model consistent and accomplish
+the desired task.</p>
+<p>data = this is a data object</p>
+</div></blockquote>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.hydrogen.network.grid.</span></span><span class="sig-name descname"><span class="pre">Grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.models.hydrogen.network.grid_data.GridData" title="src.models.hydrogen.network.grid_data.GridData"><span class="pre">GridData</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.aggregate_hubs">
+<span class="sig-name descname"><span class="pre">aggregate_hubs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hublist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.aggregate_hubs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.aggregate_hubs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.arc_generation">
+<span class="sig-name descname"><span class="pre">arc_generation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.arc_generation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.arc_generation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.build_grid">
+<span class="sig-name descname"><span class="pre">build_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.build_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.build_grid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.collapse">
+<span class="sig-name descname"><span class="pre">collapse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.collapse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.collapse" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.collapse_level">
+<span class="sig-name descname"><span class="pre">collapse_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.collapse_level"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.collapse_level" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.combine_arcs">
+<span class="sig-name descname"><span class="pre">combine_arcs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arclist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.combine_arcs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.combine_arcs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.connect_subregions">
+<span class="sig-name descname"><span class="pre">connect_subregions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.connect_subregions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.connect_subregions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.create_arc">
+<span class="sig-name descname"><span class="pre">create_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.create_arc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.create_arc" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.create_hub">
+<span class="sig-name descname"><span class="pre">create_hub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.create_hub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.create_hub" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.create_region">
+<span class="sig-name descname"><span class="pre">create_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.create_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.create_region" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.delete" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.load_hubs">
+<span class="sig-name descname"><span class="pre">load_hubs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.load_hubs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.load_hubs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.recursive_region_generation">
+<span class="sig-name descname"><span class="pre">recursive_region_generation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.recursive_region_generation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.recursive_region_generation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.test">
+<span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.test" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.visualize">
+<span class="sig-name descname"><span class="pre">visualize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.visualize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.visualize" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid.Grid.write_data">
+<span class="sig-name descname"><span class="pre">write_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid.html#Grid.write_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid.Grid.write_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.models.hydrogen.network.grid_data">
+<span id="src-models-hydrogen-network-grid-data-module"></span><h2>src.models.hydrogen.network.grid_data module<a class="headerlink" href="#module-src.models.hydrogen.network.grid_data" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.grid_data.GridData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.hydrogen.network.grid_data.</span></span><span class="sig-name descname"><span class="pre">GridData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions_of_interest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/grid_data.html#GridData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.grid_data.GridData" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-src.models.hydrogen.network.hub">
+<span id="src-models-hydrogen-network-hub-module"></span><h2>src.models.hydrogen.network.hub module<a class="headerlink" href="#module-src.models.hydrogen.network.hub" title="Link to this heading"></a></h2>
+<section id="hub-class">
+<h3>HUB CLASS<a class="headerlink" href="#hub-class" title="Link to this heading"></a></h3>
+<p>class objects are individual hubs, which are fundamental units of production in
+the model. Hubs belong to regions, and connect to each other with transportation
+arcs.</p>
+<blockquote>
+<div><p>name - str name of hub (from input data or aggregated)
+region - region located in
+data - data object that stores hub-specific parameters
+outbound - dict of arcs outbound from hub, with destination hub name:destination hub object format
+inbound - dict of arcs inbound to hub, with origin hub name: origin hub object format
+x,y - location coordinates (will deprecate)</p>
+<p>change_region - region arg becomes hub’s region and hub is added to args hublist
+display_outbound - print outbound arcs
+display_inbound - print inbound arcs
+add_outbound - add arc arg as an outbound arc
+add_inbound - add arc arg as an inbound arc
+remove_outbound - remove an outbound arc
+remove_inbound - remove an inbound arc
+get_data - pass the name of a parameter in data as arg, and receive the value.
+cost - temp cost function, to be deprecated</p>
+</div></blockquote>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.hydrogen.network.hub.</span></span><span class="sig-name descname"><span class="pre">Hub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.add_inbound">
+<span class="sig-name descname"><span class="pre">add_inbound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.add_inbound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.add_inbound" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.add_outbound">
+<span class="sig-name descname"><span class="pre">add_outbound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.add_outbound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.add_outbound" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.change_region">
+<span class="sig-name descname"><span class="pre">change_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_region</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.change_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.change_region" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.cost">
+<span class="sig-name descname"><span class="pre">cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">technology</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.cost"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.cost" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.display_outbound">
+<span class="sig-name descname"><span class="pre">display_outbound</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.display_outbound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.display_outbound" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.get_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.remove_inbound">
+<span class="sig-name descname"><span class="pre">remove_inbound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.remove_inbound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.remove_inbound" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.hub.Hub.remove_outbound">
+<span class="sig-name descname"><span class="pre">remove_outbound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/hub.html#Hub.remove_outbound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.hub.Hub.remove_outbound" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.models.hydrogen.network.region">
+<span id="src-models-hydrogen-network-region-module"></span><h2>src.models.hydrogen.network.region module<a class="headerlink" href="#module-src.models.hydrogen.network.region" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.hydrogen.network.region.</span></span><span class="sig-name descname"><span class="pre">Region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.absorb_subregions">
+<span class="sig-name descname"><span class="pre">absorb_subregions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.absorb_subregions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.absorb_subregions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.absorb_subregions_deep">
+<span class="sig-name descname"><span class="pre">absorb_subregions_deep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.absorb_subregions_deep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.absorb_subregions_deep" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.add_hub">
+<span class="sig-name descname"><span class="pre">add_hub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hub</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.add_hub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.add_hub" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.add_subregion">
+<span class="sig-name descname"><span class="pre">add_subregion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subregion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.add_subregion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.add_subregion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.aggregate_subregion_data">
+<span class="sig-name descname"><span class="pre">aggregate_subregion_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subregions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.aggregate_subregion_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.aggregate_subregion_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.assigned_names">
+<span class="sig-name descname"><span class="pre">assigned_names</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#src.models.hydrogen.network.region.Region.assigned_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.create_subregion">
+<span class="sig-name descname"><span class="pre">create_subregion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.create_subregion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.create_subregion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.delete" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.display_children">
+<span class="sig-name descname"><span class="pre">display_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.display_children"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.display_children" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.display_hubs">
+<span class="sig-name descname"><span class="pre">display_hubs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.display_hubs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.display_hubs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.get_data">
+<span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantity</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.get_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.get_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.remove_hub">
+<span class="sig-name descname"><span class="pre">remove_hub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hub</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.remove_hub"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.remove_hub" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.remove_subregion">
+<span class="sig-name descname"><span class="pre">remove_subregion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subregion</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.remove_subregion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.remove_subregion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.update_data">
+<span class="sig-name descname"><span class="pre">update_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.update_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.update_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.region.Region.update_parent">
+<span class="sig-name descname"><span class="pre">update_parent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parent</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/region.html#Region.update_parent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.region.Region.update_parent" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.models.hydrogen.network.registry">
+<span id="src-models-hydrogen-network-registry-module"></span><h2>src.models.hydrogen.network.registry module<a class="headerlink" href="#module-src.models.hydrogen.network.registry" title="Link to this heading"></a></h2>
+<section id="registry-class">
+<h3>REGISTRY CLASS<a class="headerlink" href="#registry-class" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>This class is the central registry of all objects in a grid. It preserves them
+in dicts of object-name:object so that they can be looked up by name.
+it also should serve as a place to save data in different configurations for
+faster parsing - for example, depth is a dict that organizes regions according to
+their depth in the region nesting tree.</p>
+<p>regions - dict of region name:region object
+hubs - dict of hub name:hub object
+arcs - dict of arc name:arc object
+depth - dict of ints and lists of regions with int n:list of regions at that depth
+max_depth - the max depth in the tree</p>
+<dl class="simple">
+<dt>add - generic method to add something to the registry. Depending on the type</dt><dd><p>thing, it adds it to the appropriate variable and adjusts others as necessary</p>
+</dd>
+<dt>remove - generic method to remove something from the registry. Depending on the</dt><dd><p>type of thing, it removes it from the appropriate variable and adjusts
+others as necessary.</p>
+</dd>
+<dt>update_levels - updates the level counts (such as when you aggregate and a region</dt><dd><p>changes level)</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.registry.Registry">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.hydrogen.network.registry.</span></span><span class="sig-name descname"><span class="pre">Registry</span></span><a class="reference internal" href="_modules/src/models/hydrogen/network/registry.html#Registry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.registry.Registry" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.registry.Registry.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/registry.html#Registry.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.registry.Registry.add" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.registry.Registry.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thing</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/registry.html#Registry.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.registry.Registry.remove" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.registry.Registry.update_levels">
+<span class="sig-name descname"><span class="pre">update_levels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/registry.html#Registry.update_levels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.registry.Registry.update_levels" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.models.hydrogen.network.transportation_arc">
+<span id="src-models-hydrogen-network-transportation-arc-module"></span><h2>src.models.hydrogen.network.transportation_arc module<a class="headerlink" href="#module-src.models.hydrogen.network.transportation_arc" title="Link to this heading"></a></h2>
+<section id="transportation-arc-class">
+<h3>TRANSPORTATION ARC CLASS<a class="headerlink" href="#transportation-arc-class" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>objects in this class represent individual transportation arcs. An arc can
+exist with zero capacity, so they only represent <em>possible</em> arcs.</p>
+<dl class="simple">
+<dt>name - the name used by the registry. Unlike regions and hubs, arc names are</dt><dd><p>fully determined. They are tuples of origin hub name and dest hub name.</p>
+</dd>
+</dl>
+<p>origin - pointer to origin hub object
+destination - pointer to destination hub object
+capacity - base capacity
+cost - generic cost parameter (to be deprecated)</p>
+<p>change_origin - changes the origin hub and name to reflect that
+chage_destination - changes the destination hub and name to reflect that
+disconnect - removes itself from the inbound and outbound hubs’ arc lists.</p>
+</div></blockquote>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.transportation_arc.TransportationArc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.hydrogen.network.transportation_arc.</span></span><span class="sig-name descname"><span class="pre">TransportationArc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">origin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destination</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/transportation_arc.html#TransportationArc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.transportation_arc.TransportationArc" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.transportation_arc.TransportationArc.change_destination">
+<span class="sig-name descname"><span class="pre">change_destination</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_destination</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/transportation_arc.html#TransportationArc.change_destination"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.transportation_arc.TransportationArc.change_destination" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.transportation_arc.TransportationArc.change_origin">
+<span class="sig-name descname"><span class="pre">change_origin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_origin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/transportation_arc.html#TransportationArc.change_origin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.transportation_arc.TransportationArc.change_origin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.hydrogen.network.transportation_arc.TransportationArc.disconnect">
+<span class="sig-name descname"><span class="pre">disconnect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/hydrogen/network/transportation_arc.html#TransportationArc.disconnect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.hydrogen.network.transportation_arc.TransportationArc.disconnect" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.models.hydrogen.network">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.models.hydrogen.network" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+name: bsky
+channels:
+  - conda-forge
+  - base
+  - bioconda
+dependencies:
+  - python=3.12
+  - numpy
+  - pandas
+  - pyomo
+  - highs
+  - ipopt=3.11.1  # why is this pinned?
+  - ruff
+  - grequests
+  - matplotlib
+  - plotly
+  - pytest
+  - sqlalchemy
+  - networkx
+  - openpyxl
+  - dash
+  - pathlib
+  - sympy=1.12 # pinning this because version 1.13 seems to have problem with the lambdify operation is res mod
+
+# For data_pipeline sample
+  - snakemake
+  - aiohttp
+  - graphviz
+  - r-base
+  - r-tidyverse
+  - r-data.table
+  - r-sf
+  - r-tigris
+  - r-here
+  - r-tidycensus
+  - r-readxl
+
+# needed?  ... for removal?
+  - pylint
+  - tabulate
+
+
+# additional outside conda:  highspy from PyPi (not in conda-verse)
+#   So, after making the bsky environment and activating it, run:
+#   > pip install highspy

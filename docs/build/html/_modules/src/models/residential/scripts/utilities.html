@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.residential.scripts.utilities &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.models.residential.scripts.utilities</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.models.residential.scripts.utilities</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This file contains the options to re-create the input files. It creates:</span>
+<span class="sd"> - Load.csv: electricity demand for all model years (used in residential and electricity)</span>
+<span class="sd"> - BaseElecPrice.csv: electricity prices for initial model year (used in residential only)</span>
+<span class="sd">Uncomment out the functions at the end of this file in the &quot;if __name__ == &#39;__main__&#39;&quot; statement</span>
+<span class="sd">in order to generate new load or base electricity prices.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># Set directories</span>
+<span class="c1"># TODO: import structure is to support running locally, will consider changing</span>
+<span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parents</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">)</span>
+<span class="n">data_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s1">&#39;src/models/residential/input&#39;</span><span class="p">)</span>
+
+<span class="c1"># Import scripts</span>
+<span class="kn">from</span> <span class="nn">definitions</span> <span class="kn">import</span> <span class="n">OUTPUT_ROOT</span>
+<span class="kn">from</span> <span class="nn">src.integrator.utilities</span> <span class="kn">import</span> <span class="n">make_output_dir</span><span class="p">,</span> <span class="n">setup_logger</span>
+<span class="kn">from</span> <span class="nn">src.integrator.runner</span> <span class="kn">import</span> <span class="n">run_elec_solo</span>
+
+
+<div class="viewcode-block" id="scale_load">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.utilities.scale_load">[docs]</a>
+<span class="k">def</span> <span class="nf">scale_load</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads in BaseLoad.csv (load for all regions/hours for first year)</span>
+<span class="sd">    and LoadScalar.csv (a multiplier for all model years). Merges the</span>
+<span class="sd">    data and multiplies the load by the scalar to generate new load</span>
+<span class="sd">    estimates for all model years.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.core.frame.DataFrame</span>
+<span class="sd">        dataframe that contains load for all regions/years/hours</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># combine first year baseload data with scalar data for all years</span>
+    <span class="n">baseload</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_root</span> <span class="o">/</span> <span class="s1">&#39;BaseLoad.csv&#39;</span><span class="p">)</span>
+    <span class="n">scalar</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_root</span> <span class="o">/</span> <span class="s1">&#39;LoadScalar.csv&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">scalar</span><span class="p">,</span> <span class="n">baseload</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;cross&#39;</span><span class="p">)</span>
+
+    <span class="c1"># scale load in each year by scalar</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;scalar&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;scalar&#39;</span><span class="p">])</span>
+
+    <span class="c1"># reorder columns</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Load&#39;</span><span class="p">]]</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+
+<div class="viewcode-block" id="base_price">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.utilities.base_price">[docs]</a>
+<span class="k">def</span> <span class="nf">base_price</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Runs the electricity model with base price configuration settings and then</span>
+<span class="sd">    merges the electricity prices and temporal crosswalk data produced from the run</span>
+<span class="sd">    to generate base year electricity prices.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.core.frame.DataFrame</span>
+<span class="sd">        dataframe that contains base year electricity prices for all regions/hours</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># run electricity model with base price config settings</span>
+    <span class="n">baseprice_config_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data_root</span> <span class="o">/</span> <span class="s1">&#39;baseprice_config.toml&#39;</span><span class="p">)</span>
+    <span class="n">run_elec_solo</span><span class="p">(</span><span class="n">config_path</span><span class="o">=</span><span class="n">baseprice_config_path</span><span class="p">)</span>
+
+    <span class="c1"># grab electricity model output results</span>
+    <span class="n">cw_temporal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">OUTPUT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;cw_temporal.csv&#39;</span><span class="p">)</span>
+    <span class="n">elec_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">OUTPUT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;electricity&#39;</span> <span class="o">/</span> <span class="s1">&#39;prices&#39;</span> <span class="o">/</span> <span class="s1">&#39;elec_price.csv&#39;</span><span class="p">)</span>
+
+    <span class="c1"># keep only the electricity price data needed</span>
+    <span class="n">base_year</span> <span class="o">=</span> <span class="n">elec_price</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">elec_price</span> <span class="o">=</span> <span class="n">elec_price</span><span class="p">[</span><span class="n">elec_price</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">base_year</span><span class="p">]</span>
+    <span class="n">elec_price</span> <span class="o">=</span> <span class="n">elec_price</span><span class="p">[[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;price_wt&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;hr&#39;</span><span class="p">:</span> <span class="s1">&#39;Map_hr&#39;</span><span class="p">})</span>
+
+    <span class="c1"># crosswalk the electricity prices to all hours in the base year</span>
+    <span class="n">cw_temporal</span> <span class="o">=</span> <span class="n">cw_temporal</span><span class="p">[[</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;Map_hr&#39;</span><span class="p">]]</span>
+    <span class="n">elec_price</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">elec_price</span><span class="p">,</span> <span class="n">cw_temporal</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">])</span>
+    <span class="n">elec_price</span> <span class="o">=</span> <span class="n">elec_price</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">])</span>
+    <span class="n">elec_price</span> <span class="o">=</span> <span class="n">elec_price</span><span class="p">[[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">,</span> <span class="s1">&#39;price_wt&#39;</span><span class="p">]]</span>
+    <span class="n">elec_price</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;hr&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">elec_price</span></div>
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">OUTPUT_ROOT</span> <span class="o">=</span> <span class="n">make_output_dir</span><span class="p">(</span><span class="n">OUTPUT_ROOT</span><span class="p">)</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">setup_logger</span><span class="p">(</span><span class="n">OUTPUT_ROOT</span><span class="p">)</span>
+
+    <span class="c1"># Comment on/off each function as needed</span>
+    <span class="c1"># scale_load().to_csv(data_root / &#39;Load.csv&#39;, index=False)</span>
+    <span class="c1"># base_price().to_csv(data_root / &#39;BaseElecPrice.csv&#39;,index=False)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

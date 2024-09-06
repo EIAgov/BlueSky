@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.residential.scripts.preprocessor &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.models.residential.scripts.preprocessor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.models.residential.scripts.preprocessor</h1><div class="highlight"><pre>
+<span></span><span class="c1">####################################################################################################################</span>
+<span class="c1">####################################################################################################################</span>
+<span class="c1">#PRE-PROCESSING</span>
+<span class="c1">####################################################################################################################</span>
+<span class="c1">####################################################################################################################</span>
+    
+<span class="c1">#Setup</span>
+
+<span class="c1">#Import pacakges</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">select</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.automap</span> <span class="kn">import</span> <span class="n">automap_base</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+
+<span class="c1">#temp switch to load data from csvs(0) or from bd(1)</span>
+<span class="n">db_switch</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1">####################################################################################################################</span>
+<div class="viewcode-block" id="Sets">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.preprocessor.Sets">[docs]</a>
+<span class="k">class</span> <span class="nc">Sets</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">years</span><span class="p">,</span><span class="n">regions</span><span class="p">):</span>
+
+        <span class="c1">#Scenario Descriptor</span>
+        <span class="n">setup_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/scedes.csv&#39;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1">#Switches Sets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_trade</span> <span class="o">=</span>     <span class="nb">int</span><span class="p">(</span><span class="n">setup_table</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sw_trade&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_expansion</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">setup_table</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sw_expansion&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_agg_years</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">setup_table</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sw_agg_years&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_rm</span> <span class="o">=</span>        <span class="nb">int</span><span class="p">(</span><span class="n">setup_table</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sw_rm&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_ramp</span> <span class="o">=</span>      <span class="nb">int</span><span class="p">(</span><span class="n">setup_table</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sw_ramp&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_reserves</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">setup_table</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sw_reserves&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_learning</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">setup_table</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="s1">&#39;sw_learning&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+        
+        <span class="c1">#Regional Sets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">regions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_regions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="c1">#Temporal Sets</span>
+        
+        <span class="c1">#Temporal Sets - Years</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">years</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_years_init</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">})</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw_agg_years</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_year</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solve_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_year</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">all_years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">y0</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solve_range</span><span class="p">)})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">solve_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">all_years</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_years_init</span>
+
+        <span class="n">all_years_list</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_year</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">solve_range</span><span class="p">)</span>
+        <span class="n">solve_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">mapped_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">solve_array</span><span class="p">[</span><span class="n">solve_array</span> <span class="o">&gt;=</span> <span class="n">year</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">all_years_list</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_map</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;y_real&#39;</span><span class="p">:</span> <span class="n">all_years_list</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">mapped_list</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">year_map</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;y_real&#39;</span><span class="p">:</span> <span class="s1">&#39;year_weights&#39;</span><span class="p">})</span>
+
+        <span class="c1">#Temporal Sets - Seasons and Days</span>
+        <span class="n">sd_file</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/sw_s_day.csv&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sd_file</span><span class="p">[</span><span class="s1">&#39;Map_s&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#Season</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_days</span> <span class="o">=</span> <span class="n">sd_file</span><span class="p">[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="c1">#number of days</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">day</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#Day #model solves with specified number of days</span>
+
+        <span class="c1">#Temporal Sets - Hours</span>
+        <span class="n">hr_file</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/sw_hr.csv&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_hr_day</span> <span class="o">=</span> <span class="n">hr_file</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="c1">#number of periods in a day</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_hr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_hr_day</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_days</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_hr_day</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#hours in a day</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hr</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_days</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>   <span class="c1">#Number of hours the model solves for: days x number of periods per day</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hr1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_days</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">))</span> <span class="c1">#First hour of the day #SubsetOf: HR;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hr23</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hr</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hr1</span><span class="p">))</span> <span class="c1">#All hours that are not the first hour</span>
+
+        <span class="c1"># Technology Sets</span>
+        <span class="k">class</span> <span class="nc">Subsets</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">def</span> <span class="nf">load_and_assign_subsets</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">container</span><span class="p">):</span>
+            <span class="c1"># read in subset dataframe from inputs</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+            <span class="c1"># set attributes for the master list</span>
+            <span class="n">master</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">master</span><span class="p">]))</span>
+
+            <span class="c1"># Iterate through each unique subset</span>
+            <span class="k">for</span> <span class="n">subset</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">container</span><span class="p">,</span> <span class="n">subset</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">subset</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()][</span><span class="n">master</span><span class="p">]))</span>
+
+        <span class="n">pt_subsets</span> <span class="o">=</span> <span class="n">Subsets</span><span class="p">()</span>
+        <span class="n">load_and_assign_subsets</span><span class="p">(</span><span class="s1">&#39;../input/pt_subsets.csv&#39;</span><span class="p">,</span> <span class="n">pt_subsets</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pt</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;pt&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ptc</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;ptc&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ptr</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;ptr&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pth</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;pth&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pth2</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;pth2&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pts</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;pts&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pti</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;pti&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ptw</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;ptw&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ptsol</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;ptsol&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ptg</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;ptg&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ptd</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">pt_subsets</span><span class="p">,</span> <span class="s1">&#39;ptd&#39;</span><span class="p">)</span>
+
+        <span class="c1">#Other Sets</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># Steps within the supply curves #Note: number of steps varies by technology</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CSteps</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">TransLoss</span> <span class="o">=</span> <span class="mf">0.02</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">restypes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># reserve types, 1=spinning, 2=regulation, 3=flex</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H2_heatrate</span> <span class="o">=</span> <span class="mf">13.84</span> <span class="c1">#13.84 kwh/kg, for kwh/kg H2 -&gt; 54.3 </span></div>
+
+
+
+<span class="c1">####################################################################################################################</span>
+<span class="c1">#subsets the data by region</span>
+<div class="viewcode-block" id="readin_csvs">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.preprocessor.readin_csvs">[docs]</a>
+<span class="k">def</span> <span class="nf">readin_csvs</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span><span class="n">all_frames</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+        <span class="c1">#print(filename[:-4])</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+            <span class="n">all_frames</span><span class="p">[</span><span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="c1">#print(filename[:-4],all_frames[filename[:-4]].columns)</span>
+    
+    <span class="k">return</span> <span class="n">all_frames</span></div>
+
+
+<div class="viewcode-block" id="subset_dfs">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.preprocessor.subset_dfs">[docs]</a>
+<span class="k">def</span> <span class="nf">subset_dfs</span><span class="p">(</span><span class="n">all_frames</span><span class="p">,</span> <span class="n">setin</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">setin</span><span class="p">,</span><span class="n">i</span><span class="p">))]</span>
+    
+    <span class="k">return</span> <span class="n">all_frames</span></div>
+
+
+<span class="c1">### Load table from SQLite DB</span>
+<div class="viewcode-block" id="load_data">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.preprocessor.load_data">[docs]</a>
+<span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="n">tablename</span><span class="p">,</span><span class="n">metadata</span><span class="p">,</span><span class="n">engine</span><span class="p">):</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">tablename</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span> <span class="o">=</span> <span class="n">engine</span><span class="p">)</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">()</span>
+    
+    <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="preprocessor">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.preprocessor.preprocessor">[docs]</a>
+<span class="k">def</span> <span class="nf">preprocessor</span><span class="p">(</span><span class="n">setin</span><span class="p">,</span><span class="nb">dir</span><span class="p">):</span>
+    <span class="n">all_frames</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">if</span> <span class="n">db_switch</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># add csv input files to all frames </span>
+        <span class="n">all_frames</span> <span class="o">=</span> <span class="n">readin_csvs</span><span class="p">(</span><span class="nb">dir</span><span class="p">,</span> <span class="n">all_frames</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">db_switch</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">db_dir</span> <span class="o">=</span> <span class="s1">&#39;../input/cem_inputs_database.db&#39;</span>
+        <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///&#39;</span><span class="o">+</span><span class="n">db_dir</span><span class="p">)</span>
+        <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+
+        <span class="n">Base</span> <span class="o">=</span> <span class="n">automap_base</span><span class="p">()</span>
+        <span class="n">Base</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">autoload_with</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+        <span class="n">metadata</span><span class="o">.</span><span class="n">reflect</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+        <span class="n">all_frames</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">metadata</span><span class="o">.</span><span class="n">tables</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">all_frames</span><span class="p">[</span><span class="n">table</span><span class="p">]</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="n">metadata</span><span class="p">,</span><span class="n">engine</span><span class="p">)</span>
+            <span class="n">all_frames</span><span class="p">[</span><span class="n">table</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">table</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+
+        <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1">#reshaping load df to long format</span>
+    <span class="n">r_tot</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">],</span> 
+        <span class="n">id_vars</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">)[:</span><span class="o">-</span><span class="n">r_tot</span><span class="p">],</span> <span class="n">var_name</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;Load&#39;</span><span class="p">,</span> 
+        <span class="n">value_vars</span><span class="o">=</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">r_tot</span><span class="o">+</span><span class="mi">1</span><span class="p">))]),</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1">#update r col so it is an int and is first </span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">][</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">][[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span><span class="s1">&#39;Load&#39;</span><span class="p">]]</span>
+    
+    <span class="c1">#create temporal mapping dfs</span>
+    <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/sw_s_day.csv&#39;</span><span class="p">)</span>
+    <span class="n">df4</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">],</span><span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">df4</span> <span class="o">=</span> <span class="n">df4</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Index_day&#39;</span><span class="p">:</span><span class="s1">&#39;Dayweights&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_s&#39;</span><span class="p">])</span>
+    <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="n">df4</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">])</span>
+
+    <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/sw_hr.csv&#39;</span><span class="p">)</span>
+    <span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">],</span><span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Index_hr&#39;</span><span class="p">:</span><span class="s1">&#39;Hr_weights&#39;</span><span class="p">})</span>
+    <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="n">df3</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">])</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;cross&#39;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]</span>
+    <span class="c1">#df.to_csv(&#39;../input/temporal_map.csv&#39;,index=False)</span>
+
+    <span class="c1">#international trade sets</span>
+    <span class="n">r_file</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;TranLineLimitCan&#39;</span><span class="p">][[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;r1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">r_file</span> <span class="o">=</span> <span class="n">r_file</span><span class="p">[</span><span class="n">r_file</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">setin</span><span class="o">.</span><span class="n">r</span><span class="p">)]</span>
+    <span class="n">setin</span><span class="o">.</span><span class="n">r_can_conn</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">r_file</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">setin</span><span class="o">.</span><span class="n">r_can</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">r_file</span><span class="p">[</span><span class="s1">&#39;r1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+    <span class="n">setin</span><span class="o">.</span><span class="n">r1</span> <span class="o">=</span> <span class="n">setin</span><span class="o">.</span><span class="n">r</span> <span class="o">+</span> <span class="n">setin</span><span class="o">.</span><span class="n">r_can</span>
+
+    <span class="c1">#subset df by region</span>
+    <span class="n">all_frames</span> <span class="o">=</span> <span class="n">subset_dfs</span><span class="p">(</span><span class="n">all_frames</span><span class="p">,</span> <span class="n">setin</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">all_frames</span> <span class="o">=</span> <span class="n">subset_dfs</span><span class="p">(</span><span class="n">all_frames</span><span class="p">,</span> <span class="n">setin</span><span class="p">,</span> <span class="s1">&#39;r1&#39;</span><span class="p">)</span>
+    
+    <span class="c1">#year mapping</span>
+
+    <span class="c1">#last year values used</span>
+    <span class="n">filter_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CapCost&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">filter_list</span><span class="p">:</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">setin</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">))]</span>
+
+    <span class="k">def</span> <span class="nf">avg_by_group</span><span class="p">(</span><span class="n">set_name</span><span class="p">,</span><span class="n">map_df</span><span class="p">):</span>
+        <span class="c1">#used to qa</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="c1">#print(all_frames[key].tail())</span>
+        
+        <span class="c1">#location of y column and list of cols needed for the groupby</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">get_loc</span><span class="p">(</span><span class="n">set_name</span><span class="p">)</span>
+        <span class="n">map_name</span> <span class="o">=</span> <span class="s1">&#39;Map_&#39;</span><span class="o">+</span><span class="n">set_name</span>
+        <span class="n">groupby_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">+</span><span class="p">[</span><span class="n">map_name</span><span class="p">]</span>
+        <span class="n">groupby_cols</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">set_name</span><span class="p">)</span>
+
+        <span class="c1">#group df by year map data and update y col</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">],</span><span class="n">map_df</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="n">set_name</span><span class="p">])</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="n">groupby_cols</span><span class="p">,</span><span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">set_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">map_name</span><span class="p">]</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">map_name</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1">#move back to original position</span>
+        <span class="n">y_col</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">set_name</span><span class="p">)</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">set_name</span><span class="p">,</span> <span class="n">y_col</span><span class="p">)</span> 
+        
+        <span class="c1">#used to qa</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="c1">#print(all_frames[key].tail())</span>
+
+    <span class="c1"># Function to fill in the subset values</span>
+    <span class="k">def</span> <span class="nf">fill_values</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">subset_list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">subset_list</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">row</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">subset_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">subset_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">subset_list</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="n">subset_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">subset_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1">#create the y_map df</span>
+    <span class="n">y_map</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">setin</span><span class="o">.</span><span class="n">y0</span><span class="p">]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">setin</span><span class="o">.</span><span class="n">solve_range</span><span class="p">)})</span>
+    <span class="n">y_map</span><span class="p">[</span><span class="s1">&#39;Map_y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">y_map</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">fill_values</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">setin</span><span class="o">.</span><span class="n">y</span><span class="p">))</span>
+    <span class="c1">#print(y_map)</span>
+    
+    <span class="c1">#TODO: update year weights </span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;year_weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">setin</span><span class="o">.</span><span class="n">year_weights</span>
+
+    <span class="c1">#average values in years used</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="c1">#print(key,all_frames[key].columns)</span>
+        <span class="k">if</span> <span class="s1">&#39;y&#39;</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">avg_by_group</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="n">y_map</span><span class="p">)</span>
+            <span class="c1">#print(all_frames[key].tail())</span>
+        <span class="k">if</span> <span class="s1">&#39;hr&#39;</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">avg_by_group</span><span class="p">(</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]])</span>
+            <span class="c1">#print(all_frames[key].tail())</span>
+
+    <span class="c1">#using same pti capacity factor for all model years and reordering columns</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;ptiUpperSet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;ptiUpperSet&#39;</span><span class="p">],</span><span class="n">y_map</span><span class="p">[[</span><span class="s1">&#39;Map_y&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(),</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;cross&#39;</span><span class="p">)</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;ptiUpperSet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;ptiUpperSet&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_y&#39;</span><span class="p">:</span><span class="s1">&#39;y&#39;</span><span class="p">})</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;ptiUpperSet&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;ptiUpperSet&#39;</span><span class="p">][[</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;steps&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span><span class="s1">&#39;SolWindCapFactor&#39;</span><span class="p">]]</span>
+    <span class="c1">#print(all_frames[&#39;ptiUpperSet&#39;].head(2))</span>
+    <span class="c1">#print(all_frames[&#39;ptiUpperSet&#39;].shape[0])</span>
+
+    <span class="c1">#Creating temporal mapping parameters</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Map_day_s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">,</span><span class="s1">&#39;Map_s&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_day&#39;</span><span class="p">:</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="s1">&#39;Map_s&#39;</span><span class="p">:</span><span class="s1">&#39;s&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Map_hr_d&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">,</span><span class="s1">&#39;Map_day&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_day&#39;</span><span class="p">:</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">:</span><span class="s1">&#39;hr&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Map_hr_s&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">,</span><span class="s1">&#39;Map_s&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">:</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span><span class="s1">&#39;Map_s&#39;</span><span class="p">:</span><span class="s1">&#39;s&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Hr_weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">,</span><span class="s1">&#39;Hr_weights&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">:</span><span class="s1">&#39;hr&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Dayweights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">,</span><span class="s1">&#39;Dayweights&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">:</span><span class="s1">&#39;hr&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Idaytq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">,</span><span class="s1">&#39;Dayweights&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_day&#39;</span><span class="p">:</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="s1">&#39;Dayweights&#39;</span><span class="p">:</span><span class="s1">&#39;Idaytq&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+    
+    <span class="c1">#Update load</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">],</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Hr_weights&#39;</span><span class="p">],</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">])</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">][</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">][</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">][</span><span class="s1">&#39;Hr_weights&#39;</span><span class="p">]</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Hr_weights&#39;</span><span class="p">])</span>
+
+    <span class="c1">#Recalculate Supply Curve Learning</span>
+
+    <span class="c1"># save first year of supply curve summer capacity for learning</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve&#39;</span><span class="p">][(</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve&#39;</span><span class="p">][</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">setin</span><span class="o">.</span><span class="n">start_year</span><span class="p">)</span> 
+                                                                   <span class="o">&amp;</span> <span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve&#39;</span><span class="p">][</span><span class="s1">&#39;s&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)]</span>
+    
+    <span class="c1"># set up first year capacity for learning.</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">],</span> 
+                                                  <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;CapCost&#39;</span><span class="p">],</span> 
+                                                  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;CapCost&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;steps&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+                                                      <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;SupplyCurve&#39;</span><span class="p">:</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;pt&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    
+    <span class="c1"># if cap = 0, set to minimum unit size (0.1 for now)</span>
+    <span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">all_frames</span><span class="p">[</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">][</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">,</span><span class="s1">&#39;SupplyCurve_learning&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>
+
+    <span class="c1">#</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="p">:</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> 
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_frames</span><span class="p">,</span> <span class="n">setin</span></div>
+
+
+<span class="c1">####################################################################################################################</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="nf">makedir</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+
+    <span class="n">makedir</span><span class="p">(</span><span class="s1">&#39;../output/inputs/&#39;</span><span class="p">)</span>
+
+    <span class="n">years</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/sw_year.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
+    <span class="n">regions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../input/sw_reg.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;region&#39;</span><span class="p">])</span>
+
+    <span class="c1">#Build sets used for model</span>
+    <span class="n">all_frames</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">setA</span> <span class="o">=</span> <span class="n">Sets</span><span class="p">(</span><span class="n">years</span><span class="p">,</span><span class="n">regions</span><span class="p">)</span>
+
+    <span class="c1">#creates the initial data</span>
+    <span class="n">all_frames</span><span class="p">,</span> <span class="n">setB</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="p">(</span><span class="n">setA</span><span class="p">,</span><span class="s1">&#39;../input/cem_inputs/&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">all_frames</span><span class="p">:</span>
+        <span class="c1">#print(key,list(all_frames[key].reset_index().columns))</span>
+        <span class="n">all_frames</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;../output/inputs/&#39;</span><span class="o">+</span><span class="n">key</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

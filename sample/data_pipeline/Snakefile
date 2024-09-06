@@ -1,0 +1,165 @@
+############################################################################################
+### Snakemake control file for Illustrative Example in Integration Repo
+### Date: 8/7/24
+### Description: This file describes the order of operation for generating the spatial data
+###              and constructing first, a county-level weather data series and then a 
+###              balancing authority (subregion) level dataset describing electricity demand
+###              as reported by the EIA930 survey. One can enter the scripts reported within
+###              each rule to examine the granular details of cleaning/merging/downloading; see
+###              below for a high-level overview of each rule in this file
+#####
+##### 
+### make_BA: Creates a balancing authority spatial data file from raw internal shapefile
+### make_BASR: Creates a BA subregion spatial data file from raw internal shapefile
+### join_BA_County: Merges BA's to contiguous US counties to create BA-county crosswalk
+### join_BASR_County: Assigns any county within a BA w/ subregions to a BASR code
+### merge_BA_BASR_County: Creates single spatial data collection with BA/BASR/Assigned county
+### join_BA_ISD: Identifies nearest stations to each county centroid and returns station IDs and distance
+### county_population: Uses Census API to obtain county population for requested years
+### make_EIA930: Download, clean, impute, and store EIA930 electricity operations data
+### make_noaa: Download NOAA-ISD data and construct county-level weather series
+### merge_noaa_eia: Merge NOAA and EIA930 data; aggregate to BA/BASR level
+######
+
+#####
+### Control Parameters: Meta-parameters for the workflow
+#####
+
+### Set years for data; EIA930 available for 2018 onward
+YEARS = [2018, 2019, 2020, 2021, 2022]
+
+### Location for DB files; original file stored in BlueSky Fileshare
+DB_LOC = "DIR_HERE"
+
+### Number of stations to assign to each county for purposes of county weather series construction
+  # Note: Finds N_STATION nearest stations to county centroid. 
+N_STATION = 10
+
+### Census Key Here to use tidycensus. To get started working with tidycensus, users should load the package 
+  # along with the tidyverse package, and set their Census API key. A key can be obtained from http://api.census.gov/data/key_signup.html.
+CENKEY = ""
+
+#####
+### R-Spatial Section: Generates Crosswalks Between BAs, Counties, and ISD Stations
+#####
+
+rule make_BA:
+    input:
+        "inputs/EIA930/EIA930_Reference_Tables.xlsx",
+        "inputs/shapefiles/EIA_BalanceAuthority_2023.shp"
+    output:
+        "outputs/shapefiles/EIA_BA.gpkg"
+    script:
+        "scripts/s_BA_Make.R"
+
+rule make_BASR:
+    input:
+        "inputs/EIA930/EIA930_Reference_Tables.xlsx",
+        "inputs/shapefiles/RTO_Regions.shp",
+    output:
+        "outputs/shapefiles/EIA_BASR.gpkg"
+    script:
+        "scripts/s_BASR_Make.R"
+
+rule join_BA_County:
+    input:
+        "outputs/shapefiles/EIA_BA.gpkg",
+    output:
+        "outputs/crosswalks/EIA_BA-County.csv"
+    params:
+        years_sm = YEARS
+    script:
+        "scripts/s_BA-County_Join.R"
+
+rule join_BASR_County:
+    input:
+        "outputs/crosswalks/EIA_BA-County.csv",
+        "outputs/shapefiles/EIA_BASR.gpkg",
+        "inputs/shapefiles/EIA_BA-SubregionToCounty.csv"
+    output:
+        "outputs/crosswalks/EIA_BASR-County.csv"
+    params:
+        years_sm = YEARS
+    script:
+        "scripts/s_BASR-County_Join.R"
+
+rule merge_BA_BASR_County:
+    input:
+        "outputs/crosswalks/EIA_BA-County.csv",
+        "outputs/crosswalks/EIA_BASR-County.csv",
+        "outputs/shapefiles/EIA_BASR.gpkg",
+        "outputs/shapefiles/EIA_BA.gpkg"
+    output:
+        "outputs/crosswalks/EIA_BA-BASR-County.csv",
+        "outputs/shapefiles/BA-BASR_Merge.gpkg"
+    params:
+        years_sm = YEARS
+    script:
+        "scripts/s_BA-BASR_Merge.R"
+
+rule join_BA_ISD:
+    input:
+        "outputs/crosswalks/EIA_BA-BASR-County.csv",
+        "inputs/noaa/isd-history_loc.txt"
+    output:
+        "outputs/noaa/NOAA_ISD_Stations.csv",
+        "outputs/crosswalks/EIA_County-ISD.csv"
+    params:
+        years_sm = YEARS,
+        n_stations = N_STATION,
+    script:
+        "scripts/s_BA-ISD_Join.R"
+
+rule county_population:
+    input:
+    output:
+        "outputs/census/County_Population.csv"
+    params:
+        years_sm = YEARS,
+        cen_key_sm = CENKEY
+    script:
+        "scripts/s_County_Data.R"
+
+#####
+### Demand Data Section; download, clean, store, and merge NOAA and EIA930 data
+#####
+
+rule make_EIA930:
+    input:
+    output:
+        expand("{db}EIA930_database.db", db = DB_LOC)
+    params:
+        db_loc = DB_LOC,
+        years_sm = YEARS,
+        deletedb = True
+    script:
+        "scripts/s_eia930_tables.py"
+
+rule make_noaa:
+    input:
+        "outputs/noaa/NOAA_ISD_Stations.csv",
+        "outputs/crosswalks/EIA_County-ISD.csv",
+        "outputs/crosswalks/EIA_BA-BASR-County.csv",
+        "outputs/census/County_Population.csv"
+    output:
+        expand("{db}noaa_db.db", db = DB_LOC)
+    params:
+        db_loc = DB_LOC,
+        years_sm = YEARS,
+        deletedb = True,
+        delobs = True
+    script:
+        "scripts/s_noaa_tables.py"
+
+rule merge_noaa_eia:
+    input:
+        "outputs/crosswalks/EIA_County-BA-ISD.csv",
+        expand("{db}EIA930_Database.db", db=DB_LOC),
+        expand("{db}noaa_db.db", db = DB_LOC)
+    output:
+        expand("{db}/BA-NOAA/BA-NOAA_SnakemakeTrack_{year_0}-{year_n}.txt", db = DB_LOC, year_0 = YEARS[0], year_n = YEARS[len(YEARS)-1])
+    params:
+        db_loc = DB_LOC,
+        years_sm = YEARS,
+    script:
+        "scripts/s_noaa_merge.py"

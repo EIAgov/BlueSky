@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.electricity package &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.models.electricity.scripts package" href="src.models.electricity.scripts.html" />
+    <link rel="prev" title="src.models package" href="src.models.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.models.electricity package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src.models.electricity package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">src.models.electricity package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src.models.electricity package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+          <li class="breadcrumb-item"><a href="src.models.html">src.models package</a></li>
+      <li class="breadcrumb-item active">src.models.electricity package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.models.electricity.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-models-electricity-package">
+<h1>src.models.electricity package<a class="headerlink" href="#src-models-electricity-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.common.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common.common">src.models.electricity.scripts.common.common module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common.common_debug">src.models.electricity.scripts.common.common_debug module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.electricity_model">src.models.electricity.scripts.electricity_model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel"><code class="docutils literal notranslate"><span class="pre">PowerModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel.H2_HEATRATE"><code class="docutils literal notranslate"><span class="pre">PowerModel.H2_HEATRATE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel.annual_count"><code class="docutils literal notranslate"><span class="pre">PowerModel.annual_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel.poll_h2_demand"><code class="docutils literal notranslate"><span class="pre">PowerModel.poll_h2_demand()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel.update_elec_demand"><code class="docutils literal notranslate"><span class="pre">PowerModel.update_elec_demand()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel.update_h2_prices"><code class="docutils literal notranslate"><span class="pre">PowerModel.update_h2_prices()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.postprocessor">src.models.electricity.scripts.postprocessor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.postprocessor.component_objects_to_df"><code class="docutils literal notranslate"><span class="pre">component_objects_to_df()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.postprocessor.make_output_dir"><code class="docutils literal notranslate"><span class="pre">make_output_dir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.postprocessor.postprocessor"><code class="docutils literal notranslate"><span class="pre">postprocessor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.preprocessor">src.models.electricity.scripts.preprocessor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.Sets"><code class="docutils literal notranslate"><span class="pre">Sets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.add_season_index"><code class="docutils literal notranslate"><span class="pre">add_season_index()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.avg_by_group"><code class="docutils literal notranslate"><span class="pre">avg_by_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.fill_values"><code class="docutils literal notranslate"><span class="pre">fill_values()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.makedir"><code class="docutils literal notranslate"><span class="pre">makedir()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.output_inputs"><code class="docutils literal notranslate"><span class="pre">output_inputs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.preprocessor"><code class="docutils literal notranslate"><span class="pre">preprocessor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.print_sets"><code class="docutils literal notranslate"><span class="pre">print_sets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.readin_csvs"><code class="docutils literal notranslate"><span class="pre">readin_csvs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.readin_sql"><code class="docutils literal notranslate"><span class="pre">readin_sql()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.preprocessor.subset_dfs"><code class="docutils literal notranslate"><span class="pre">subset_dfs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.runner">src.models.electricity.scripts.runner module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.build_elec_model"><code class="docutils literal notranslate"><span class="pre">build_elec_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.cost_learning_func"><code class="docutils literal notranslate"><span class="pre">cost_learning_func()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.init_old_cap"><code class="docutils literal notranslate"><span class="pre">init_old_cap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.run_model"><code class="docutils literal notranslate"><span class="pre">run_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.select_solver"><code class="docutils literal notranslate"><span class="pre">select_solver()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.set_new_cap"><code class="docutils literal notranslate"><span class="pre">set_new_cap()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.solve_elec_model"><code class="docutils literal notranslate"><span class="pre">solve_elec_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.runner.update_cost"><code class="docutils literal notranslate"><span class="pre">update_cost()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.utilities">src.models.electricity.scripts.utilities module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.declare_param"><code class="docutils literal notranslate"><span class="pre">declare_param()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.declare_set"><code class="docutils literal notranslate"><span class="pre">declare_set()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.declare_var"><code class="docutils literal notranslate"><span class="pre">declare_var()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.populate_RM_sets_rule"><code class="docutils literal notranslate"><span class="pre">populate_RM_sets_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.populate_by_hour_sets_rule"><code class="docutils literal notranslate"><span class="pre">populate_by_hour_sets_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.populate_demand_balance_sets_rule"><code class="docutils literal notranslate"><span class="pre">populate_demand_balance_sets_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.populate_sets_rule"><code class="docutils literal notranslate"><span class="pre">populate_sets_rule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.utilities.populate_trade_sets_rule"><code class="docutils literal notranslate"><span class="pre">populate_trade_sets_rule()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-src.models.electricity">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.models.electricity" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

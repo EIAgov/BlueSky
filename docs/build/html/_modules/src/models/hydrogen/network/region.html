@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.hydrogen.network.region &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.models.hydrogen.network.region</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.models.hydrogen.network.region</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Region class:</span>
+<span class="sd">~~~~~~~~~~~~</span>
+<span class="sd">    </span>
+<span class="sd">    Class objects are regions, which have a natural tree-structure. Each region</span>
+<span class="sd">    can have a parent region and child regions (subregions), a data object, and </span>
+<span class="sd">    a set of hubs.</span>
+<span class="sd">  </span>
+<span class="sd">    class variables:</span>
+<span class="sd">    ~~~~~~~~~~~~  </span>
+<span class="sd">    </span>
+<span class="sd">    self.name = str of the regions name (from data file input)</span>
+<span class="sd">    self.parent = pointer to the parent region object</span>
+<span class="sd">    self.childrem = dict of subregions, with name:object format</span>
+<span class="sd">    self.data = data object, which should contain region-specific parameters</span>
+<span class="sd">    self.grid = the grid the region lies in (inherited from parent region)</span>
+<span class="sd">    self.depth = distance from root of tree</span>
+<span class="sd">    </span>
+<span class="sd">    class methods:</span>
+<span class="sd">    ~~~~~~~~~~~~  </span>
+<span class="sd">    </span>
+<span class="sd">    display_children - prints a list of subregions</span>
+<span class="sd">    display_hubs - prints a list of hubs in the region</span>
+<span class="sd">    update_parent - changes the parent region (used in aggregation)</span>
+<span class="sd">    create_subregion - creates a subregion with given name and data</span>
+<span class="sd">    add_subregion - takes an existing region as an arg and assigns it as a subregion</span>
+<span class="sd">    remove_subregion - removes a subregion from list of subregions</span>
+<span class="sd">    add_hub - adds an existing hub to region hubs</span>
+<span class="sd">    remove_hub - removes a hub from region hubs</span>
+<span class="sd">    delete - deletes the region. hubs and subregions are reassigned to parent</span>
+<span class="sd">    absorb_subregions -  aggregates subregion data into region&#39;s data, then deletes them, </span>
+<span class="sd">                         inherits their subregions and hubs</span>
+<span class="sd">    absorb_subregions_deep - recursively runs absorb_subregions on subregions, </span>
+<span class="sd">                             their subregions etc so that region is the bottom level</span>
+<span class="sd">    update_data - replaces data object with arg</span>
+<span class="sd">    aggregate_subregion_data - takes all subregions, and aggregates their data</span>
+<span class="sd">                               based on whether they are summable or meanable </span>
+<span class="sd">    get_data - pass the name of a parameter in data as arg, and receive the value.</span>
+<span class="sd">    </span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Region">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region">[docs]</a>
+<span class="k">class</span> <span class="nc">Region</span><span class="p">:</span>
+    <span class="n">assigned_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># check name for uniqueness</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;name cannot be None&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">Region</span><span class="o">.</span><span class="n">assigned_names</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;region name </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> already exists&#39;</span><span class="p">)</span>
+        <span class="n">Region</span><span class="o">.</span><span class="n">assigned_names</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hubs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">grid</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span>
+
+<div class="viewcode-block" id="Region.display_children">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.display_children">[docs]</a>
+    <span class="k">def</span> <span class="nf">display_children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">depth</span><span class="p">)</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">display_children</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Region.display_hubs">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.display_hubs">[docs]</a>
+    <span class="k">def</span> <span class="nf">display_hubs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">hub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">hub</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Region.update_parent">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.update_parent">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_parent</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">new_parent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">add_subregion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="n">new_parent</span><span class="o">.</span><span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">new_parent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">add_subregion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Region.create_subregion">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.create_subregion">[docs]</a>
+    <span class="k">def</span> <span class="nf">create_subregion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">create_region</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Region.add_subregion">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.add_subregion">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_subregion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subregion</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">subregion</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">subregion</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="Region.remove_subregion">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.remove_subregion">[docs]</a>
+    <span class="k">def</span> <span class="nf">remove_subregion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subregion</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">subregion</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Region.add_hub">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.add_hub">[docs]</a>
+    <span class="k">def</span> <span class="nf">add_hub</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hub</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hubs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">hub</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">hub</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="Region.remove_hub">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.remove_hub">[docs]</a>
+    <span class="k">def</span> <span class="nf">remove_hub</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hub</span><span class="p">):</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubs</span><span class="p">[</span><span class="n">hub</span><span class="o">.</span><span class="n">name</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="Region.delete">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.delete">[docs]</a>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">hub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hubs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">hub</span><span class="o">.</span><span class="n">change_region</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">update_parent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">add_subregion</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">remove_subregion</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Region.absorb_subregions">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.absorb_subregions">[docs]</a>
+    <span class="k">def</span> <span class="nf">absorb_subregions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">subregions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">aggregate_subregion_data</span><span class="p">(</span><span class="n">subregions</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">subregion</span> <span class="ow">in</span> <span class="n">subregions</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">subregion</span><span class="p">)</span>
+
+        <span class="k">del</span> <span class="n">subregions</span></div>
+
+
+<div class="viewcode-block" id="Region.absorb_subregions_deep">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.absorb_subregions_deep">[docs]</a>
+    <span class="k">def</span> <span class="nf">absorb_subregions_deep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">subregions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="c1"># print([subregion.name for subregion in subregions])</span>
+
+        <span class="k">for</span> <span class="n">subregion</span> <span class="ow">in</span> <span class="n">subregions</span><span class="p">:</span>
+            <span class="c1"># print(subregion.name)</span>
+
+            <span class="n">subregion</span><span class="o">.</span><span class="n">absorb_subregions_deep</span><span class="p">()</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;deleting: &#39;</span><span class="p">,</span> <span class="n">subregion</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">aggregate_subregion_data</span><span class="p">(</span><span class="n">subregions</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">subregion</span><span class="p">)</span>
+
+        <span class="k">del</span> <span class="n">subregions</span></div>
+
+
+<div class="viewcode-block" id="Region.update_data">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.update_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="Region.aggregate_subregion_data">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.aggregate_subregion_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">aggregate_subregion_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">subregions</span><span class="p">):</span>
+        <span class="n">temp_child_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">region</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">subregions</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+        <span class="c1"># print(temp_child_data)</span>
+        <span class="n">new_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">summable</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meanable</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">temp_child_data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">summable</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]:</span>
+                <span class="n">new_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">temp_child_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()]</span>
+            <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meanable</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]:</span>
+                <span class="n">new_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">temp_child_data</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_data</span><span class="p">(</span><span class="n">new_data</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="Region.get_data">
+<a class="viewcode-back" href="../../../../../src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.get_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quantity</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">quantity</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

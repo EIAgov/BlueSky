@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.electricity.scripts.postprocessor &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.models.electricity.scripts.postprocessor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.models.electricity.scripts.postprocessor</h1><div class="highlight"><pre>
+<span></span><span class="c1">###################################################################################################</span>
+<span class="c1"># Setup</span>
+
+<span class="c1"># Import pacakges</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyomo.environ</span> <span class="k">as</span> <span class="nn">pyo</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">definitions</span> <span class="kn">import</span> <span class="n">PROJECT_ROOT</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+<span class="c1"># POST-PROCESSING</span>
+<span class="c1">###################################################################################################</span>
+<span class="c1">###################################################################################################</span>
+<span class="c1"># Review: sets, variables, parameters, constraints</span>
+
+<span class="c1"># Sets</span>
+<span class="c1"># for set in mod.component_objects(pyo.Set, active=True):set.pprint()</span>
+
+
+<span class="c1"># Variables, Parameters, Constraints</span>
+<div class="viewcode-block" id="component_objects_to_df">
+<a class="viewcode-back" href="../../../../../src.models.electricity.scripts.html#src.models.electricity.scripts.postprocessor.component_objects_to_df">[docs]</a>
+<span class="k">def</span> <span class="nf">component_objects_to_df</span><span class="p">(</span><span class="n">mod_object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;takes pyomo component objects (e.g., variables, parameters, constraints) and processes the</span>
+<span class="sd">    pyomo data and converts it to a dataframe and then writes the dataframe out to an output dir.</span>
+<span class="sd">    The dataframe contains a key column which is the original way the pyomo data is structured,</span>
+<span class="sd">    as well as columns broken out for each set and the final values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    mod_object : pyomo component object</span>
+<span class="sd">        pyomo component object</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dataframe</span>
+<span class="sd">        contains the pyomo model results for the component object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">mod_object</span><span class="p">)</span>
+    <span class="c1"># print(name)</span>
+
+    <span class="c1"># creating a dataframe that reads in the paramater info</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mod_object</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">mod_object</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">mod_object</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="c1"># breaking out the data from the mod_object info into multiple columns</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">temp</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">temp</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="s1">&#39;i_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">col</span><span class="p">)},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">temp</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+
+<span class="c1">###################################################################################################</span>
+<span class="c1"># Main Project Execution</span>
+<div class="viewcode-block" id="make_output_dir">
+<a class="viewcode-back" href="../../../../../src.models.electricity.scripts.html#src.models.electricity.scripts.postprocessor.make_output_dir">[docs]</a>
+<span class="k">def</span> <span class="nf">make_output_dir</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;generates an output directory to write model results, output directory is the date/time</span>
+<span class="sd">    at the time this function executes. It includes subdirs for vars, params, constraints.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    string</span>
+<span class="sd">        the name of the output directory</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H%Mh&#39;</span><span class="p">)</span>
+
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;src/models/electricity/electric_output/</span><span class="si">{</span><span class="n">now</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="nb">dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;variables/&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;parameters/&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;constraints/&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;prices/&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;obj/&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">dir</span></div>
+
+
+
+<div class="viewcode-block" id="postprocessor">
+<a class="viewcode-back" href="../../../../../src.models.electricity.scripts.html#src.models.electricity.scripts.postprocessor.postprocessor">[docs]</a>
+<span class="k">def</span> <span class="nf">postprocessor</span><span class="p">(</span><span class="n">instance</span><span class="p">,</span> <span class="n">cols_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;master postprocessor function that writes out the final dataframes from to the electricity</span>
+<span class="sd">    model. Creates the output directories and writes out dataframes for variables, parameters, and</span>
+<span class="sd">    constraints. Gets the correct columns names for each dataframe using the cols_dict.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    instance : pyomo model</span>
+<span class="sd">        electricity concrete model</span>
+<span class="sd">    cols_dict : dictionary</span>
+<span class="sd">        dictionary where keys are the names of the vars, params, or constraints and the values</span>
+<span class="sd">        are the cooresponding column names for each of the sets the items are indexed by.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    string</span>
+<span class="sd">        output directory name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">dir</span> <span class="o">=</span> <span class="n">make_output_dir</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">variable</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;var_elec_request&#39;</span><span class="p">:</span>
+            <span class="c1"># TODO:  Consider if this var needs reporting, and if so adjust...</span>
+            <span class="k">continue</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">component_objects_to_df</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">cols_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">variable</span><span class="p">)]</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;variables&#39;</span> <span class="o">/</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">variable</span><span class="p">),</span> <span class="s1">&#39;csv&#39;</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">variable</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is empty.&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Param</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">parameter</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;fixed_elec_request&#39;</span><span class="p">:</span>
+            <span class="c1"># TODO:  consider if this needs reporting...</span>
+            <span class="k">continue</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">component_objects_to_df</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Key&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">cols_dict</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">parameter</span><span class="p">)]</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;parameters&#39;</span> <span class="o">/</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">parameter</span><span class="p">),</span> <span class="s1">&#39;csv&#39;</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">parameter</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; is empty.&#39;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="n">instance</span><span class="o">.</span><span class="n">component_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Constraint</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">component_objects_to_df</span><span class="p">(</span><span class="n">constraint</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+            <span class="nb">dir</span> <span class="o">/</span> <span class="s1">&#39;constraints&#39;</span> <span class="o">/</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">constraint</span><span class="p">),</span> <span class="s1">&#39;csv&#39;</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+    <span class="c1">#obj_df = pd.DataFrame({&#39;CostType&#39;:&#39;totalCost&#39;, &#39;value&#39;:instance.totalCost()})</span>
+    <span class="c1">#obj_df.concat({&#39;dispatchCost&#39;: pyo.value(instance.dispatchCost)})</span>
+<span class="c1">#</span>
+    <span class="c1"># pyo.value(instance.dispatchCost)</span>
+    <span class="c1"># logger.info(&#39;unmetLoadCost Value =&#39; + str(pyo.value(instance.unmetLoadCost)))</span>
+    <span class="c1"># if instance.sw_expansion:</span>
+    <span class="c1">#     logger.info(&#39;Cap expansion Value =&#39; + str(pyo.value(instance.capExpansionCost)))</span>
+    <span class="c1">#     logger.info(&#39;FOMCostObj Value =&#39; + str(pyo.value(instance.FOMCostObj)))</span>
+    <span class="c1"># if instance.sw_reserves:</span>
+    <span class="c1">#     logger.info(&#39;opres Value =&#39; + str(pyo.value(instance.opresCost)))</span>
+    <span class="c1"># if instance.sw_ramp:</span>
+    <span class="c1">#     logger.info(&#39;RampCost Value =&#39; + str(pyo.value(instance.RampCost)))</span>
+    <span class="c1"># if instance.sw_trade:</span>
+    <span class="c1">#     logger.info(&#39;tradeCost Value =&#39; + str(pyo.value(instance.tradeCost)))</span>
+    <span class="c1"># TODO:  Clean up the path references here</span>
+    <span class="n">instance</span><span class="o">.</span><span class="n">dir</span> <span class="o">=</span> <span class="nb">dir</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

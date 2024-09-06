@@ -1,0 +1,23 @@
+name: demand_profiles_snakemake2
+channels:
+  - conda-forge
+  - base
+  - bioconda
+dependencies:
+  - python=3.11.6
+  - aiohttp
+  - graphviz
+  - sqlalchemy
+  - snakemake
+  - numpy
+  - pandas
+  - pathlib
+  - matplotlib
+  - r-base
+  - r-tidyverse
+  - r-data.table
+  - r-sf
+  - r-tigris
+  - r-here
+  - r-tidycensus
+  - r-readxl

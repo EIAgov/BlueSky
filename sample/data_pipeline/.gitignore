@@ -1,0 +1,15 @@
+.ipynb_checkpoints
+/.ipynb_checkpoints
+.idea
+/.idea
+_pycache_
+__pycache__
+/__pycache__
+/_pycache_
+weather_data.db
+.Rhistory
+/.Rhistory
+.vscode
+/.vscode
+raw_data/.
+outputs/download_logs/*

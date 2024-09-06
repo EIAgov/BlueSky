@@ -1,0 +1,30 @@
+! Note: Sourced from H2A. discounted over lifetime with financials factored in
+! Unit: $/kg of H2 produced
+Composite Table:
+regNERC    prodTech    base_PUCCostElectrolyzer
+TRE        PEM         5.04323
+FRCC       PEM         5.04323
+MISW       PEM         5.04323
+MISC       PEM         5.04323
+MISE       PEM         5.04323
+MISS       PEM         5.04323
+ISNE       PEM         5.04323
+NYCW       PEM         5.04323
+NYUP       PEM         5.04323
+PJME       PEM         5.04323
+PJMW       PEM         5.04323
+PJMC       PEM         5.04323
+PJMD       PEM         5.04323
+SRCA       PEM         5.04323
+SRSE       PEM         5.04323
+SRCE       PEM         5.04323
+SPPS       PEM         5.04323
+SPPC       PEM         5.04323
+SPPN       PEM         5.04323
+SRSG       PEM         5.04323
+CANO       PEM         5.04323
+CASO       PEM         5.04323
+NWPP       PEM         5.04323
+RMRG       PEM         5.04323
+BASN       PEM         5.04323
+;

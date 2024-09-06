@@ -1,0 +1,18 @@
+src.models.integration package
+==============================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   src.models.integration.scripts
+
+Module contents
+---------------
+
+.. automodule:: src.models.integration
+   :members:
+   :undoc-members:
+   :show-inheritance:

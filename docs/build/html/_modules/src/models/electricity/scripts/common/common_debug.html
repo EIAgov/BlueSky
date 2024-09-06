@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.electricity.scripts.common.common_debug &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.models.electricity.scripts.common.common_debug</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.models.electricity.scripts.common.common_debug</h1><div class="highlight"><pre>
+<span></span><span class="c1"># TODO: add docstrings</span>
+
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pylint.lint</span> <span class="kn">import</span> <span class="n">Run</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
+<span class="c1"># TODO: isnt this logging section somewhere else already?</span>
+<span class="c1">### Setup Logging</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;[</span><span class="si">%(asctime)s</span><span class="s1">][</span><span class="si">%(name)s</span><span class="s1">]&#39;</span> <span class="o">+</span> <span class="s1">&#39;[</span><span class="si">%(funcName)s</span><span class="s1">][</span><span class="si">%(levelname)s</span><span class="s1">]  :: |</span><span class="si">%(message)s</span><span class="s1">|&#39;</span><span class="p">,</span>
+    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s1">&#39;elec_debug.log&#39;</span><span class="p">),</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()],</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;common_debug.py&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="run_pylint">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.run_pylint">[docs]</a>
+<span class="k">def</span> <span class="nf">run_pylint</span><span class="p">(</span><span class="n">filelist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">errors_only</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;runs pylint.</span>
+
+<span class="sd">        *checks if index type of df1 is equal to index type of df2</span>
+<span class="sd">        *logs the result</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filelist: list</span>
+<span class="sd">       list of files to evalutes, if None, then pylint will evalute the cwd</span>
+<span class="sd">    errors_only: boolean</span>
+<span class="sd">       determines if we run pylint against all checks or errors only</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    boolean</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">filelist</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">file_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;__init__.py&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">errors_only</span><span class="p">:</span>
+                    <span class="n">Run</span><span class="p">([</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;--output=pylint_analysis.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;--errors-only&#39;</span><span class="p">])</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">Run</span><span class="p">([</span><span class="n">f</span><span class="p">,</span> <span class="s1">&#39;--output=pylint_analysis.txt&#39;</span><span class="p">])</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;__init__.py&#39;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># TODO: consider renaming to &quot;check_nans&quot;</span>
+<div class="viewcode-block" id="check_table_for_nans">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.check_table_for_nans">[docs]</a>
+<span class="k">def</span> <span class="nf">check_table_for_nans</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">tablename</span><span class="o">=</span><span class="s1">&#39;my_table&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;checks table for nan values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df1: 2 dimensional dataframe</span>
+<span class="sd">       restart variable table</span>
+<span class="sd">    tablename: string</span>
+<span class="sd">        name for the output file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    boolean</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">nan_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">nan_cols_table</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()]</span>
+        <span class="n">fileparts</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">tablename</span><span class="p">)</span>
+        <span class="n">tablename</span> <span class="o">=</span> <span class="n">fileparts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># print_table(nan_cols_table, tablename)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dataframe </span><span class="si">{</span><span class="n">tablename</span><span class="si">}</span><span class="s1"> has nans in columns: </span><span class="si">{</span><span class="n">nan_cols</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+        <span class="c1"># raise Exception(f&#39;Dataframe {tablename} has nans in columns: {nan_cols}&#39;)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Dataframe has no nans&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+
+<span class="c1"># TODO: consider renaming to &quot;check_infvalues&quot;</span>
+<div class="viewcode-block" id="check_for_infvalues">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.check_for_infvalues">[docs]</a>
+<span class="k">def</span> <span class="nf">check_for_infvalues</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">tablename</span><span class="o">=</span><span class="s1">&#39;my_table&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;checks table for infinity values.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df1: 2 dimensional dataframe</span>
+<span class="sd">       restart variable table</span>
+<span class="sd">    tablename: string</span>
+<span class="sd">        name for the output file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    boolean</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">inf_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="n">inf_cols_table</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">()]</span>
+        <span class="n">print_table</span><span class="p">(</span><span class="n">inf_cols_table</span><span class="p">,</span> <span class="n">tablename</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;Dataframe </span><span class="si">{</span><span class="n">tablename</span><span class="si">}</span><span class="s1"> has nans in columns: </span><span class="si">{</span><span class="n">inf_cols</span><span class="si">}</span><span class="s1">. printing table to .txt file&#39;</span>
+        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dataframe </span><span class="si">{</span><span class="n">tablename</span><span class="si">}</span><span class="s1"> has nans in columns: </span><span class="si">{</span><span class="n">inf_cols</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Dataframe has no nans&#39;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># TODO: consider renaming to &quot;check_index_type&quot;</span>
+<div class="viewcode-block" id="table_update_status">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.table_update_status">[docs]</a>
+<span class="k">def</span> <span class="nf">table_update_status</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;checks two tables index types to see if they are aligned for a .merge() or .update().</span>
+
+<span class="sd">        *checks if index type of df1 is equal to index type of df2</span>
+<span class="sd">        *logs the result</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df1: 2 dimensional dataframe</span>
+<span class="sd">       restart variable table</span>
+<span class="sd">    df2: 2 dimensional dataframe</span>
+<span class="sd">       restart variable table</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    boolean</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">df1</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dtype</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;tables have different index types, .update() was unsuccessful&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;.update() succeeded&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+
+<span class="c1"># TODO: consider renaming to something better descriptive, start with a verb</span>
+<div class="viewcode-block" id="table_analysis">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.table_analysis">[docs]</a>
+<span class="k">def</span> <span class="nf">table_analysis</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">df_name</span><span class="o">=</span><span class="s1">&#39;table_analysis.csv&#39;</span><span class="p">):</span>
+    <span class="c1"># TODO:</span>
+    <span class="c1"># print to csv</span>
+    <span class="c1"># df.to_csv(df_name)</span>
+    <span class="c1"># print table</span>
+    <span class="n">print_table</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></div>
+
+    <span class="c1"># print graph</span>
+    <span class="c1"># get more context</span>
+
+
+<div class="viewcode-block" id="print_table">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.print_table">[docs]</a>
+<span class="k">def</span> <span class="nf">print_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">outputfilename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;prints a table for easy debugging.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df1: 2 dimensional dataframe</span>
+<span class="sd">       restart variable table</span>
+<span class="sd">    outputfilename: string</span>
+<span class="sd">        name of output file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">outputfilename</span><span class="p">:</span>
+        <span class="n">fileparts</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">outputfilename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fileparts</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">outputfilename</span> <span class="o">=</span> <span class="n">fileparts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;\table_&#39;</span> <span class="o">+</span> <span class="n">fileparts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">outputfilename</span> <span class="o">=</span> <span class="n">outputfilename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;.txt&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">outputfilename</span><span class="p">:</span>
+            <span class="n">outputfilename</span> <span class="o">=</span> <span class="n">outputfilename</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">outputfilename</span> <span class="o">=</span> <span class="s1">&#39;table_mytable.txt&#39;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outputfilename</span><span class="p">,</span> <span class="s1">&#39;a+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">outputfilename</span><span class="p">):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tabulate</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;psql&#39;</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="compute_infeasibility_explanation">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.compute_infeasibility_explanation">[docs]</a>
+<span class="k">def</span> <span class="nf">compute_infeasibility_explanation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This function attempts to determine why a given model is infeasible. It deploys</span>
+<span class="sd">    two main algorithms:</span>
+
+<span class="sd">    1. Successfully relaxes the constraints of the problem, and reports to the user</span>
+<span class="sd">       some sets of constraints and variable bounds, which when relaxed, creates a</span>
+<span class="sd">       feasible model.</span>
+<span class="sd">    2. Uses the information collected from (1) to attempt to compute a Minimal</span>
+<span class="sd">       Infeasible System (MIS), which is a set of constraints and variable bounds</span>
+<span class="sd">       which appear to be in conflict with each other. It is minimal in the sense</span>
+<span class="sd">       that removing any single constraint or variable bound would result in a</span>
+<span class="sd">       feasible subsystem.</span>
+
+<span class="sd">    Args</span>
+<span class="sd">    ----</span>
+<span class="sd">        model: A pyomo block</span>
+<span class="sd">        solver (optional): A pyomo solver, a string, or None</span>
+<span class="sd">        tee (optional):  Display intermediate solves conducted (False)</span>
+<span class="sd">        tolerance (optional): The feasibility tolerance to use when declaring a</span>
+<span class="sd">            constraint feasible (1e-08)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">pyomo.environ</span> <span class="k">as</span> <span class="nn">pyo</span>
+    <span class="kn">from</span> <span class="nn">pyomo.core.plugins.transform.add_slack_vars</span> <span class="kn">import</span> <span class="n">AddSlackVariables</span>
+    <span class="kn">from</span> <span class="nn">pyomo.core.plugins.transform.hierarchy</span> <span class="kn">import</span> <span class="n">IsomorphicTransformation</span>
+    <span class="kn">from</span> <span class="nn">pyomo.common.modeling</span> <span class="kn">import</span> <span class="n">unique_component_name</span>
+    <span class="kn">from</span> <span class="nn">pyomo.common.collections</span> <span class="kn">import</span> <span class="n">ComponentMap</span><span class="p">,</span> <span class="n">ComponentSet</span>
+    <span class="kn">from</span> <span class="nn">pyomo.opt</span> <span class="kn">import</span> <span class="n">WriterFactory</span>
+
+    <span class="n">_default_nl_writer</span> <span class="o">=</span> <span class="n">WriterFactory</span><span class="o">.</span><span class="n">get_class</span><span class="p">(</span><span class="s1">&#39;nl&#39;</span><span class="p">)</span>
+    <span class="c1"># hold the original harmless</span>
+    <span class="n">modified_model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">solver</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;solver needed unless IDAES is installed&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">SolverFactory</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># assume we have a solver</span>
+        <span class="k">assert</span> <span class="n">solver</span><span class="o">.</span><span class="n">available</span><span class="p">()</span>
+
+    <span class="c1"># first, cache the values we get</span>
+    <span class="n">_value_cache</span> <span class="o">=</span> <span class="n">ComponentMap</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">,</span> <span class="n">descend_into</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">_value_cache</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="c1"># finding proper reference</span>
+    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">parent_block</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">common_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">common_name</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span>
+
+    <span class="n">_modified_model_var_to_original_model_var</span> <span class="o">=</span> <span class="n">ComponentMap</span><span class="p">()</span>
+    <span class="n">_modified_model_value_cache</span> <span class="o">=</span> <span class="n">ComponentMap</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">,</span> <span class="n">descend_into</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">modified_model_var</span> <span class="o">=</span> <span class="n">modified_model</span><span class="o">.</span><span class="n">find_component</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">common_name</span><span class="p">)</span> <span class="p">:])</span>
+
+        <span class="n">_modified_model_var_to_original_model_var</span><span class="p">[</span><span class="n">modified_model_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="n">_modified_model_value_cache</span><span class="p">[</span><span class="n">modified_model_var</span><span class="p">]</span> <span class="o">=</span> <span class="n">_value_cache</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+        <span class="n">modified_model_var</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">_value_cache</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">skip_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># TODO: For WT / IDAES models, we should probably be more</span>
+    <span class="c1">#       selective in *what* we elasticize. E.g., it probably</span>
+    <span class="c1">#       does not make sense to elasticize property calculations</span>
+    <span class="c1">#       and maybe certain other equality constraints calculating</span>
+    <span class="c1">#       values. Maybe we shouldn&#39;t elasticize *any* equality</span>
+    <span class="c1">#       constraints.</span>
+    <span class="c1">#       For example, elasticizing the calculation of mass fraction</span>
+    <span class="c1">#       makes absolutely no sense and will just be noise for the</span>
+    <span class="c1">#       modeler to sift through. We could try to sort the constraints</span>
+    <span class="c1">#       such that we look for those with linear coefficients `1` on</span>
+    <span class="c1">#       some term and leave those be.</span>
+    <span class="c1"># move the variable bounds to the constraints</span>
+    <span class="n">_VariableBoundsAsConstraints</span><span class="p">()</span><span class="o">.</span><span class="n">_apply_to</span><span class="p">(</span><span class="n">modified_model</span><span class="p">)</span>
+
+    <span class="n">AddSlackVariables</span><span class="p">()</span><span class="o">.</span><span class="n">apply_to</span><span class="p">(</span><span class="n">modified_model</span><span class="p">)</span>
+    <span class="n">slack_block</span> <span class="o">=</span> <span class="n">modified_model</span><span class="o">.</span><span class="n">_core_add_slack_variables</span>
+
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">slack_block</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">):</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># start with variable bounds -- these are the easist to interpret</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">modified_model</span><span class="o">.</span><span class="n">_variable_bounds</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span>
+        <span class="n">pyo</span><span class="o">.</span><span class="n">Constraint</span><span class="p">,</span> <span class="n">descend_into</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">):</span>
+        <span class="n">plus</span> <span class="o">=</span> <span class="n">slack_block</span><span class="o">.</span><span class="n">component</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;_slack_plus_</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">minus</span> <span class="o">=</span> <span class="n">slack_block</span><span class="o">.</span><span class="n">component</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;_slack_minus_</span><span class="si">{</span><span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">plus</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">minus</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">plus</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">plus</span><span class="o">.</span><span class="n">unfix</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">minus</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">minus</span><span class="o">.</span><span class="n">unfix</span><span class="p">()</span>
+
+    <span class="c1"># TODO: Elasticizing too much at once seems to cause Ipopt trouble.</span>
+    <span class="c1">#       After an initial sweep, we should just fix one elastic variable</span>
+    <span class="c1">#       and put everything else on a stack of &quot;constraints to elasticize&quot;.</span>
+    <span class="c1">#       We elastisize one constraint at a time and fix one constraint at a time.</span>
+    <span class="c1">#       After fixing an elastic variable, we elasticize a single constraint it</span>
+    <span class="c1">#       appears in and put the remaining constraints on the stack. If the resulting problem</span>
+    <span class="c1">#       is feasible, we keep going &quot;down the tree&quot;. If the resulting problem is</span>
+    <span class="c1">#       infeasible or cannot be solved, we elasticize a single constraint from</span>
+    <span class="c1">#       the top of the stack.</span>
+    <span class="c1">#       The algorithm stops when the stack is empty and the subproblem is infeasible.</span>
+    <span class="c1">#       Along the way, any time the current problem is infeasible we can check to</span>
+    <span class="c1">#       see if the current set of constraints in the filter is as a collection of</span>
+    <span class="c1">#       infeasible constraints -- to terminate early.</span>
+    <span class="c1">#       However, while more stable, this is much more computationally intensive.</span>
+    <span class="c1">#       So, we leave the implementation simpler for now and consider this as</span>
+    <span class="c1">#       a potential extension if this tool sometimes cannot report a good answer.</span>
+    <span class="c1"># Phase 1 -- build the initial set of constraints, or prove feasibility</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">fixed_slacks</span> <span class="o">=</span> <span class="n">ComponentSet</span><span class="p">()</span>
+    <span class="n">elastic_filter</span> <span class="o">=</span> <span class="n">ComponentSet</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_constraint_loop</span><span class="p">(</span><span class="n">relaxed_things</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;Model </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> may be infeasible. A feasible solution was found with only the following </span><span class="si">{</span><span class="n">relaxed_things</span><span class="si">}</span><span class="s1"> relaxed:</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;Another feasible solution was found with only the following </span><span class="si">{</span><span class="n">relaxed_things</span><span class="si">}</span><span class="s1"> relaxed:</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">_constraint_generator</span><span class="p">():</span>
+                <span class="n">elastic_filter_size_initial</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elastic_filter</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">slack_block</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span> <span class="o">&gt;</span> <span class="n">tolerance</span><span class="p">:</span>
+                        <span class="n">constr</span> <span class="o">=</span> <span class="n">_get_constraint</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+                        <span class="k">yield</span> <span class="n">constr</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span>
+                        <span class="n">v</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                        <span class="n">fixed_slacks</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+                        <span class="n">elastic_filter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">constr</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">elastic_filter</span><span class="p">)</span> <span class="o">==</span> <span class="n">elastic_filter_size_initial</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Found model </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> to be feasible!&#39;</span><span class="p">)</span>
+
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">_get_results_with_value</span><span class="p">(</span><span class="n">_constraint_generator</span><span class="p">(),</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">_modified_model_value_cache</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">skip_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="n">tee</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;Another feasible solution was found with only the following </span><span class="si">{</span><span class="n">relaxed_things</span><span class="si">}</span><span class="s1"> relaxed:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">msg</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="n">tee</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">_constraint_loop</span><span class="p">(</span><span class="s1">&#39;variable bounds&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="c1"># next, try relaxing the inequality constraints</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">slack_block</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">_get_constraint</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">equality</span><span class="p">:</span>
+            <span class="c1"># equality constraint</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fixed_slacks</span><span class="p">:</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">unfix</span><span class="p">()</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="n">tee</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">_constraint_loop</span><span class="p">(</span><span class="s1">&#39;inequality constraints and/or variable bounds&#39;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">slack_block</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">fixed_slacks</span><span class="p">:</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">unfix</span><span class="p">()</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="n">tee</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">_constraint_loop</span><span class="p">(</span>
+            <span class="s1">&#39;inequality constraints, equality constraints, and/or variable bounds&#39;</span><span class="p">,</span> <span class="n">msg</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">elastic_filter</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># load the feasible solution into the original model</span>
+        <span class="k">for</span> <span class="n">modified_model_var</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_modified_model_var_to_original_model_var</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">v</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">modified_model_var</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">skip_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="n">tee</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;A feasible solution was found!&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Could not find a feasible solution with violated constraints or bounds. This model is likely unstable&#39;</span>
+            <span class="p">)</span>
+
+    <span class="c1"># Phase 2 -- deletion filter</span>
+    <span class="c1"># TODO: the model created here seems to mess with the nl_v2</span>
+    <span class="c1">#       writer sometimes. So we temporarily switch to nl_v1 writer.</span>
+    <span class="n">WriterFactory</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;nl&#39;</span><span class="p">)(</span><span class="n">WriterFactory</span><span class="o">.</span><span class="n">get_class</span><span class="p">(</span><span class="s1">&#39;nl_v1&#39;</span><span class="p">))</span>
+
+    <span class="c1"># remove slacks by fixing them to 0</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">slack_block</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">):</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">fix</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">modified_model</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Objective</span><span class="p">,</span> <span class="n">descend_into</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">o</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
+
+    <span class="c1"># mark all constraints not in the filter as inactive</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">modified_model</span><span class="o">.</span><span class="n">component_data_objects</span><span class="p">(</span><span class="n">pyo</span><span class="o">.</span><span class="n">Constraint</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">elastic_filter</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="n">tee</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39;Could not determine Minimal Intractable System</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">deletion_filter</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">guards</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">constr</span> <span class="ow">in</span> <span class="n">elastic_filter</span><span class="p">:</span>
+            <span class="n">constr</span><span class="o">.</span><span class="n">deactivate</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">var</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">_modified_model_value_cache</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">var</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">skip_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">results</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">tee</span><span class="o">=</span><span class="n">tee</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">math_failure</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">math_failure</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">if</span> <span class="n">math_failure</span><span class="p">:</span>
+                <span class="n">constr</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+                <span class="n">guards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constr</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+                <span class="n">constr</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
+                <span class="n">deletion_filter</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constr</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># still infeasible without this constraint</span>
+                <span class="k">pass</span>
+
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39;Computed Minimal Intractable System (MIS)!</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39;Constraints / bounds in MIS:</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">_get_results</span><span class="p">(</span><span class="n">deletion_filter</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="s1">&#39;Constraints / bounds in guards for stability:&#39;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">_get_results</span><span class="p">(</span><span class="n">guards</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">WriterFactory</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;nl&#39;</span><span class="p">)(</span><span class="n">_default_nl_writer</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_get_results_with_value</span><span class="p">(</span><span class="n">constr_value_generator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">msg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">constr_value_generator</span><span class="p">:</span>
+        <span class="n">c_name</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="s1">&#39;_variable_bounds&#39;</span> <span class="ow">in</span> <span class="n">c_name</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">local_name</span>
+            <span class="k">if</span> <span class="s1">&#39;lb&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">lb of var </span><span class="si">{</span><span class="n">name</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="si">}</span><span class="s1"> by </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">elif</span> <span class="s1">&#39;ub&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">ub of var </span><span class="si">{</span><span class="n">name</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="si">}</span><span class="s1"> by </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unrecongized var name&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">constraint: </span><span class="si">{</span><span class="n">c_name</span><span class="si">}</span><span class="s1"> by </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="k">return</span> <span class="n">msg</span>
+
+
+<span class="k">def</span> <span class="nf">_get_results</span><span class="p">(</span><span class="n">constr_generator</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">msg</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">constr_generator</span><span class="p">:</span>
+        <span class="n">c_name</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">if</span> <span class="s1">&#39;_variable_bounds&#39;</span> <span class="ow">in</span> <span class="n">c_name</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">local_name</span>
+            <span class="k">if</span> <span class="s1">&#39;lb&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">lb of var </span><span class="si">{</span><span class="n">name</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">elif</span> <span class="s1">&#39;ub&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">ub of var </span><span class="si">{</span><span class="n">name</span><span class="p">[</span><span class="mi">7</span><span class="p">:]</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;unrecongized var name&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">constraint: </span><span class="si">{</span><span class="n">c_name</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="k">return</span> <span class="n">msg</span>
+
+
+<span class="k">def</span> <span class="nf">_get_constraint</span><span class="p">(</span><span class="n">modified_model</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;_slack_plus_&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+        <span class="n">constr</span> <span class="o">=</span> <span class="n">modified_model</span><span class="o">.</span><span class="n">find_component</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">local_name</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;_slack_plus_&#39;</span><span class="p">)</span> <span class="p">:])</span>
+        <span class="k">if</span> <span class="n">constr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Bad constraint name </span><span class="si">{v.local_name[len(&#39;_slack_plus_&#39;):]}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">constr</span>
+    <span class="k">elif</span> <span class="s1">&#39;_slack_minus_&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+        <span class="n">constr</span> <span class="o">=</span> <span class="n">modified_model</span><span class="o">.</span><span class="n">find_component</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">local_name</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;_slack_minus_&#39;</span><span class="p">)</span> <span class="p">:])</span>
+        <span class="k">if</span> <span class="n">constr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Bad constraint name </span><span class="si">{v.local_name[len(&#39;_slack_minus_&#39;):]}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">constr</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Bad var name </span><span class="si">{v.name}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">WaterTAP Copyright (c) 2020-2023, The Regents of the University of California, through Lawrence Berkeley National Laboratory, Oak Ridge National Laboratory, National Renewable Energy Laboratory, and National Energy Technology Laboratory (subject to receipt of any required approvals from the U.S. Dept. of Energy). All rights reserved.</span>
+
+<span class="sd">Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</span>
+
+<span class="sd">    Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</span>
+
+<span class="sd">    Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</span>
+
+<span class="sd">    Neither the name of the University of California, Lawrence Berkeley National Laboratory, Oak Ridge National Laboratory, National Renewable Energy Laboratory, National Energy Technology Laboratory, U.S. Dept. of Energy nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.</span>
+
+<span class="sd">THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="sd">You are under no obligation whatsoever to provide any bug fixes, patches, or upgrades to the features, functionality or performance of the source code (&quot;Enhancements&quot;) to anyone; however, if you choose to make your Enhancements available either publicly, or directly to Lawrence Berkeley National Laboratory, without imposing a separate written license agreement for such Enhancements, then you hereby grant the following license: a non-exclusive, royalty-free perpetual license to install, use, modify, prepare derivative works, incorporate into other computer software, distribute, and sublicense such enhancements or derivative works thereof, in binary and source code form.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Running common_debug&#39;</span><span class="p">)</span>
+    <span class="n">run_pylint</span><span class="p">(</span><span class="n">errors_only</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

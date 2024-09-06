@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.hydrogen package &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.models.hydrogen.model package" href="src.models.hydrogen.model.html" />
+    <link rel="prev" title="src.models.electricity.scripts.common package" href="src.models.electricity.scripts.common.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src.models.hydrogen package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+          <li class="breadcrumb-item"><a href="src.models.html">src.models package</a></li>
+      <li class="breadcrumb-item active">src.models.hydrogen package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.models.hydrogen.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-models-hydrogen-package">
+<h1>src.models.hydrogen package<a class="headerlink" href="#src-models-hydrogen-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model.actions">src.models.hydrogen.model.actions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.actions.build_grid"><code class="docutils literal notranslate"><span class="pre">build_grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.actions.build_model"><code class="docutils literal notranslate"><span class="pre">build_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.actions.load_data"><code class="docutils literal notranslate"><span class="pre">load_data()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.actions.quick_summary"><code class="docutils literal notranslate"><span class="pre">quick_summary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.actions.solve_it"><code class="docutils literal notranslate"><span class="pre">solve_it()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model.h2_model">src.models.hydrogen.model.h2_model module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.h2_model.H2Model"><code class="docutils literal notranslate"><span class="pre">H2Model</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.h2_model.H2Model.poll_electric_demand"><code class="docutils literal notranslate"><span class="pre">H2Model.poll_electric_demand()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.h2_model.H2Model.update_exchange_params"><code class="docutils literal notranslate"><span class="pre">H2Model.update_exchange_params()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.h2_model.resolve"><code class="docutils literal notranslate"><span class="pre">resolve()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.h2_model.solve"><code class="docutils literal notranslate"><span class="pre">solve()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model.validators">src.models.hydrogen.model.validators module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.validators.region_validator"><code class="docutils literal notranslate"><span class="pre">region_validator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.grid">src.models.hydrogen.network.grid module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#grid-class">GRID CLASS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.aggregate_hubs"><code class="docutils literal notranslate"><span class="pre">Grid.aggregate_hubs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.arc_generation"><code class="docutils literal notranslate"><span class="pre">Grid.arc_generation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.build_grid"><code class="docutils literal notranslate"><span class="pre">Grid.build_grid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.collapse"><code class="docutils literal notranslate"><span class="pre">Grid.collapse()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.collapse_level"><code class="docutils literal notranslate"><span class="pre">Grid.collapse_level()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.combine_arcs"><code class="docutils literal notranslate"><span class="pre">Grid.combine_arcs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.connect_subregions"><code class="docutils literal notranslate"><span class="pre">Grid.connect_subregions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.create_arc"><code class="docutils literal notranslate"><span class="pre">Grid.create_arc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.create_hub"><code class="docutils literal notranslate"><span class="pre">Grid.create_hub()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.create_region"><code class="docutils literal notranslate"><span class="pre">Grid.create_region()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.delete"><code class="docutils literal notranslate"><span class="pre">Grid.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.load_hubs"><code class="docutils literal notranslate"><span class="pre">Grid.load_hubs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.recursive_region_generation"><code class="docutils literal notranslate"><span class="pre">Grid.recursive_region_generation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.test"><code class="docutils literal notranslate"><span class="pre">Grid.test()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.visualize"><code class="docutils literal notranslate"><span class="pre">Grid.visualize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid.Grid.write_data"><code class="docutils literal notranslate"><span class="pre">Grid.write_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.grid_data">src.models.hydrogen.network.grid_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.grid_data.GridData"><code class="docutils literal notranslate"><span class="pre">GridData</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.hub">src.models.hydrogen.network.hub module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#hub-class">HUB CLASS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub"><code class="docutils literal notranslate"><span class="pre">Hub</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.add_inbound"><code class="docutils literal notranslate"><span class="pre">Hub.add_inbound()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.add_outbound"><code class="docutils literal notranslate"><span class="pre">Hub.add_outbound()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.change_region"><code class="docutils literal notranslate"><span class="pre">Hub.change_region()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.cost"><code class="docutils literal notranslate"><span class="pre">Hub.cost()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.display_outbound"><code class="docutils literal notranslate"><span class="pre">Hub.display_outbound()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.get_data"><code class="docutils literal notranslate"><span class="pre">Hub.get_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.remove_inbound"><code class="docutils literal notranslate"><span class="pre">Hub.remove_inbound()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.hub.Hub.remove_outbound"><code class="docutils literal notranslate"><span class="pre">Hub.remove_outbound()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.region">src.models.hydrogen.network.region module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.absorb_subregions"><code class="docutils literal notranslate"><span class="pre">Region.absorb_subregions()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.absorb_subregions_deep"><code class="docutils literal notranslate"><span class="pre">Region.absorb_subregions_deep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.add_hub"><code class="docutils literal notranslate"><span class="pre">Region.add_hub()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.add_subregion"><code class="docutils literal notranslate"><span class="pre">Region.add_subregion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.aggregate_subregion_data"><code class="docutils literal notranslate"><span class="pre">Region.aggregate_subregion_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.assigned_names"><code class="docutils literal notranslate"><span class="pre">Region.assigned_names</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.create_subregion"><code class="docutils literal notranslate"><span class="pre">Region.create_subregion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.delete"><code class="docutils literal notranslate"><span class="pre">Region.delete()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.display_children"><code class="docutils literal notranslate"><span class="pre">Region.display_children()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.display_hubs"><code class="docutils literal notranslate"><span class="pre">Region.display_hubs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.get_data"><code class="docutils literal notranslate"><span class="pre">Region.get_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.remove_hub"><code class="docutils literal notranslate"><span class="pre">Region.remove_hub()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.remove_subregion"><code class="docutils literal notranslate"><span class="pre">Region.remove_subregion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.update_data"><code class="docutils literal notranslate"><span class="pre">Region.update_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.region.Region.update_parent"><code class="docutils literal notranslate"><span class="pre">Region.update_parent()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.registry">src.models.hydrogen.network.registry module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#registry-class">REGISTRY CLASS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.registry.Registry"><code class="docutils literal notranslate"><span class="pre">Registry</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.registry.Registry.add"><code class="docutils literal notranslate"><span class="pre">Registry.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.registry.Registry.remove"><code class="docutils literal notranslate"><span class="pre">Registry.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.registry.Registry.update_levels"><code class="docutils literal notranslate"><span class="pre">Registry.update_levels()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.transportation_arc">src.models.hydrogen.network.transportation_arc module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#transportation-arc-class">TRANSPORTATION ARC CLASS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.transportation_arc.TransportationArc"><code class="docutils literal notranslate"><span class="pre">TransportationArc</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.transportation_arc.TransportationArc.change_destination"><code class="docutils literal notranslate"><span class="pre">TransportationArc.change_destination()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.transportation_arc.TransportationArc.change_origin"><code class="docutils literal notranslate"><span class="pre">TransportationArc.change_origin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.network.html#src.models.hydrogen.network.transportation_arc.TransportationArc.disconnect"><code class="docutils literal notranslate"><span class="pre">TransportationArc.disconnect()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-arc-module">src.models.hydrogen.region_network.arc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#module-src.models.hydrogen.region_network.context">src.models.hydrogen.region_network.context module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.region_network.html#src.models.hydrogen.region_network.context.Context"><code class="docutils literal notranslate"><span class="pre">Context</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.region_network.html#src.models.hydrogen.region_network.context.Context.ELEC"><code class="docutils literal notranslate"><span class="pre">Context.ELEC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.region_network.html#src.models.hydrogen.region_network.context.Context.GAS"><code class="docutils literal notranslate"><span class="pre">Context.GAS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.region_network.html#src.models.hydrogen.region_network.context.Context.RESIDENTIAL"><code class="docutils literal notranslate"><span class="pre">Context.RESIDENTIAL</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-hub-module">src.models.hydrogen.region_network.hub module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-network-module">src.models.hydrogen.region_network.network module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#module-src.models.hydrogen.region_network.region_data">src.models.hydrogen.region_network.region_data module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.region_network.html#src.models.hydrogen.region_network.region_data.RegionData"><code class="docutils literal notranslate"><span class="pre">RegionData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.region_network.html#src.models.hydrogen.region_network.region_data.RegionData.name"><code class="docutils literal notranslate"><span class="pre">RegionData.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.region_network.html#src.models.hydrogen.region_network.region_data.RegionData.population"><code class="docutils literal notranslate"><span class="pre">RegionData.population</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-runner-module">src.models.hydrogen.region_network.runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#module-src.models.hydrogen.region_network">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html#module-src.models.hydrogen.utilities.h2_functions">src.models.hydrogen.utilities.h2_functions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.utilities.html#src.models.hydrogen.utilities.h2_functions.get_demand"><code class="docutils literal notranslate"><span class="pre">get_demand()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.utilities.html#src.models.hydrogen.utilities.h2_functions.get_elec_price"><code class="docutils literal notranslate"><span class="pre">get_elec_price()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.utilities.html#src.models.hydrogen.utilities.h2_functions.get_electricity_consumption_rate"><code class="docutils literal notranslate"><span class="pre">get_electricity_consumption_rate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.utilities.html#src.models.hydrogen.utilities.h2_functions.get_electricty_consumption"><code class="docutils literal notranslate"><span class="pre">get_electricty_consumption()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.utilities.html#src.models.hydrogen.utilities.h2_functions.get_gas_price"><code class="docutils literal notranslate"><span class="pre">get_gas_price()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.utilities.html#src.models.hydrogen.utilities.h2_functions.get_production_cost"><code class="docutils literal notranslate"><span class="pre">get_production_cost()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html#module-src.models.hydrogen.utilities">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="src-models-hydrogen-main-module">
+<h2>src.models.hydrogen.main module<a class="headerlink" href="#src-models-hydrogen-main-module" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.models.hydrogen">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.models.hydrogen" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

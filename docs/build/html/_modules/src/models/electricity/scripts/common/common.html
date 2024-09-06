@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.electricity.scripts.common.common &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.models.electricity.scripts.common.common</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.models.electricity.scripts.common.common</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utility file containing miscellaneous common functions used in CCATS.</span>
+
+<span class="sd">Summary</span>
+<span class="sd">-------</span>
+<span class="sd">This is a utility file containing general functions that are either a) used frequently in a single submodule, or are used</span>
+<span class="sd">by several submodules. Example functions include &quot;read_dataframe&quot;, which is a universal function for reading files into</span>
+<span class="sd">dataframes, and &quot;calculate_inflation&quot; which applies the NEMS inflation multipliers to CCATS DataFrames. Full accounting</span>
+<span class="sd">of common functions below:</span>
+
+<span class="sd">    * read_dataframe: Reads multiple filetypes into python as pandas DataFrames, checking for nans.</span>
+<span class="sd">    * calculate_inflation: Inflation calculator using restart file inflation multiplier, applied to pandas DataFrames.</span>
+<span class="sd">    * array_to_df: Creates a pandas DataFrame from a numpy array</span>
+<span class="sd">    * df_to_array: Creates a numpy array from a pandas DataFrame</span>
+<span class="sd">    * unpack_pyomo: Unpacks pyomo results and converts results to DataFrames</span>
+<span class="sd">    * check_results: Checks optimization termination condition</span>
+<span class="sd">    * align_index: Aligns the index types of two tables based on the restart variable type</span>
+<span class="sd">    * compare_lists: Check if lista is equal or a subset of listb</span>
+<span class="sd">    * check_dicts_ruleset: Check the list of dicts against defined ruleset</span>
+
+<span class="sd">Notes</span>
+<span class="sd">-----</span>
+<span class="sd">Convention for import alias is import common as com</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">src.models.electricity.scripts.common.common_debug</span> <span class="kn">import</span> <span class="n">check_table_for_nans</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;common.py&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_dataframe">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.read_dataframe">[docs]</a>
+<span class="k">def</span> <span class="nf">read_dataframe</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">to_int</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads multiple filetypes into python as pandas DataFrames, checking for nans.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Filename, including file type extension (e.g. .csv)</span>
+<span class="sd">    sheet_name : str</span>
+<span class="sd">        Name of the sheet if using excel or hdf</span>
+<span class="sd">    index_col : int, str, list, or False</span>
+<span class="sd">        Column number to use as row labels</span>
+<span class="sd">    skiprows : int</span>
+<span class="sd">        Column number to use as row labels</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tablename</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;|&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Loading Table: &#39;</span> <span class="o">+</span> <span class="n">tablename</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+
+    <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;xlsx&#39;</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;hdf&#39;</span><span class="p">:</span>
+        <span class="c1"># Read_hdf does not return DataFrame, wrap with pd.DataFrame to satisfy PyCharm, may cause error</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_hdf</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">))</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">index_col</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">):</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">index_col</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">index_col</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">index_col</span><span class="p">])</span>
+    <span class="k">elif</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;csv&#39;</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="n">skiprows</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39; filetype not recognized&#39;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+
+    <span class="c1"># check if the dataframe has nans</span>
+    <span class="n">check_table_for_nans</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">tablename</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">to_int</span><span class="p">:</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">columns</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="n">col</span><span class="p">])</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+
+<div class="viewcode-block" id="calculate_inflation">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.calculate_inflation">[docs]</a>
+<span class="k">def</span> <span class="nf">calculate_inflation</span><span class="p">(</span><span class="n">rest_mc_jpgdp</span><span class="p">,</span> <span class="n">from_year</span><span class="p">,</span> <span class="n">to_year</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inflation calculator using restart file inflation multiplier, applied to pandas DataFrames.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    self.rest_mc_jpgdp</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">to_year</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">to_year</span> <span class="o">=</span> <span class="mi">1987</span>  <span class="c1"># Hardcoded in NEMS</span>
+
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">rest_mc_jpgdp</span><span class="o">.</span><span class="n">at</span><span class="p">[(</span><span class="n">to_year</span><span class="p">),</span> <span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">rest_mc_jpgdp</span><span class="o">.</span><span class="n">at</span><span class="p">[(</span><span class="n">from_year</span><span class="p">),</span> <span class="s1">&#39;value&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">temp</span></div>
+
+
+
+<div class="viewcode-block" id="array_to_df">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.array_to_df">[docs]</a>
+<span class="k">def</span> <span class="nf">array_to_df</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create df from array.</span>
+
+<span class="sd">        * Creates a multi-index DataFrame from a multi-dimensional array</span>
+<span class="sd">        * Each array dimension is stored as a binary index column in the DataFrame multi-index</span>
+<span class="sd">        * Multi-index columns are currently numbered to reflect array dimension level</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series : array</span>
+<span class="sd">        A multi-dimensional array containing restart file data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">num_dims</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span>  <span class="c1"># Number of array dimensions</span>
+    <span class="n">column_options</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="s1">&#39;1234567890&#39;</span><span class="p">)</span>  <span class="c1"># List of numbered array dimensions</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">column_options</span><span class="p">[</span><span class="mi">0</span><span class="p">:(</span><span class="n">num_dims</span><span class="p">)]</span>  <span class="c1"># Set column numbers equal to numbered array dimensions</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span>  <span class="c1"># Shape array</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">([</span><span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">],</span> <span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>  <span class="c1"># Set df index</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">array</span><span class="o">.</span><span class="n">flatten</span><span class="p">()},</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># Create df from array with flatten</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+
+<div class="viewcode-block" id="df_to_array">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.df_to_array">[docs]</a>
+<span class="k">def</span> <span class="nf">df_to_array</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Turns multi-index DataFrame into multi-dimensional array.</span>
+
+<span class="sd">        * Creates a multi-dimensional array from a multi-index dataframe</span>
+<span class="sd">        * Each DataFrame multi-index is stored as an array dimension</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    series : df</span>
+<span class="sd">        A multi-index DataFrame containing restart file data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    array</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>  <span class="c1"># Multi-index</span>
+        <span class="c1"># Create an empty array of NaN of the right dimensions</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span><span class="p">))</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+        <span class="c1"># Fill the empty array using Numpy&#39;s advanced indexing</span>
+        <span class="n">arr</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">codes</span><span class="p">)]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">flat</span>
+
+        <span class="c1"># Set number of dimensional levels based on df index</span>
+        <span class="n">levels</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span><span class="p">)</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">levels</span><span class="p">))</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+        <span class="c1"># Shape and create array</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">levels</span><span class="p">))</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">except</span><span class="p">:</span>  <span class="c1"># 2-dimensional DF</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">array</span></div>
+
+
+
+<div class="viewcode-block" id="unpack_pyomo">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.unpack_pyomo">[docs]</a>
+<span class="k">def</span> <span class="nf">unpack_pyomo</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">levels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool for unpacking pyomo variable outputs and converting them to dfs.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    variable: array</span>
+<span class="sd">        Target variable to unpack</span>
+<span class="sd">    values: array</span>
+<span class="sd">        Pyomo output values</span>
+<span class="sd">    levels: int</span>
+<span class="sd">        Number of levels in array to unpack (i.e. CO2 supplied from i is one level, while CO2 piped from i to j is two levels)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">levels</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">pyomo_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="n">i</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">):</span> <span class="n">values</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variable</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">elif</span> <span class="n">levels</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">pyomo_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">):</span> <span class="n">values</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">),</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variable</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">elif</span> <span class="n">levels</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">pyomo_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">):</span> <span class="n">values</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variable</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">pyomo_dict</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;variable value&#39;</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">temp</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">temp</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+
+<div class="viewcode-block" id="check_results">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.check_results">[docs]</a>
+<span class="k">def</span> <span class="nf">check_results</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">SolutionStatus</span><span class="p">,</span> <span class="n">TerminationCondition</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    results : str</span>
+<span class="sd">        Results from pyomo</span>
+<span class="sd">    SolutionStatus : str</span>
+<span class="sd">        Solution Status from pyomo</span>
+<span class="sd">    TerminationCondition : str</span>
+<span class="sd">        Termination Condition from pyomo</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    results</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">results</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">solution</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">SolutionStatus</span><span class="o">.</span><span class="n">infeasible</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">termination_condition</span> <span class="o">==</span> <span class="n">TerminationCondition</span><span class="o">.</span><span class="n">infeasible</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">solver</span><span class="o">.</span><span class="n">termination_condition</span> <span class="o">==</span> <span class="n">TerminationCondition</span><span class="o">.</span><span class="n">unbounded</span><span class="p">)</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="align_index">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.align_index">[docs]</a>
+<span class="k">def</span> <span class="nf">align_index</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">restart_var</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Aligns the index types of two tables based on the restart variable type.</span>
+
+<span class="sd">        * If the restart variable is provided we use that to determine the index types</span>
+<span class="sd">        * If restaet_var is none, we assume that df1 has the correct index type</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df1: 2 dimensional dataframe</span>
+<span class="sd">       restart variable table</span>
+<span class="sd">    df2: 2 dimensional dataframe</span>
+<span class="sd">        restart variable table</span>
+<span class="sd">    restart_var: 2 dimensional dataframe</span>
+<span class="sd">        restart variable, used to decide the index type</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    df1, df2</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">index_type</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">restart_var</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">index_type</span> <span class="o">=</span> <span class="n">restart_var</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dtype</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">index_type</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dtype</span>
+
+    <span class="k">if</span> <span class="n">index_type</span> <span class="o">==</span> <span class="s1">&#39;int64&#39;</span><span class="p">:</span>
+        <span class="n">df1</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">df2</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df1</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">df2</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span></div>
+
+
+
+<div class="viewcode-block" id="compare_lists">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.compare_lists">[docs]</a>
+<span class="k">def</span> <span class="nf">compare_lists</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">listb</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if lista is equal or a subset of listb</span>
+
+<span class="sd">        * used to check that node ids(supply,hubs,storage)in lista</span>
+<span class="sd">            are part of the set in listb</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lista: list</span>
+<span class="sd">    listb: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">listb</span><span class="p">):</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="nb">set</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">listb</span><span class="p">):</span>
+        <span class="k">return</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;sets do not match&#39;</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;sets do not match&#39;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="check_dicts_ruleset">
+<a class="viewcode-back" href="../../../../../../src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.check_dicts_ruleset">[docs]</a>
+<span class="k">def</span> <span class="nf">check_dicts_ruleset</span><span class="p">(</span><span class="n">dict_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check the list of dicts against defined ruleset</span>
+
+<span class="sd">        * 1. check for nans</span>
+<span class="sd">        * 2. make sure lengths of each dict are the same length</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dict_list: list</span>
+<span class="sd">        list of dicts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dict_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dict_list</span><span class="p">:</span>
+        <span class="c1"># check for nans</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;dicts have nans&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;sets do not match&#39;</span><span class="p">)</span>
+        <span class="c1"># make sure lengths are the same size</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">!=</span> <span class="n">length</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;dict length is incorrect&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;dict length is incorrect&#39;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

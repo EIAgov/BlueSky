@@ -1,0 +1,25 @@
+[tool.ruff]
+line-length = 100
+exclude = ['sample']
+
+[tool.ruff.format]
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["unit_tests"]
+log_file = "unit_tests/test_logs/testlog.log"
+log_file_level = "INFO"
+
+
+# these settings are for the linter which Pylance uses
+# in VS Code.  Suppressing these avoids many warnings in pyomo-based code
+# as pyomo isn't fully "typed", but still catches many others--a compromise.
+
+[tool.pyright]
+reportCallIssue = false
+# reportArgumentType = false
+reportOperatorIssue = false
+reportOptionalMemberAccess = false
+reportSelfClsParameterName = false
+reportOptionalSubscript = false

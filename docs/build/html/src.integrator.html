@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.integrator package &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.models package" href="src.models.html" />
+    <link rel="prev" title="src package" href="src.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">src.integrator package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.html">src.models package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src.integrator package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html">src.models package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+      <li class="breadcrumb-item active">src.integrator package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.integrator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-integrator-package">
+<h1>src.integrator package<a class="headerlink" href="#src-integrator-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.integrator.config_setup">
+<span id="src-integrator-config-setup-module"></span><h2>src.integrator.config_setup module<a class="headerlink" href="#module-src.integrator.config_setup" title="Link to this heading"></a></h2>
+<p>This file contains Config_settings class. It establishes the main settings used when running
+the model. It takes these settings from the run_config.toml file. It contains universal configurations
+(e.g., configs that cut across modules and/or solve options) and module specific configs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.integrator.config_setup.Config_settings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.integrator.config_setup.</span></span><span class="sig-name descname"><span class="pre">Config_settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">years_ow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions_ow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/config_setup.html#Config_settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.config_setup.Config_settings" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generates the model settings that are used to solve. Settings include:
+- Iterative Solve Config Settings
+- Spatial Config Settings
+- Temporal Config Settings
+- Electricity Config Settings
+- Other</p>
+</dd></dl>
+
+</section>
+<section id="module-src.integrator.gs_elec_hyd_res">
+<span id="src-integrator-gs-elec-hyd-res-module"></span><h2>src.integrator.gs_elec_hyd_res module<a class="headerlink" href="#module-src.integrator.gs_elec_hyd_res" title="Link to this heading"></a></h2>
+<p>Iteratively solve 3 models with GS methodology</p>
+<p>Gameplan:
+1.  Use a config file to control the regions &amp; years to sync
+2.  Make a fake set of demands for the H2 model to kick-start it and get a non-zero H2 price
+3.  Make an ELEC model
+4.  Make an H2 model
+5.  Solve the ELEC model
+5b.  Catch metrics from ELEC
+6.  Update the H2 model</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>pass in Elec Price (GS!!)</p></li>
+<li><p>pass in H2 demand (GS!!)</p></li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>Solve H2 model</p></li>
+<li><p>Make Res Model</p></li>
+<li><p>Pass ELEC Prices in (GS!! ~kinda right now)</p></li>
+<li><p>Solve Res Model</p></li>
+<li><p>Update the Elec model</p></li>
+</ol>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>new Load</p></li>
+<li><p>new H2 Price</p></li>
+<li><p>Future:  Elec demand from H2 (ON HOLD!)</p></li>
+</ol>
+</div></blockquote>
+<ol class="arabic" start="12">
+<li><p>Evaluate termination conditions</p></li>
+<li><p>Loop to 5</p></li>
+<li><p>Process output</p>
+<blockquote>
+<div><blockquote>
+<div><p>~~~~~~ INFO SWAP PLAN ~~~~~</p>
+</div></blockquote>
+<p>[ solve points annotated with =S= ]</p>
+</div></blockquote>
+</li>
+</ol>
+<blockquote>
+<div><dl>
+<dt>H2 MODEL                    ELEC MODEL                  RES/DEMAND</dt><dd><blockquote>
+<div><div class="line-block">
+<div class="line-block">
+<div class="line">|                           |</div>
+</div>
+<div class="line">=S=                          |</div>
+<div class="line-block">
+<div class="line">|                           |</div>
+</div>
+</div>
+<p><a href="#id1"><span class="problematic" id="id2">|&lt;&lt;&lt;--- ELEC Prices --------|</span></a>                           |
+<a href="#id3"><span class="problematic" id="id4">|&lt;&lt;&lt;--- H2 Demand ----------|</span></a>                           |
+|                           |                           |</p>
+</div></blockquote>
+<dl>
+<dt>=S=                          |                           |</dt><dd><div class="line-block">
+<div class="line">|                           |</div>
+<div class="line"><a href="#id5"><span class="problematic" id="id6">|------- ELEC Prices ----&gt;&gt;&gt;|</span></a></div>
+<div class="line">|                           |</div>
+<div class="line">|                          =S=</div>
+</div>
+<p><a href="#id7"><span class="problematic" id="id8">|------ H2 Prices -------&gt;&gt;&gt;|</span></a>                           |
+|                           <a href="#id9"><span class="problematic" id="id10">|&lt;&lt;&lt;--- New Load -----------|</span></a>
+|                           |                           |</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<ol class="arabic simple" start="7">
+<li><p>re-solve each model</p></li>
+<li><p>Calculate prev_value - <a href="#id11"><span class="problematic" id="id12">|H2.obj|</span></a> + <a href="#id13"><span class="problematic" id="id14">|ELEC.obj|</span></a> &lt; tolerance</p></li>
+<li><p>No?:  goto 5</p></li>
+</ol>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.gs_elec_hyd_res.run_gs_combo">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.gs_elec_hyd_res.</span></span><span class="sig-name descname"><span class="pre">run_gs_combo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/gs_elec_hyd_res.html#run_gs_combo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.gs_elec_hyd_res.run_gs_combo" title="Link to this definition"></a></dt>
+<dd><p>Start the iterative GS process</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>config_path</strong><span class="classifier">Path</span></dt><dd><p>Path to config file</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.gs_elec_hyd_res.simple_solve">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.gs_elec_hyd_res.</span></span><span class="sig-name descname"><span class="pre">simple_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ConcreteModel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/gs_elec_hyd_res.html#simple_solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.gs_elec_hyd_res.simple_solve" title="Link to this definition"></a></dt>
+<dd><p>a simple solve routine</p>
+</dd></dl>
+
+</section>
+<section id="module-src.integrator.progress_plot">
+<span id="src-integrator-progress-plot-module"></span><h2>src.integrator.progress_plot module<a class="headerlink" href="#module-src.integrator.progress_plot" title="Link to this heading"></a></h2>
+<p>A plotter that can be used for combined solves</p>
+<p>Currently, this makes live plot.  It could be mod’ed to just save them to outputs</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.progress_plot.plot_it">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.progress_plot.</span></span><span class="sig-name descname"><span class="pre">plot_it</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h2_price_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elec_price_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2_obj_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elec_obj_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h2_demand_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elec_demand_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elec_price_to_res_records</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/progress_plot.html#plot_it"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.progress_plot.plot_it" title="Link to this definition"></a></dt>
+<dd><p>cheap plotter of iterative progress</p>
+</dd></dl>
+
+</section>
+<section id="module-src.integrator.runner">
+<span id="src-integrator-runner-module"></span><h2>src.integrator.runner module<a class="headerlink" href="#module-src.integrator.runner" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.runner.plot_price_distro">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.runner.</span></span><span class="sig-name descname"><span class="pre">plot_price_distro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel" title="src.models.electricity.scripts.electricity_model.PowerModel"><span class="pre">PowerModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">price_records</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/runner.html#plot_price_distro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.runner.plot_price_distro" title="Link to this definition"></a></dt>
+<dd><p>cheap/quick analyisis and plot of the price records</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.runner.run_elec_solo">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.runner.</span></span><span class="sig-name descname"><span class="pre">run_elec_solo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/runner.html#run_elec_solo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.runner.run_elec_solo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.runner.run_h2_solo">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.runner.</span></span><span class="sig-name descname"><span class="pre">run_h2_solo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/runner.html#run_h2_solo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.runner.run_h2_solo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-src.integrator.unified_elec_hyd_res">
+<span id="src-integrator-unified-elec-hyd-res-module"></span><h2>src.integrator.unified_elec_hyd_res module<a class="headerlink" href="#module-src.integrator.unified_elec_hyd_res" title="Link to this heading"></a></h2>
+<p>A first crack at unifying the solve of both H2 and Elec and Res</p>
+<p>Dev Notes:</p>
+<dl>
+<dt>(1).  This borrows heavily from (aka is a cheap copy of) the unified_solver.py which solves</dt><dd><p>the elec and h2 jointly</p>
+</dd>
+<dt>(2).  This is for demonstration purposes only, and it is presumed that an improved single</dt><dd><p>class “unified solver” would have selectable options to join models?  Maybe?</p>
+</dd>
+<dt>(3).  As is the case with the original effort, this can/should be refactored a bit when the</dt><dd><p>grand design pattern stabilizes</p>
+</dd>
+<dt>(4).  The “annual demand” constraint that is present and INACTIVE in the unified_solver.py</dt><dd><p>class is omitted here for clarity.  It may likely be needed–in some form–at a later
+time.  Recall, the key linkages to share the electrical demand primary variable are:</p>
+<blockquote>
+<div><p>(a).  an annual level demand constraint (see unified_solver.py)
+(b).  an accurate price-pulling function that can consider weighted duals</p>
+<blockquote>
+<div><p>from both constraints [NOT done]</p>
+</div></blockquote>
+</div></blockquote>
+</dd>
+<dt>(5).  This model has a 2-solve update cycle as commented on near the termination check</dt><dd><p>elec_prices gleaned from      cycle[n] results -&gt; solve cycle[n+1]
+new_load gleaned from         cycle[n+1] results -&gt; solve cycle[n+2]
+elec_pices gleaned from       cycle[n+2]</p>
+</dd>
+<dt>(6).  This iterative process could benefit from refactoring to use a persistent solver, after</dt><dd><p>some decisions are made about how to handle arbitrary solvers–some may/may not have
+that capability.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.unified_elec_hyd_res.run_unified_res_elec_h2">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.unified_elec_hyd_res.</span></span><span class="sig-name descname"><span class="pre">run_unified_res_elec_h2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/unified_elec_hyd_res.html#run_unified_res_elec_h2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.unified_elec_hyd_res.run_unified_res_elec_h2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.unified_elec_hyd_res.simple_solve">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.unified_elec_hyd_res.</span></span><span class="sig-name descname"><span class="pre">simple_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ConcreteModel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/unified_elec_hyd_res.html#simple_solve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.unified_elec_hyd_res.simple_solve" title="Link to this definition"></a></dt>
+<dd><p>a simple solve routine</p>
+</dd></dl>
+
+</section>
+<section id="module-src.integrator.utilities">
+<span id="src-integrator-utilities-module"></span><h2>src.integrator.utilities module<a class="headerlink" href="#module-src.integrator.utilities" title="Link to this heading"></a></h2>
+<p>A gathering of utility functions for dealing with model interconnectivity</p>
+<p>Dev Note:  At some review point, some decisions may move these back &amp; forth with parent
+models after it is decided if it is a utility job to do …. or a class method.</p>
+<p>Additionally, there is probably some renaming due here for consistency</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.integrator.utilities.EI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">EI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hour</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrator.utilities.EI" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>(region, year, hour)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.integrator.utilities.EI.hour">
+<span class="sig-name descname"><span class="pre">hour</span></span><a class="headerlink" href="#src.integrator.utilities.EI.hour" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.integrator.utilities.EI.region">
+<span class="sig-name descname"><span class="pre">region</span></span><a class="headerlink" href="#src.integrator.utilities.EI.region" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.integrator.utilities.EI.year">
+<span class="sig-name descname"><span class="pre">year</span></span><a class="headerlink" href="#src.integrator.utilities.EI.year" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.integrator.utilities.HI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">HI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">year</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.integrator.utilities.HI" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>(region, year)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.integrator.utilities.HI.region">
+<span class="sig-name descname"><span class="pre">region</span></span><a class="headerlink" href="#src.integrator.utilities.HI.region" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.integrator.utilities.HI.year">
+<span class="sig-name descname"><span class="pre">year</span></span><a class="headerlink" href="#src.integrator.utilities.HI.year" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.convert_elec_price_to_lut">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">convert_elec_price_to_lut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.EI" title="src.integrator.utilities.EI"><span class="pre">EI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.EI" title="src.integrator.utilities.EI"><span class="pre">EI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#convert_elec_price_to_lut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.convert_elec_price_to_lut" title="Link to this definition"></a></dt>
+<dd><p>convert electricity prices to dictionary, look up table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>prices</strong><span class="classifier">list[tuple[EI, float]]</span></dt><dd><p>list of prices</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict[EI, float]</dt><dd><p>dict of prices</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.convert_h2_price_records">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">convert_h2_price_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">records</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#convert_h2_price_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.convert_h2_price_records" title="Link to this definition"></a></dt>
+<dd><p>simple coversion from list of records to a dictionary LUT
+repeat entries should not occur and will generate an error</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.create_temporal_mapping">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">create_temporal_mapping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sw_temporal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/utilities.html#create_temporal_mapping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.create_temporal_mapping" title="Link to this definition"></a></dt>
+<dd><p>Combines the input mapping files within the electricity model to create a master temporal
+mapping dataframe. The df is used to build multiple temporal parameters used within the  model.
+It creates a single dataframe that has 8760 rows for each hour in the year.
+Each hour in the year is assigned a season type, day type, and hour type used in the model.
+This defines the number of time periods the model will use based on cw_s_day and cw_hr inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>dataframe</dt><dd><p>a dataframe with 8760 rows that include each hour, hour type, day, day type, and season.
+It also includes the weights for each day type and hour type.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.get_annual_wt_avg">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">get_annual_wt_avg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elec_price</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#get_annual_wt_avg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.get_annual_wt_avg" title="Link to this definition"></a></dt>
+<dd><p>takes annual weighted average of hourly electricity prices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>elec_price</strong><span class="classifier">pd.DataFrame</span></dt><dd><p>hourly electricity prices</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict[HI, float]</dt><dd><p>annual weighted average electricity prices</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.get_elec_price">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">get_elec_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel" title="src.models.electricity.scripts.electricity_model.PowerModel"><span class="pre">PowerModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ConcreteModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#get_elec_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.get_elec_price" title="Link to this definition"></a></dt>
+<dd><p>pulls hourly electricity prices from completed PowerModel and weights correctly</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">PowerModel</span></dt><dd><p>solved electricity model</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pd.DataFrame</dt><dd><p>df full of electricity prices</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.make_output_dir">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">make_output_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/utilities.html#make_output_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.make_output_dir" title="Link to this definition"></a></dt>
+<dd><p>generates an output directory to write model results, output directory is the date/time
+at the time this function executes. It includes subdirs for vars, params, constraints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>string</dt><dd><p>the name of the output directory</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.poll_h2_prices_from_elec">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">poll_h2_prices_from_elec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel" title="src.models.electricity.scripts.electricity_model.PowerModel"><span class="pre">PowerModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tech</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#poll_h2_prices_from_elec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.poll_h2_prices_from_elec" title="Link to this definition"></a></dt>
+<dd><p>poll the step-1 H2 price currently in the model for region/year, averaged over any steps</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.poll_hydrogen_price">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">poll_hydrogen_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.models.hydrogen.model.html#src.models.hydrogen.model.h2_model.H2Model" title="src.models.hydrogen.model.h2_model.H2Model"><span class="pre">H2Model</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ConcreteModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#poll_hydrogen_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.poll_hydrogen_price" title="Link to this definition"></a></dt>
+<dd><p>Retrieve the price of H2 from the H2 model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>model</strong><span class="classifier">H2Model</span></dt><dd><p>the model to poll</p>
+</dd>
+<dt><strong>block: optional</strong></dt><dd><p>block model to poll</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>list[tuple[HI, float]]</dt><dd><p>list of H2 Index, price tuples</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.poll_year_avg_elec_price">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">poll_year_avg_elec_price</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.EI" title="src.integrator.utilities.EI"><span class="pre">EI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#poll_year_avg_elec_price"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.poll_year_avg_elec_price" title="Link to this definition"></a></dt>
+<dd><p>retrieve a REPRESENTATIVE price at the annual level from a listing of prices</p>
+<p>This function computes the AVERAGE elec price for each region-year combo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>price_list</strong><span class="classifier">list[tuple[EI, float]]</span></dt><dd><p>input price list</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict[HI, float]</dt><dd><p>a dictionary of (region, year): price</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.regional_annual_prices">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">regional_annual_prices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.models.electricity.scripts.html#src.models.electricity.scripts.electricity_model.PowerModel" title="src.models.electricity.scripts.electricity_model.PowerModel"><span class="pre">PowerModel</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ConcreteModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/integrator/utilities.html#regional_annual_prices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.regional_annual_prices" title="Link to this definition"></a></dt>
+<dd><p>pulls all regional annual weighted electricity prices</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>m</strong><span class="classifier">typing.Union[‘PowerModel’, ConcreteModel]</span></dt><dd><p>solved PowerModel</p>
+</dd>
+<dt><strong>block</strong><span class="classifier">optional</span></dt><dd><p>solved block model if applicable, by default None</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dict[HI, float]</dt><dd><p>dict with regional annual electricity prices</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.integrator.utilities.setup_logger">
+<span class="sig-prename descclassname"><span class="pre">src.integrator.utilities.</span></span><span class="sig-name descname"><span class="pre">setup_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/integrator/utilities.html#setup_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.integrator.utilities.setup_logger" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-src.integrator">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.integrator" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

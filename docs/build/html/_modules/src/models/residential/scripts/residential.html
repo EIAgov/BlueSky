@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.residential.scripts.residential &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.models.residential.scripts.residential</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.models.residential.scripts.residential</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">definitions</span> <span class="kn">import</span> <span class="n">PROJECT_ROOT</span>
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">import</span> <span class="nn">pyomo.environ</span> <span class="k">as</span> <span class="nn">pyo</span>
+
+<div class="viewcode-block" id="residentialModule">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.residential.residentialModule">[docs]</a>
+<span class="k">class</span> <span class="nc">residentialModule</span><span class="p">:</span>
+    <span class="n">prices</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">loads</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">hr_map</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="n">baseYear</span> <span class="o">=</span> <span class="nb">int</span><span class="p">()</span>
+    
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">loadFile</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">load_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">|</span><span class="kc">None</span><span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sets up the sympy version of the residential module. This includes </span>
+<span class="sd">        the 3 updating indexes, the combined full equation, and the equation converted to a python lambda function.</span>
+<span class="sd">        It also loads in the base values for Load if they haven&#39;t been established yet.</span>
+
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        loadFile : str, optional</span>
+<span class="sd">            An optional filepath if a different or new baseline Load fileis needed, by default &#39;input/temp/Load.csv&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#Create indexes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Idx</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Idx</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuel</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">Idx</span><span class="p">(</span><span class="s1">&#39;fuel&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">LastHYr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">LastMYr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">BaseYr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">((</span><span class="s1">&#39;LastHYr&#39;</span><span class="p">,</span><span class="s1">&#39;LastMYr&#39;</span><span class="p">,</span><span class="s1">&#39;base&#39;</span><span class="p">))</span>
+
+        <span class="c1">#Create income related Indexed variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">income</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;Income&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">incomeIndex</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;IncomeIndex&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_elas</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;IncomeElasticity&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i_lag</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;IncomeLagParameter&#39;</span><span class="p">)</span>
+
+        <span class="c1">#Create price related Indexed variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;Price&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">priceIndex</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;PriceIndex&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_elas</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;PriceElasticity&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p_lag</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;PriceLagParameter&#39;</span><span class="p">)</span>
+        
+        <span class="c1">#Create indexed Trend variable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trendGR</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;TrendGR&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">consumption</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;Consumption&#39;</span><span class="p">)</span>
+
+        <span class="c1">#Create the 3 updating indexes for income, price, and trend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">incomeEQ</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">incomeIndex</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_lag</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">income</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">income</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BaseYr</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">])</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">i_elas</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">priceEQ</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">priceIndex</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_lag</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BaseYr</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">])</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_elas</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">growthEQ</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">LastHYr</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LastMYr</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">LastHYr</span><span class="p">))</span> <span class="o">*</span> <span class="p">(((</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">trendGR</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">])</span> <span class="o">**</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LastMYr</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">LastHYr</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1">#Combine the indexes and calculate new demand by updating the base Load</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">QIndex</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">incomeEQ</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">priceEQ</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">growthEQ</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">demand</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumption</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BaseYr</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">QIndex</span>
+
+        <span class="c1">#Convert equation into lambda function for use in python</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lambdifiedDemand</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lambdify</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">incomeIndex</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">i_lag</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">income</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">income</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BaseYr</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">i_elas</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">priceIndex</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">p_lag</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BaseYr</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">p_elas</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">LastHYr</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">LastMYr</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">trendGR</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">consumption</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BaseYr</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fuel</span><span class="p">]],</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">demand</span><span class="p">)</span>
+        
+        <span class="c1">#Set base Load values if they aren&#39;t already set</span>
+        <span class="k">if</span> <span class="n">loadFile</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">loadFile</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">],</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">:</span>
+            <span class="n">root_path</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span>
+            <span class="n">path_to_elec_data</span> <span class="o">=</span> <span class="n">root_path</span> <span class="o">/</span> <span class="s1">&#39;src/models/electricity&#39;</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_elec_data</span> <span class="o">/</span> <span class="s1">&#39;input&#39;</span> <span class="o">/</span> <span class="s1">&#39;cem_inputs&#39;</span> <span class="o">/</span> <span class="s1">&#39;Load.csv&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()]</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">],</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;r</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">)}</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">cols</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">26</span><span class="p">)]</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;level_2&#39;</span><span class="p">:</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;Load&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">],</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">],</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1">#Set base year if not already set</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">baseYear</span><span class="p">:</span>
+            <span class="c1"># self.baseYear = self.loads[&#39;BaseLoads&#39;].index.min()[2]</span>
+
+            <span class="c1"># TODO:  How could this below work after y has been made part of the index?</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">baseYear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+        <span class="c1">#Create hour map if not already set</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr_map</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+            <span class="k">pass</span>
+            <span class="c1"># TODO:  This mapping is never used...?</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hr_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">temporal_mapping</span><span class="p">()</span>
+        
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="residentialModule.temporal_mapping">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.residential.residentialModule.temporal_mapping">[docs]</a>
+    <span class="k">def</span> <span class="nf">temporal_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create dataFrame to map different parameters and granularities</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas DataFrame</span>
+<span class="sd">            Maps betweeen hours, days, seasons, and other weighted hour types</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path_to_inputs</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;src/models/electricity/input&#39;</span>
+        <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_inputs</span> <span class="o">/</span> <span class="s1">&#39;cw_s_day.csv&#39;</span><span class="p">)</span>
+        <span class="n">df4</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">],</span><span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">df4</span> <span class="o">=</span> <span class="n">df4</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Index_day&#39;</span><span class="p">:</span><span class="s1">&#39;Dayweights&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_s&#39;</span><span class="p">])</span>
+        <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="n">df4</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">])</span>
+    
+        <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_inputs</span> <span class="o">/</span> <span class="s1">&#39;cw_hr.csv&#39;</span><span class="p">)</span>
+        <span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">],</span><span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Index_hr&#39;</span><span class="p">:</span><span class="s1">&#39;Hr_weights&#39;</span><span class="p">})</span>
+        <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="n">df3</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">])</span>
+    
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;cross&#39;</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hr&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_day&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]</span>
+        <span class="c1"># df.to_csv(path_to_inputs / &#39;temporal_map.csv&#39;,index=False)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;hr&#39;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="residentialModule.update_load">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.residential.residentialModule.update_load">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p_index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines what type of updating prices are given and calls the appropriate function</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        p : pyo.Param</span>
+<span class="sd">            Pyomo Parameter of newly updated prices from Duals</span>
+<span class="sd">        p_index : pyo.Set</span>
+<span class="sd">            Pyomo Set of indexes that matches the prices given</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas DataFrame :</span>
+<span class="sd">            Load values indexed by region, year, and hour</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">p</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">newLoad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_load_Dual</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p_index</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="n">newLoad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_load_SupplyPrice</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">p_index</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">newLoad</span></div>
+
+
+<div class="viewcode-block" id="residentialModule.update_load_Dual">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.residential.residentialModule.update_load_Dual">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_load_Dual</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p_index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Takes in Dual pyomo Parameters to update Load values</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        p : pyo.Param</span>
+<span class="sd">            Pyomo Parameter of newly updated prices from Duals</span>
+<span class="sd">        p_index : pyo.Set</span>
+<span class="sd">            Pyomo Set of indexes that matches the prices given</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas DataFrame :</span>
+<span class="sd">            Load values indexed by region, year, and hour</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#Create base price values if they aren&#39;t already set</span>
+        <span class="k">if</span> <span class="s1">&#39;BaseDualPrices&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">path</span> <span class="o">=</span>  <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;src/models/residential/input/cem_elec_prices.xlsx&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="s1">&#39;BaseDualPrices&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">],</span><span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1">#Make lambdifiedDemand function easier to use with named inputs and default values for potentially unused variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">demandF</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">price</span><span class="p">,</span> <span class="n">load</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">basePrice</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p_elas</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">baseYear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="s1">&#39;BaseDualPrices&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">baseIncome</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">income</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i_elas</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">priceIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">incomeIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p_lag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i_lag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trend</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">lambdifiedDemand</span><span class="p">(</span><span class="n">incomeIndex</span><span class="p">,</span> <span class="n">i_lag</span><span class="p">,</span> <span class="n">income</span><span class="p">,</span> <span class="n">baseIncome</span><span class="p">,</span> <span class="n">i_elas</span><span class="p">,</span> <span class="n">priceIndex</span><span class="p">,</span> <span class="n">p_lag</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">basePrice</span><span class="p">,</span> <span class="n">p_elas</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">baseYear</span><span class="p">,</span> <span class="mi">2050</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">load</span><span class="p">)</span>
+        
+        <span class="c1">#Create DataFrame from new prices currently in pyomo parameter form and take the absolute value</span>
+        <span class="n">newPrices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">extract_values</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span><span class="n">index</span><span class="o">=</span><span class="n">p_index</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;newPrice&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">])</span>
+        <span class="n">newPrices</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">newPrices</span><span class="p">)</span>
+
+        <span class="c1">#Check how many hours are being used in the data, and use the appropriate mapping from the hour map</span>
+        <span class="n">hours</span> <span class="o">=</span> <span class="n">newPrices</span><span class="o">.</span><span class="n">hr</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">hours</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">hourMap</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hours</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hr_map</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">hourMap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">hr_map</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">h</span><span class="p">,</span><span class="s1">&#39;Map_s&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hourMap</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hours</span><span class="p">}</span>
+            <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hr_map</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">hourMap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">hr_map</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">h</span><span class="p">,</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+                
+        <span class="c1">#Create DataFrame from base Loads and use the demandF function to update the Load values based on the new prices</span>
+        <span class="n">newLoad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">newLoad</span> <span class="o">=</span> <span class="n">newLoad</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">newPrices</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+        <span class="n">newLoad</span><span class="p">[</span><span class="s1">&#39;AvgBasePrice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">newLoad</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="s1">&#39;BaseDualPrices&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">row</span><span class="o">.</span><span class="n">r</span><span class="p">,</span><span class="mi">2023</span><span class="p">,</span><span class="n">hr</span><span class="p">),</span><span class="s1">&#39;Dual&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">hr</span> <span class="ow">in</span> <span class="n">hourMap</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">hr</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hourMap</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">hr</span><span class="p">])),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">newLoad</span><span class="o">.</span><span class="n">newPrice</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">newLoad</span><span class="o">.</span><span class="n">AvgBasePrice</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">newLoad</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">demandF</span><span class="p">(</span><span class="n">newLoad</span><span class="o">.</span><span class="n">newPrice</span><span class="p">,</span> <span class="n">newLoad</span><span class="o">.</span><span class="n">Load</span><span class="p">,</span> <span class="n">newLoad</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">newLoad</span><span class="o">.</span><span class="n">AvgBasePrice</span><span class="p">)</span>
+        <span class="n">newLoad</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;hr&#39;</span><span class="p">],</span> <span class="n">drop</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">newLoad</span></div>
+
+
+<div class="viewcode-block" id="residentialModule.update_load_SupplyPrice">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.residential.residentialModule.update_load_SupplyPrice">[docs]</a>
+    <span class="k">def</span> <span class="nf">update_load_SupplyPrice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p_index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Takes in SupplyPrice pyomo Parameters to update Load values</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        p : pyo.Param</span>
+<span class="sd">            Pyomo Parameter of newly updated prices from SupplyPrice</span>
+<span class="sd">        p_index : pyo.Set</span>
+<span class="sd">            Pyomo Set of indexes that matches the prices given</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pandas DataFrame :</span>
+<span class="sd">            Load values indexed by region, year, and hour</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1">#Create base price values if they aren&#39;t already set</span>
+        <span class="k">if</span> <span class="s1">&#39;BaseSupplyPrices&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="s1">&#39;BaseSupplyPrices&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;src/models/electricity/input/cem_inputs/SupplyPrice.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;SupplyPrice&#39;</span><span class="p">:</span><span class="s1">&#39;basePrice&#39;</span><span class="p">})</span>
+        <span class="c1">#Make lambdifiedDemand function easier to use with named inputs and default values for potentially unused variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">demandF</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">price</span><span class="p">,</span> <span class="n">load</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">basePrice</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p_elas</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.10</span><span class="p">,</span> <span class="n">baseYear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="s1">&#39;BaseSupplyPrices&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">baseIncome</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">income</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i_elas</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">priceIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">incomeIndex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p_lag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i_lag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">trend</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">:</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">lambdifiedDemand</span><span class="p">(</span><span class="n">incomeIndex</span><span class="p">,</span> <span class="n">i_lag</span><span class="p">,</span> <span class="n">income</span><span class="p">,</span> <span class="n">baseIncome</span><span class="p">,</span> <span class="n">i_elas</span><span class="p">,</span> <span class="n">priceIndex</span><span class="p">,</span> <span class="n">p_lag</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">basePrice</span><span class="p">,</span> <span class="n">p_elas</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">baseYear</span><span class="p">,</span> <span class="mi">2050</span><span class="p">,</span> <span class="n">trend</span><span class="p">,</span> <span class="n">load</span><span class="p">)</span>
+        
+        <span class="c1">#Create DataFrame from new prices currently in pyomo parameter form and add column for base prices</span>
+        <span class="n">avgPrices</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">extract_values</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span><span class="n">index</span><span class="o">=</span><span class="n">p_index</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;newPrice&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span><span class="s1">&#39;steps&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        <span class="n">avgPrices</span> <span class="o">=</span> <span class="n">avgPrices</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prices</span><span class="p">[</span><span class="s1">&#39;BaseSupplyPrices&#39;</span><span class="p">],</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span><span class="s1">&#39;steps&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="n">avgPrices</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+        <span class="c1">#Average prices for each (r,y,s) index to match indexing for Loads</span>
+        <span class="n">avgPrices</span> <span class="o">=</span> <span class="n">avgPrices</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;s&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pt&#39;</span><span class="p">,</span><span class="s1">&#39;steps&#39;</span><span class="p">])</span>
+        
+        <span class="c1">#Map hours from Load[r,y,hr] to prices[r,y,s]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hr</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">==</span> <span class="mi">96</span><span class="p">:</span>
+            <span class="n">hourMap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hr_map</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Map_hr&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">Map_s</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hr</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">hourMap</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+        
+        <span class="c1">#Create DataFrame of base Load values, and use the demandF function to update the Load values based on the new prices</span>
+        <span class="n">newLoad</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loads</span><span class="p">[</span><span class="s1">&#39;BaseLoads&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">newLoad</span><span class="p">[</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">newLoad</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">demandF</span><span class="p">(</span><span class="n">avgPrices</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">row</span><span class="o">.</span><span class="n">r</span><span class="p">,</span><span class="n">row</span><span class="o">.</span><span class="n">y</span><span class="p">,</span><span class="n">hourMap</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">hr</span><span class="p">]),</span><span class="s1">&#39;newPrice&#39;</span><span class="p">],</span><span class="n">row</span><span class="o">.</span><span class="n">Load</span><span class="p">,</span><span class="n">row</span><span class="o">.</span><span class="n">y</span><span class="p">,</span><span class="n">avgPrices</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">row</span><span class="o">.</span><span class="n">r</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">baseYear</span><span class="p">,</span><span class="n">hourMap</span><span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">hr</span><span class="p">]),</span><span class="s1">&#39;basePrice&#39;</span><span class="p">]),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">newLoad</span></div>
+
+    
+    <span class="c1">#Creates a block that can be given to another pyomo model</span>
+    <span class="c1">#The constraint is essentially just updating the load parameter</span>
+<div class="viewcode-block" id="residentialModule.make_block">
+<a class="viewcode-back" href="../../../../../src.models.residential.scripts.html#src.models.residential.scripts.residential.residentialModule.make_block">[docs]</a>
+    <span class="k">def</span> <span class="nf">make_block</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">pricesindex</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Updates the value of &#39;Load&#39; based on the new prices given.</span>
+<span class="sd">        The new prices are fed into the equations from the residential model.</span>
+<span class="sd">        The new calculated Loads are used to constrain &#39;Load&#39; in pyomo blocks.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        prices : pyo.Param</span>
+<span class="sd">            Pyomo Parameter of newly updated prices</span>
+<span class="sd">        pricesindex : pyo.Set</span>
+<span class="sd">            Pyomo Set of indexes that matches the prices given</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pyo.Block :</span>
+<span class="sd">            Block containing constraints that set &#39;Load&#39; variable equal to the updated load values</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="c1">#Create block to be returned</span>
+        <span class="n">mod</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Block</span><span class="p">()</span>
+
+        <span class="n">mod</span><span class="o">.</span><span class="n">price_set</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">initialize</span><span class="o">=</span><span class="n">pricesindex</span><span class="p">)</span>
+        
+        <span class="c1">#Call function to get updated values for Load</span>
+        <span class="n">updated_load</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_load</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span><span class="n">pricesindex</span><span class="p">)</span>
+        <span class="c1"># mod.base_load = pyo.Param(mod.price_set, initialize=updated_load.index, mutable=True)</span>
+        <span class="n">mod</span><span class="o">.</span><span class="n">Load</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Var</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="n">price_set</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">pyo</span><span class="o">.</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+
+        <span class="c1">#Create constraints that restrict the Load variable to the newly calculated values</span>
+        <span class="nd">@mod</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">mod</span><span class="o">.</span><span class="n">price_set</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">create_load</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">hr</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">mod</span><span class="o">.</span><span class="n">Load</span><span class="p">[</span><span class="n">r</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">hr</span><span class="p">]</span> <span class="o">==</span> <span class="n">updated_load</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">r</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">hr</span><span class="p">),</span><span class="s1">&#39;Load&#39;</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">mod</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

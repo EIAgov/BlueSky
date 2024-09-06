@@ -1,0 +1,38 @@
+# Log files
+*.log
+
+# IDE settings
+.idea
+.vscode
+.venv/
+bsky/
+
+# Caches
+.ruff_cache
+.pytest_cache
+__pycache__
+*.pyc
+.coverage
+
+# Doc files
+/docs/run_sphinx.bat
+/docs/update_index_v2.py
+/docs/elec_debug.txt
+/docs/process_md_files.py
+/docs/build/blueskyprototypemodel.rtc
+/docs/build/blueskyprototypemodel.stylelog
+## /docs/build/.doctrees
+/docs/update_index_nb.ipynb
+## /docs/build/html/*
+/docs/build/blueskyprototypemodel.pdf
+/docs/run_log/
+## setup_prgm.bat
+/src/models/electricity/process_md_files.py
+
+# Outputs
+**electric_output/
+src/models/hydrogen/output/*.csv
+output/*
+!output/*.bat
+!output/*.py
+!output/pt_colors.csv

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.integrator.iterative_res_elec &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.integrator.iterative_res_elec</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.integrator.iterative_res_elec</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A quick iterative approach to res-elec iteration</span>
+
+<span class="sd">NOTE:  this is an early effort at unified model - iterative solve</span>
+<span class="sd">       The unified solver is the mature version of this and should</span>
+
+<span class="sd">       This is currently maintained as an example</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">pyomo.environ</span> <span class="k">as</span> <span class="nn">pyo</span>
+<span class="kn">from</span> <span class="nn">src.integrator</span> <span class="kn">import</span> <span class="n">utilities</span>
+<span class="kn">from</span> <span class="nn">src.integrator.jacobi_elec_hyd_solver</span> <span class="kn">import</span> <span class="n">simple_solve</span>
+<span class="kn">from</span> <span class="nn">src.models.electricity.scripts.runner</span> <span class="kn">import</span> <span class="n">run_model</span>
+<span class="kn">from</span> <span class="nn">src.models.residential.scripts.residential</span> <span class="kn">import</span> <span class="n">residentialModule</span>
+
+<span class="c1"># TODO:  this needs a fair bit of logging added</span>
+<span class="c1"># TODO:  should make the plotter include aggregate load and some aggregate avg price value</span>
+
+
+<div class="viewcode-block" id="run_jacobi">
+<a class="viewcode-back" href="../../../src.integrator.html#src.integrator.iterative_res_elec.run_jacobi">[docs]</a>
+<span class="k">def</span> <span class="nf">run_jacobi</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="p">[</span><span class="mi">2030</span><span class="p">,</span> <span class="mi">2031</span><span class="p">,</span> <span class="mi">2040</span><span class="p">],</span> <span class="n">regions</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]):</span>
+    <span class="c1"># recordkeeping</span>
+    <span class="n">obj_values</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># just load the model... don&#39;t solve, we need to extract stuff before solve</span>
+    <span class="n">elec_model</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">years</span><span class="p">,</span> <span class="n">regions</span><span class="o">=</span><span class="n">regions</span><span class="p">,</span> <span class="n">solve</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># currently we need a &quot;meta&quot; model -- basically a pass-through</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">ConcreteModel</span><span class="p">()</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">elec_price</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Param</span><span class="p">(</span><span class="n">elec_model</span><span class="o">.</span><span class="n">LoadSet</span><span class="p">,</span> <span class="n">initialize</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mutable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># solve to get first prices</span>
+    <span class="n">simple_solve</span><span class="p">(</span><span class="n">elec_model</span><span class="p">)</span>
+    <span class="n">first_obj</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">elec_model</span><span class="o">.</span><span class="n">totalCost</span><span class="p">)</span>
+    <span class="n">obj_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">first_obj</span><span class="p">)</span>
+
+    <span class="n">prices</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">poll_electricity_price</span><span class="p">(</span><span class="n">elec_model</span><span class="p">)</span>
+    <span class="n">price_lut</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">convert_elec_price_to_lut</span><span class="p">(</span><span class="n">prices</span><span class="o">=</span><span class="n">prices</span><span class="p">)</span>
+
+    <span class="c1"># cannot have zero prices, so a quick interim check...</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">price_lut</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">assert</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;found a bad apple </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">elec_price</span><span class="o">.</span><span class="n">store_values</span><span class="p">(</span><span class="n">price_lut</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">19</span><span class="p">):</span>
+        <span class="c1"># now we can make a residential model from data in elec...</span>
+        <span class="n">res_model</span> <span class="o">=</span> <span class="n">residentialModule</span><span class="p">()</span>
+        <span class="n">blk</span> <span class="o">=</span> <span class="n">res_model</span><span class="o">.</span><span class="n">make_block</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">elec_price</span><span class="p">,</span> <span class="n">meta</span><span class="o">.</span><span class="n">elec_price</span><span class="o">.</span><span class="n">index_set</span><span class="p">())</span>
+
+        <span class="c1"># now we have a single constraint in the block, properly constraining the Load var</span>
+        <span class="c1"># add this block to the meta model so that we can &quot;solve it&quot;</span>
+        <span class="c1"># TODO:  this is going to cause warnings in pyomo by replacing a named component</span>
+        <span class="c1">#        need to modify to not make a new residential block, just mod what we have</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">blk</span> <span class="o">=</span> <span class="n">blk</span>
+
+        <span class="c1"># Neet to solve to enforce the constraint and set the variable...</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># nonsense</span>
+        <span class="n">simple_solve</span><span class="p">(</span><span class="n">meta</span><span class="p">)</span>
+
+        <span class="c1"># now the meta.blk variable &quot;Load&quot; contains new load requests that can be inspected...</span>
+        <span class="c1"># put them in the elec model parameter (update the mutable param)</span>
+        <span class="n">elec_model</span><span class="o">.</span><span class="n">Load</span><span class="o">.</span><span class="n">store_values</span><span class="p">(</span><span class="n">meta</span><span class="o">.</span><span class="n">blk</span><span class="o">.</span><span class="n">Load</span><span class="o">.</span><span class="n">extract_values</span><span class="p">())</span>
+        <span class="c1"># elec_model.Load.pprint()</span>
+
+        <span class="n">simple_solve</span><span class="p">(</span><span class="n">elec_model</span><span class="p">)</span>
+        <span class="n">new_obj</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">elec_model</span><span class="o">.</span><span class="n">totalCost</span><span class="p">)</span>
+        <span class="n">obj_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_obj</span><span class="p">)</span>
+
+        <span class="c1"># repeat the price gathering process</span>
+        <span class="n">prices</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">poll_electricity_price</span><span class="p">(</span><span class="n">elec_model</span><span class="p">)</span>
+        <span class="n">price_lut</span> <span class="o">=</span> <span class="n">utilities</span><span class="o">.</span><span class="n">convert_elec_price_to_lut</span><span class="p">(</span><span class="n">prices</span><span class="o">=</span><span class="n">prices</span><span class="p">)</span>
+
+        <span class="c1"># cannot have zero prices, so a quick interim check...</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">price</span> <span class="ow">in</span> <span class="n">price_lut</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">assert</span> <span class="n">price</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;found a bad apple </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">meta</span><span class="o">.</span><span class="n">elec_price</span><span class="o">.</span><span class="n">store_values</span><span class="p">(</span><span class="n">price_lut</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">obj_values</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)),</span> <span class="n">obj_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ELEC Objective&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Iterative Solve Residential -- Electric&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Iteration&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Elec Model OBJ&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

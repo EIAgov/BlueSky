@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueSky Prototype model &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">BlueSky Prototype model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bluesky-prototype-model">
+<h1>BlueSky Prototype model<a class="headerlink" href="#bluesky-prototype-model" title="Link to this heading"></a></h1>
+<section id="sphinx-documentation-structure">
+<h2>Sphinx Documentation Structure<a class="headerlink" href="#sphinx-documentation-structure" title="Link to this heading"></a></h2>
+<p>Sphinx organizes the documentation into the following sections:</p>
+<section id="package-overview">
+<h3>Package Overview<a class="headerlink" href="#package-overview" title="Link to this heading"></a></h3>
+<p>The documentation starts with a general overview of the main package structure. In this project, the top-level package is <cite>src</cite>. Inside the <cite>src</cite> package, you will find the following main packages:</p>
+<ul class="simple">
+<li><p><strong>electricity</strong>: Contains modules related to electricity modeling and calculations.</p></li>
+<li><p><strong>hydrogen</strong>: Contains modules for hydrogen energy production, storage, and consumption.</p></li>
+<li><p><strong>residential</strong>: Contains models and utilities related to residential energy use.</p></li>
+<li><p><strong>integrator</strong>: Integrates components from various energy sources (electricity, hydrogen, etc.) into a cohesive system.</p></li>
+</ul>
+</section>
+<section id="submodules-and-subpackages">
+<h3>Submodules and Subpackages<a class="headerlink" href="#submodules-and-subpackages" title="Link to this heading"></a></h3>
+<p>Each package may contain additional submodules and subpackages, which are organized in the documentation as follows:</p>
+<ul class="simple">
+<li><p><strong>Package</strong>: Each package (e.g., electricity, hydrogen) is documented with a high-level description of its purpose and contents.</p></li>
+<li><p><strong>Submodules</strong>: The individual Python modules within each package are listed and documented. For example, the <cite>integrator</cite> package may contain submodules like <cite>runner.py</cite>, <cite>utilites.py</cite>, and <cite>progress_plot.py</cite>. Each of these modules will have its own section.</p></li>
+<li><p><strong>Subpackages</strong>: If a package contains nested subpackages, these are also documented. For instance, if <cite>electricity</cite> has a subpackage <cite>scripts</cite>, it will have its own subsection with corresponding submodules.</p></li>
+</ul>
+<p>Each module’s docstrings are captured to provide detailed information about functions, classes, methods, and attributes.</p>
+</section>
+<section id="example-structure">
+<h3>Example Structure<a class="headerlink" href="#example-structure" title="Link to this heading"></a></h3>
+<p>For the <cite>src</cite> package, Sphinx might organize the contents as follows:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>src (package)/
+├── integrator (subpackage)/
+│   ├── input
+│   └── runner.py (module)
+└── models (subpackage)/
+   ├── electricity (package)/
+   │   └── scripts (subpackage)/
+   │       ├── electricity_model.py (module)
+   │       └── preprocessor.py
+   ├── hydrogen/
+   │   ├── utilities/
+   │   │   └── h2_functions.py
+   │   ├── model/
+   │   │   └── h2_model.py
+   │   └── etc.
+   └── residential/
+      └── scripts/
+            ├── residential.py
+            └── utilites.py
+</pre></div>
+</div>
+<p>In the HTML and Markdown outputs, each package and subpackage is represented with links <strong>below</strong> to the respective modules, making it easy to navigate between different sections of the documentation.</p>
+<p>Use the <strong>Search bar</strong> on the top left to search for a specific function or module.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">src</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.html">src package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.integrator.html">src.integrator package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#module-src.integrator.config_setup">src.integrator.config_setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#module-src.integrator.gs_elec_hyd_res">src.integrator.gs_elec_hyd_res module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#module-src.integrator.progress_plot">src.integrator.progress_plot module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#module-src.integrator.runner">src.integrator.runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#module-src.integrator.unified_elec_hyd_res">src.integrator.unified_elec_hyd_res module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#module-src.integrator.utilities">src.integrator.utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html#module-src.integrator">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.html#module-src.models.electricity">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.block_experiment">src.block_experiment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.html">src.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.scripts.html">src.models.residential.scripts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.scripts.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.scripts.html#module-src.models.residential.scripts.residential">src.models.residential.scripts.residential module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.scripts.html#module-src.models.residential.scripts.utilities">src.models.residential.scripts.utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.scripts.html#module-src.models.residential.scripts">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.html#module-src.models.residential.residential_block">src.models.residential.residential_block module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.html#module-src.models.residential">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html#module-src.models.hydrogen.utilities.h2_functions">src.models.hydrogen.utilities.h2_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.utilities.html#module-src.models.hydrogen.utilities">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.tests.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.tests.html#src-models-hydrogen-tests-test-single-region-solve-module">src.models.hydrogen.tests.test_single_region_solve module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.tests.html#src-models-hydrogen-tests-test-three-region-solve-module">src.models.hydrogen.tests.test_three_region_solve module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.tests.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.html#src-models-hydrogen-main-module">src.models.hydrogen.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.html#module-src.models.hydrogen">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-arc-module">src.models.hydrogen.region_network.arc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#module-src.models.hydrogen.region_network.context">src.models.hydrogen.region_network.context module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-hub-module">src.models.hydrogen.region_network.hub module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-network-module">src.models.hydrogen.region_network.network module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#module-src.models.hydrogen.region_network.region_data">src.models.hydrogen.region_network.region_data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#src-models-hydrogen-region-network-runner-module">src.models.hydrogen.region_network.runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.region_network.html#module-src.models.hydrogen.region_network">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.grid">src.models.hydrogen.network.grid module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.grid_data">src.models.hydrogen.network.grid_data module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.hub">src.models.hydrogen.network.hub module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.region">src.models.hydrogen.network.region module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.registry">src.models.hydrogen.network.registry module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network.transportation_arc">src.models.hydrogen.network.transportation_arc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.network.html#module-src.models.hydrogen.network">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model.actions">src.models.hydrogen.model.actions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model.h2_model">src.models.hydrogen.model.h2_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model.validators">src.models.hydrogen.model.validators module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.model.html#module-src.models.hydrogen.model">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.html">src.models.electricity.scripts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.electricity_model">src.models.electricity.scripts.electricity_model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.postprocessor">src.models.electricity.scripts.postprocessor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.preprocessor">src.models.electricity.scripts.preprocessor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.runner">src.models.electricity.scripts.runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts.utilities">src.models.electricity.scripts.utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.html#module-src.models.electricity.scripts">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common.common">src.models.electricity.scripts.common.common module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common.common_debug">src.models.electricity.scripts.common.common_debug module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

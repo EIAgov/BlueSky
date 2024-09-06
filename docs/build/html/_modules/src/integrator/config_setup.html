@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.integrator.config_setup &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.integrator.config_setup</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.integrator.config_setup</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;This file contains Config_settings class. It establishes the main settings used when running</span>
+<span class="sd">the model. It takes these settings from the run_config.toml file. It contains universal configurations</span>
+<span class="sd">(e.g., configs that cut across modules and/or solve options) and module specific configs.&quot;&quot;&quot;</span>
+
+<span class="c1">###################################################################################################</span>
+<span class="c1"># Setup</span>
+
+<span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tomllib</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Import scripts</span>
+<span class="kn">from</span> <span class="nn">definitions</span> <span class="kn">import</span> <span class="n">PROJECT_ROOT</span>
+<span class="kn">from</span> <span class="nn">definitions</span> <span class="kn">import</span> <span class="n">OUTPUT_ROOT</span>
+<span class="kn">from</span> <span class="nn">src.integrator.utilities</span> <span class="kn">import</span> <span class="n">create_temporal_mapping</span>
+
+<span class="c1"># Establish logger</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="c1">###################################################################################################</span>
+<span class="c1"># Configuration Class</span>
+
+
+<div class="viewcode-block" id="Config_settings">
+<a class="viewcode-back" href="../../../src.integrator.html#src.integrator.config_setup.Config_settings">[docs]</a>
+<span class="k">class</span> <span class="nc">Config_settings</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates the model settings that are used to solve. Settings include:</span>
+<span class="sd">    - Iterative Solve Config Settings</span>
+<span class="sd">    - Spatial Config Settings</span>
+<span class="sd">    - Temporal Config Settings</span>
+<span class="sd">    - Electricity Config Settings</span>
+<span class="sd">    - Other</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_path</span><span class="p">,</span> <span class="n">test</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">years_ow</span><span class="o">=</span><span class="p">[],</span> <span class="n">regions_ow</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">tomllib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieved config data: </span><span class="si">{</span><span class="n">config</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1">############################################################################################</span>
+        <span class="c1"># Universal Configs</span>
+
+        <span class="c1"># Iterative Solve Configs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tol</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;tol&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">force_10</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;force_10&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;max_iter&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Spatial Configs</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">regions_ow</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;regions&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;region&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="n">regions_ow</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Regions: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Temporal Configs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_temporal</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_temporal&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cw_temporal</span> <span class="o">=</span> <span class="n">create_temporal_mapping</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sw_temporal</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">cw_temporal</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">OUTPUT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;cw_temporal.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Temporal Configs - Years</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_agg_years</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_agg_years&#39;</span><span class="p">]</span>
+        <span class="n">year_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;years&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">test</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">years_ow</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">years</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">year_frame</span><span class="o">.</span><span class="n">dropna</span><span class="p">()[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">years</span> <span class="o">=</span> <span class="n">years_ow</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Years: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw_agg_years</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start_year</span> <span class="o">=</span> <span class="n">year_frame</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">all_years_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_year</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start_year</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">all_years_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">years</span>
+
+        <span class="n">solve_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">years</span><span class="p">)</span>
+        <span class="n">mapped_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">solve_array</span><span class="p">[</span><span class="n">solve_array</span> <span class="o">&gt;=</span> <span class="n">year</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">all_years_list</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_map</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">all_years_list</span><span class="p">,</span> <span class="s1">&#39;Map_y&#39;</span><span class="p">:</span> <span class="n">mapped_list</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">year_weights</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">year_map</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Map_y&#39;</span><span class="p">])</span>
+            <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Map_y&#39;</span><span class="p">:</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="s1">&#39;year_weights&#39;</span><span class="p">})</span>
+        <span class="p">)</span>
+
+        <span class="c1">############################################################################################</span>
+        <span class="c1"># Electricity Configs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_trade</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_trade&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_expansion</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_expansion&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_rm</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_rm&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_ramp</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_ramp&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_reserves</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_reserves&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sw_learning</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;sw_learning&#39;</span><span class="p">]</span>
+
+        <span class="c1"># throwing errors if certain combinations of switches</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw_expansion</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># expansion off</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw_rm</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Must turn RM switch off if no expansion&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sw_learning</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Must turn learning switch off if no expansion&#39;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

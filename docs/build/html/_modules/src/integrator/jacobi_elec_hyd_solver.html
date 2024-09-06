@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.integrator.jacobi_elec_hyd_solver &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">src</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.html">src package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.html">src.models package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.html">src.models.electricity.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">src.integrator.jacobi_elec_hyd_solver</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.integrator.jacobi_elec_hyd_solver</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Iteratively solve 2 models with Jacobi (like) method</span>
+
+<span class="sd">Gameplan:</span>
+<span class="sd">1.  Use a config file to control the regions &amp; years to sync</span>
+<span class="sd">2.  Make a fake set of demands for the H2 model to kick-start it and get a non-zero H2 price</span>
+<span class="sd">3.  Make an H2 model</span>
+<span class="sd">4.  Make an ELEC model</span>
+<span class="sd">4 1/2.  Solve each model</span>
+<span class="sd">5.  Catch metrics</span>
+<span class="sd">6.  INFO SWAP</span>
+
+<span class="sd">    H2 MODEL                    ELEC MODEL</span>
+<span class="sd">        |                           |</span>
+<span class="sd">        |------ H2 Prices -------&gt;&gt;&gt;|       (from duals, reset cost Param for Prodcution?  (missing multiplier here))</span>
+<span class="sd">        |                           |</span>
+<span class="sd">        |&lt;&lt;&lt;--- ELEC Prices --------|       (from duals, reset cost Param)</span>
+<span class="sd">        |                           |</span>
+<span class="sd">        |------ ELEC Demand -----&gt;&gt;&gt;|       (via an annual demand PARAMETER)</span>
+<span class="sd">        |                           |</span>
+<span class="sd">        |&lt;&lt;&lt;--- H2 Demand ----------|       (via model input)</span>
+
+<span class="sd">7.  re-solve each model</span>
+<span class="sd">8.  Calculate prev_value - |H2.obj| + |ELEC.obj| &lt; tolerance</span>
+<span class="sd">9.  No?:  goto 5</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLogger</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">tomllib</span>
+<span class="kn">import</span> <span class="nn">pyomo.environ</span> <span class="k">as</span> <span class="nn">pyo</span>
+
+<span class="kn">from</span> <span class="nn">definitions</span> <span class="kn">import</span> <span class="n">PROJECT_ROOT</span>
+<span class="kn">from</span> <span class="nn">src.integrator.progress_plot</span> <span class="kn">import</span> <span class="n">plot_it</span>
+<span class="kn">from</span> <span class="nn">src.integrator.utilities</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">convert_h2_price_records</span><span class="p">,</span>
+    <span class="n">regional_annual_prices</span><span class="p">,</span>
+    <span class="n">poll_h2_prices_from_elec</span><span class="p">,</span>
+    <span class="n">poll_hydrogen_price</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">src.models.electricity.scripts.runner</span> <span class="kn">import</span> <span class="n">run_model</span>
+<span class="kn">from</span> <span class="nn">src.models.hydrogen.model</span> <span class="kn">import</span> <span class="n">actions</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">HYDROGEN_ROOT</span> <span class="o">=</span> <span class="n">PROJECT_ROOT</span> <span class="o">/</span> <span class="s1">&#39;src/models/hydrogen&#39;</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">HYDROGEN_ROOT</span> <span class="o">/</span> <span class="s1">&#39;inputs/single_region&#39;</span>  <span class="c1"># has a bit of regions 7 data</span>
+
+<span class="c1"># settings....  In &quot;the future&quot; these should be some params from a setup/config file</span>
+<span class="n">update_h2_price</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">update_elec_price</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">update_h2_demand</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># vvvvvvvvvvvvvvvv   note this will require turning on the annual demand constraint in elec and adjusting the dual-to-price function</span>
+<span class="n">update_elec_demand</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># basically force 20 solves.... helpful when OBJ functions are wayyy off in orders of magnitude to prevent early stops</span>
+<span class="n">force_20</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<div class="viewcode-block" id="run_iterative">
+<a class="viewcode-back" href="../../../src.integrator.html#src.integrator.jacobi_elec_hyd_solver.run_iterative">[docs]</a>
+<span class="k">def</span> <span class="nf">run_iterative</span><span class="p">(</span><span class="n">config_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;run the iterative process...</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    config_path : Path</span>
+<span class="sd">        path to config file with years &amp; region data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># some data gathering</span>
+    <span class="n">h2_price_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">elec_price_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">h2_obj_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">elec_obj_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">h2_demand_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">elec_demand_records</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting Iterative ELEC-HYD run&#39;</span><span class="p">)</span>
+    <span class="c1"># ------------------ 1.  get the regions &amp; years of interest...</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">tomllib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Retrieved config data: </span><span class="si">{</span><span class="n">config</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">year</span><span class="p">)</span> <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;years&#39;</span><span class="p">]]</span>
+        <span class="n">regions</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;regions&#39;</span><span class="p">]</span>
+
+    <span class="c1"># ------------------ 2.  starting demands for H2 should be included in selected region data for now...</span>
+
+    <span class="c1"># ------------------ 3.  H2 model</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Doing initial solve on H2&#39;</span><span class="p">)</span>
+    <span class="n">grid_data</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">regions_of_interest</span><span class="o">=</span><span class="n">regions</span><span class="p">)</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">build_grid</span><span class="p">(</span><span class="n">grid_data</span><span class="o">=</span><span class="n">grid_data</span><span class="p">)</span>
+    <span class="n">h2_model</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">build_model</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span> <span class="n">years</span><span class="o">=</span><span class="n">years</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">actions</span><span class="o">.</span><span class="n">solve_it</span><span class="p">(</span><span class="n">h2_model</span><span class="p">)</span>
+
+    <span class="c1"># ------------------ 4.  ELEC model</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Doing initial solve on Elec&#39;</span><span class="p">)</span>
+    <span class="n">elec_model</span> <span class="o">=</span> <span class="n">run_model</span><span class="p">(</span><span class="n">years</span><span class="o">=</span><span class="n">years</span><span class="p">,</span> <span class="n">regions</span><span class="o">=</span><span class="n">regions</span><span class="p">,</span> <span class="n">solve</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">tol</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># relative tolerance</span>
+    <span class="n">old_obj_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="c1"># ------------------ 4 1/2.  Solve the models</span>
+        <span class="n">simple_solve</span><span class="p">(</span><span class="n">h2_model</span><span class="p">)</span>
+        <span class="n">simple_solve</span><span class="p">(</span><span class="n">elec_model</span><span class="p">)</span>
+
+        <span class="c1"># some logging of the iteration...</span>
+        <span class="n">h2_obj</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">h2_model</span><span class="o">.</span><span class="n">total_cost</span><span class="p">)</span>
+        <span class="n">e_obj</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">elec_model</span><span class="o">.</span><span class="n">totalCost</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Iter </span><span class="si">%d</span><span class="s1"> Elec Obj: </span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">iter</span><span class="p">,</span> <span class="n">e_obj</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Iter </span><span class="si">%d</span><span class="s1"> H2 Obj: </span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">iter</span><span class="p">,</span> <span class="n">h2_obj</span><span class="p">)</span>
+        <span class="n">h2_consumption_data</span> <span class="o">=</span> <span class="n">elec_model</span><span class="o">.</span><span class="n">poll_h2_demand</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;h2 consumption: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">h2_consumption_data</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+            <span class="s1">&#39;Actual h2 prices used in last iteration:</span><span class="se">\n</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="n">poll_h2_prices_from_elec</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">elec_model</span><span class="p">,</span> <span class="n">tech</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">regions</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,)),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># ------------------ 5.  Catch Metrics...</span>
+        <span class="c1"># catch metrics from H2 Model</span>
+        <span class="n">elec_demand</span> <span class="o">=</span> <span class="n">h2_model</span><span class="o">.</span><span class="n">poll_electric_demand</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">update_elec_demand</span><span class="p">:</span>
+            <span class="n">tot_e_demand_from_h2_model</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">elec_demand</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="c1"># demand is presented in *next* iteration. so + 1 for alignment</span>
+            <span class="n">elec_demand_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tot_e_demand_from_h2_model</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tot_e_demand_from_h2_model</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="n">update_h2_price</span><span class="p">:</span>
+            <span class="n">new_h2_prices</span> <span class="o">=</span> <span class="n">poll_hydrogen_price</span><span class="p">(</span><span class="n">h2_model</span><span class="p">)</span>
+            <span class="n">avg_hyd_price</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">new_h2_prices</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_h2_prices</span><span class="p">)</span>
+            <span class="n">h2_price_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">avg_hyd_price</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_h2_prices</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">h2_obj_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span><span class="p">,</span> <span class="n">h2_obj</span><span class="p">))</span>
+
+        <span class="c1"># catch metrics from Elec</span>
+        <span class="k">if</span> <span class="n">update_h2_demand</span><span class="p">:</span>
+            <span class="n">h2_demand</span> <span class="o">=</span> <span class="n">elec_model</span><span class="o">.</span><span class="n">poll_h2_demand</span><span class="p">()</span>
+            <span class="n">tot_h2_demand</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">elec_model</span><span class="o">.</span><span class="n">poll_h2_demand</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="n">h2_demand_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tot_h2_demand</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">h2_demand</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="n">update_elec_price</span><span class="p">:</span>
+            <span class="n">rap</span> <span class="o">=</span> <span class="n">regional_annual_prices</span><span class="p">(</span><span class="n">elec_model</span><span class="p">)</span>
+            <span class="n">grand_avg</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">rap</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">rap</span><span class="p">)</span>
+            <span class="n">elec_price_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">grand_avg</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rap</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">elec_obj_records</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">iter</span><span class="p">,</span> <span class="n">e_obj</span><span class="p">))</span>
+
+        <span class="c1"># ------------------ 6a.  Info swap: Prices</span>
+        <span class="c1"># H2 prices</span>
+        <span class="k">if</span> <span class="n">new_h2_prices</span><span class="p">:</span>
+            <span class="n">elec_model</span><span class="o">.</span><span class="n">update_h2_prices</span><span class="p">(</span><span class="n">h2_prices</span><span class="o">=</span><span class="n">convert_h2_price_records</span><span class="p">(</span><span class="n">new_h2_prices</span><span class="p">))</span>
+        <span class="c1"># Elec prices</span>
+        <span class="k">if</span> <span class="n">rap</span><span class="p">:</span>
+            <span class="n">h2_model</span><span class="o">.</span><span class="n">update_exchange_params</span><span class="p">(</span><span class="n">new_electricity_price</span><span class="o">=</span><span class="n">rap</span><span class="p">)</span>
+
+        <span class="c1"># ------------------ 6b.  Info swap: Cross-demands</span>
+
+        <span class="c1"># Elec demand</span>
+        <span class="c1"># TODO:  Temporarily disabling the passing of demand from H2 --&gt; ELEC</span>
+        <span class="c1">#        and the annual constraint in ELEC is turned off to avoid</span>
+        <span class="c1">#        contaminating the duals for price.</span>
+        <span class="c1"># elec_model.update_elec_demand(elec_demand=elec_demand)</span>
+
+        <span class="c1"># H2 demand</span>
+        <span class="k">if</span> <span class="n">h2_demand</span><span class="p">:</span>
+            <span class="n">h2_model</span><span class="o">.</span><span class="n">update_exchange_params</span><span class="p">(</span><span class="n">new_demand</span><span class="o">=</span><span class="n">h2_demand</span><span class="p">)</span>
+
+        <span class="c1"># ------------------ 7.  Check termination criteria</span>
+
+        <span class="c1"># TODO:  probably should split the relative change to look at EACH of the </span>
+        <span class="c1"># suboordinate OBJ&#39;s to handle case where they are wildly different in order</span>
+        <span class="c1"># of magnitude.</span>
+        <span class="n">net_obj</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">h2_obj</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">e_obj</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">old_obj_sum</span> <span class="o">=</span> <span class="n">net_obj</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="nb">abs</span><span class="p">((</span><span class="n">net_obj</span> <span class="o">-</span> <span class="n">old_obj_sum</span><span class="p">)</span> <span class="o">/</span> <span class="n">old_obj_sum</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">tol</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force_20</span><span class="p">:</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">old_obj_sum</span> <span class="o">=</span> <span class="n">net_obj</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">iter</span><span class="si">}</span><span class="s1">:  Current net objective: </span><span class="si">{</span><span class="n">net_obj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Comleted iteration </span><span class="si">%d</span><span class="s1"> with net obj: </span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">iter</span><span class="p">,</span> <span class="n">net_obj</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">iter</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="n">done</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Terminating iterative solve based on iteration count &gt; 20!&#39;</span><span class="p">)</span>
+
+        <span class="nb">iter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">plot_it</span><span class="p">(</span>
+        <span class="n">h2_price_records</span><span class="o">=</span><span class="n">h2_price_records</span><span class="p">,</span>
+        <span class="n">elec_price_records</span><span class="o">=</span><span class="n">elec_price_records</span><span class="p">,</span>
+        <span class="n">h2_obj_records</span><span class="o">=</span><span class="n">h2_obj_records</span><span class="p">,</span>
+        <span class="n">elec_obj_records</span><span class="o">=</span><span class="n">elec_obj_records</span><span class="p">,</span>
+        <span class="n">h2_demand_records</span><span class="o">=</span><span class="n">h2_demand_records</span><span class="p">,</span>
+        <span class="n">elec_demand_records</span><span class="o">=</span><span class="n">elec_demand_records</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">pyo</span><span class="o">.</span><span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;appsi_highs&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># TODO:  This might be a good use case for a persistent solver (1-each) for both the elec &amp; hyd...  hmm</span>
+<div class="viewcode-block" id="simple_solve">
+<a class="viewcode-back" href="../../../src.integrator.html#src.integrator.jacobi_elec_hyd_solver.simple_solve">[docs]</a>
+<span class="k">def</span> <span class="nf">simple_solve</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="n">pyo</span><span class="o">.</span><span class="n">ConcreteModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;a simple solve routine&quot;&quot;&quot;</span>
+
+    <span class="c1"># Note:  this is a prime candidate to split into 2 persistent solvers!!</span>
+    <span class="c1"># TODO:  experiment with pyomo&#39;s persistent solver interface, one for each ELEC, H2</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">pyo</span><span class="o">.</span><span class="n">check_optimal_termination</span><span class="p">(</span><span class="n">res</span><span class="p">):</span>
+        <span class="k">return</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;failed solve in iterator&#39;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

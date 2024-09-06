@@ -1,0 +1,3 @@
+! Note: Global PEM With Estimated start construction <= 2023
+! Unit: Annual kg of hydrogen. Max theoretical assuming 8760 hours of production a year
+electrolyzer_learning_cap := 46867752.74909564

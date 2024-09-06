@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.models.electricity.scripts package &mdash; BlueSky Prototype Model v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.models.electricity.scripts.common package" href="src.models.electricity.scripts.common.html" />
+    <link rel="prev" title="src.models.electricity package" href="src.models.electricity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BlueSky Prototype Model
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src.models.electricity.scripts package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="src.integrator.html">src.integrator package</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.models.electricity.scripts package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="src.models.html">src.models package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.models.electricity.html">src.models.electricity package</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">src.models.electricity.scripts package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.scripts.html">src.models.residential.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.residential.html">src.models.residential package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.scripts.html">src.models.integration.scripts package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.integration.html">src.models.integration package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.utilities.html">src.models.hydrogen.utilities package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.tests.html">src.models.hydrogen.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.html">src.models.hydrogen package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.region_network.html">src.models.hydrogen.region_network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.network.html">src.models.hydrogen.network package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.hydrogen.model.html">src.models.hydrogen.model package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src.models.electricity.scripts package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BlueSky Prototype Model</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+          <li class="breadcrumb-item"><a href="src.html">src package</a></li>
+          <li class="breadcrumb-item"><a href="src.models.html">src.models package</a></li>
+          <li class="breadcrumb-item"><a href="src.models.electricity.html">src.models.electricity package</a></li>
+      <li class="breadcrumb-item active">src.models.electricity.scripts package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.models.electricity.scripts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-models-electricity-scripts-package">
+<h1>src.models.electricity.scripts package<a class="headerlink" href="#src-models-electricity-scripts-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.models.electricity.scripts.common.html">src.models.electricity.scripts.common package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common.common">src.models.electricity.scripts.common.common module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.calculate_inflation"><code class="docutils literal notranslate"><span class="pre">calculate_inflation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.check_results"><code class="docutils literal notranslate"><span class="pre">check_results()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common.unpack_pyomo"><code class="docutils literal notranslate"><span class="pre">unpack_pyomo()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common.common_debug">src.models.electricity.scripts.common.common_debug module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.electricity.scripts.common.html#src.models.electricity.scripts.common.common_debug.print_table"><code class="docutils literal notranslate"><span class="pre">print_table()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.electricity.scripts.common.html#module-src.models.electricity.scripts.common">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-src.models.electricity.scripts.electricity_model">
+<span id="src-models-electricity-scripts-electricity-model-module"></span><h2>src.models.electricity.scripts.electricity_model module<a class="headerlink" href="#module-src.models.electricity.scripts.electricity_model" title="Link to this heading"></a></h2>
+<p>Electricity Model.
+This file contains the PowerModel class which contains a pyomo optimization model of the electric
+power sector. The class is organized by sections: settings, sets, parameters, variables, objective
+function, constraints, plus additional misc support functions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.electricity_model.PowerModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.electricity_model.</span></span><span class="sig-name descname"><span class="pre">PowerModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/electricity_model.html#PowerModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.electricity_model.PowerModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ConcreteModel</span></code></p>
+<p>A PowerModel instance. Builds electricity pyomo model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>all_frames</strong><span class="classifier">dictionary of pd.DataFrames</span></dt><dd><p>Contains all dataframes of inputs</p>
+</dd>
+<dt><strong>setA</strong><span class="classifier">Sets</span></dt><dd><p>Contains all other non-dataframe inputs</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.electricity_model.PowerModel.H2_HEATRATE">
+<span class="sig-name descname"><span class="pre">H2_HEATRATE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#src.models.electricity.scripts.electricity_model.PowerModel.H2_HEATRATE" title="Link to this definition"></a></dt>
+<dd><p>Gwh/kg of H2</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.electricity_model.PowerModel.annual_count">
+<span class="sig-name descname"><span class="pre">annual_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hour</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/src/models/electricity/scripts/electricity_model.html#PowerModel.annual_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.electricity_model.PowerModel.annual_count" title="Link to this definition"></a></dt>
+<dd><p>return the aggregate weight of this hour in the representative year
+we know the hour weight, and the hours are unique to days, so we can
+get the day weight</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>hour</strong><span class="classifier">_type_</span></dt><dd><p>the rep_hour</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>int</dt><dd><p>the aggregate weight (count) of this hour in the rep_year.  NOT the hour weight!</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.electricity_model.PowerModel.poll_h2_demand">
+<span class="sig-name descname"><span class="pre">poll_h2_demand</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="src.integrator.html#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/src/models/electricity/scripts/electricity_model.html#PowerModel.poll_h2_demand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.electricity_model.PowerModel.poll_h2_demand" title="Link to this definition"></a></dt>
+<dd><p>Get the hydrogen demand by rep_year and region</p>
+<p>Use the Generation variable for h2 techs</p>
+<p>NOTE:  Not sure about day weighting calculation here!!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>dict[HI, float]</dt><dd><p>dictionary of prices by H2 Index: price</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.electricity_model.PowerModel.update_elec_demand">
+<span class="sig-name descname"><span class="pre">update_elec_demand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elec_demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="src.integrator.html#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/models/electricity/scripts/electricity_model.html#PowerModel.update_elec_demand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.electricity_model.PowerModel.update_elec_demand" title="Link to this definition"></a></dt>
+<dd><p>Update the external electical demand parameter with demands from the H2 model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>elec_demand</strong><span class="classifier">dict[HI, float]</span></dt><dd><p>the new demands broken out by hyd index (region, year)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.electricity_model.PowerModel.update_h2_prices">
+<span class="sig-name descname"><span class="pre">update_h2_prices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h2_prices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="src.integrator.html#src.integrator.utilities.HI" title="src.integrator.utilities.HI"><span class="pre">HI</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/src/models/electricity/scripts/electricity_model.html#PowerModel.update_h2_prices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.electricity_model.PowerModel.update_h2_prices" title="Link to this definition"></a></dt>
+<dd><p>Update the H2 prices held in the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>h2_prices</strong><span class="classifier">list[tuple[HI, float]]</span></dt><dd><p>new prices</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-src.models.electricity.scripts.postprocessor">
+<span id="src-models-electricity-scripts-postprocessor-module"></span><h2>src.models.electricity.scripts.postprocessor module<a class="headerlink" href="#module-src.models.electricity.scripts.postprocessor" title="Link to this heading"></a></h2>
+<p>This file is the main postprocessor for the electricity model. It writes out all relavant model
+outputs (e.g., sets, variables, parameters, constraints). It contains:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A function that converts pyomo component objects to dataframes</p></li>
+<li><p>A function to make the electricity output sub-directories</p></li>
+<li><p>The postprocessor function, which writes out to csvs all of the electricity model pyomo component</p></li>
+</ul>
+<p>objects to csvs in the output directory</p>
+</div></blockquote>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.postprocessor.component_objects_to_df">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.postprocessor.</span></span><span class="sig-name descname"><span class="pre">component_objects_to_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mod_object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/postprocessor.html#component_objects_to_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.postprocessor.component_objects_to_df" title="Link to this definition"></a></dt>
+<dd><p>takes pyomo component objects (e.g., variables, parameters, constraints) and processes the
+pyomo data and converts it to a dataframe and then writes the dataframe out to an output dir.
+The dataframe contains a key column which is the original way the pyomo data is structured,
+as well as columns broken out for each set and the final values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mod_object</strong><span class="classifier">pyomo component object</span></dt><dd><p>pyomo component object</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dataframe</dt><dd><p>contains the pyomo model results for the component object</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.postprocessor.make_output_dir">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.postprocessor.</span></span><span class="sig-name descname"><span class="pre">make_output_dir</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/postprocessor.html#make_output_dir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.postprocessor.make_output_dir" title="Link to this definition"></a></dt>
+<dd><p>generates an output directory to write model results, output directory is the date/time
+at the time this function executes. It includes subdirs for vars, params, constraints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>string</dt><dd><p>the name of the output directory</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.postprocessor.postprocessor">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.postprocessor.</span></span><span class="sig-name descname"><span class="pre">postprocessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/postprocessor.html#postprocessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.postprocessor.postprocessor" title="Link to this definition"></a></dt>
+<dd><p>master postprocessor function that writes out the final dataframes from to the electricity
+model. Creates the output directories and writes out dataframes for variables, parameters, and
+constraints. Gets the correct columns names for each dataframe using the cols_dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">pyomo model</span></dt><dd><p>electricity concrete model</p>
+</dd>
+<dt><strong>cols_dict</strong><span class="classifier">dictionary</span></dt><dd><p>dictionary where keys are the names of the vars, params, or constraints and the values
+are the cooresponding column names for each of the sets the items are indexed by.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>string</dt><dd><p>output directory name</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.models.electricity.scripts.preprocessor">
+<span id="src-models-electricity-scripts-preprocessor-module"></span><h2>src.models.electricity.scripts.preprocessor module<a class="headerlink" href="#module-src.models.electricity.scripts.preprocessor" title="Link to this heading"></a></h2>
+<p>This file is the main preprocessor for the electricity model. It established the parameters
+and sets that will be used in the model. It contains:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A class that contains all sets used in the model</p></li>
+<li><p>A collection of support functions to read in and setup parameter data</p></li>
+<li><p>The preprocessor function, which produces an instance of the Set class and a dict of params</p></li>
+<li><p>A collection of support functions to write out the inputs to the output directory</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.Sets">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">Sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#Sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.Sets" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generates an initial batch of sets that are used to solve electricity model. Sets include:
+- Scenario descriptor and model switches
+- Regional sets
+- Temporal sets
+- Technology type sets
+- Supply curve step sets
+- Other</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.add_season_index">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">add_season_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cw_temporal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#add_season_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.add_season_index" title="Link to this definition"></a></dt>
+<dd><p>adds a season index to the input dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cw_temporal</strong><span class="classifier">dataframe</span></dt><dd><p>dataframe that includes the season index</p>
+</dd>
+<dt><strong>df</strong><span class="classifier">dataframe</span></dt><dd><p>parameter data to be modified</p>
+</dd>
+<dt><strong>pos</strong><span class="classifier">int</span></dt><dd><p>column position for the seasonal set</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dataframe</dt><dd><p>modified parameter data now indexed by season</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.avg_by_group">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">avg_by_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_frame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#avg_by_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.avg_by_group" title="Link to this definition"></a></dt>
+<dd><p>takes in a dataframe and groups it by the set specified and then averages the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">dataframe</span></dt><dd><p>parameter data to be modified</p>
+</dd>
+<dt><strong>set_name</strong><span class="classifier">str</span></dt><dd><p>name of the column/set to average the data by</p>
+</dd>
+<dt><strong>map_frame</strong><span class="classifier">dataframe</span></dt><dd><p>data that maps the set name to the new grouping for that set</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dataframe</dt><dd><p>parameter data that is averaged by specified set mapping</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.fill_values">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">fill_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#fill_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.fill_values" title="Link to this definition"></a></dt>
+<dd><p>Function to fill in the subset values, is used to assign all years within the year
+solve range to each year the model will solve for.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>row</strong><span class="classifier">int</span></dt><dd><p>row number in df</p>
+</dd>
+<dt><strong>subset_list</strong><span class="classifier">list</span></dt><dd><p>list of values to map</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>int</dt><dd><p>value from subset_list</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.load_data">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tablename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#load_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.load_data" title="Link to this definition"></a></dt>
+<dd><p>loads the data from the SQL database; used in readin_sql function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>tablename</strong><span class="classifier">string</span></dt><dd><p>table name</p>
+</dd>
+<dt><strong>metadata</strong><span class="classifier">SQL metadata</span></dt><dd><p>SQL metadata</p>
+</dd>
+<dt><strong>engine</strong><span class="classifier">SQL engine</span></dt><dd><p>SQL engine</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dataframe</dt><dd><p>table from SQL db as a dataframe</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.makedir">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">makedir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#makedir"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.makedir" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.output_inputs">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">output_inputs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#output_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.output_inputs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.preprocessor">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">preprocessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#preprocessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.preprocessor" title="Link to this definition"></a></dt>
+<dd><p>master preprocessor function that generates the final dataframes and sets sent over to the
+electricity model. This function reads in the input data, modifies it based on the temporal
+and regional mapping specified in the inputs, and gets it into the final formatting needed.
+Also adds some additional regional sets to the set class based on parameter inputs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>setin</strong><span class="classifier">class</span></dt><dd><p>an initial batch of sets that are used to solve electricity model</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>all_frames</strong><span class="classifier">dictionary</span></dt><dd><p>dictionary of dataframes where the key is the file name and the value is the table data</p>
+</dd>
+<dt><strong>setin</strong><span class="classifier">class</span></dt><dd><p>an initial batch of sets that are used to solve electricity model</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.print_sets">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">print_sets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#print_sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.print_sets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.readin_csvs">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">readin_csvs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_frames</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#readin_csvs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.readin_csvs" title="Link to this definition"></a></dt>
+<dd><p>Reads in all of the CSV files from the input dir and returns a dictionary of dataframes,
+where the key is the file name and the value is the table data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>all_frames</strong><span class="classifier">dictionary</span></dt><dd><p>empty dictionary to be filled with dataframes</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dictionary</dt><dd><p>completed dictionary filled with dataframes from the input directory</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.readin_sql">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">readin_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_frames</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#readin_sql"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.readin_sql" title="Link to this definition"></a></dt>
+<dd><p>Reads in all of the tables from a SQL databased and returns a dictionary of dataframes,
+where the key is the table name and the value is the table data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>all_frames</strong><span class="classifier">dictionary</span></dt><dd><p>empty dictionary to be filled with dataframes</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dictionary</dt><dd><p>completed dictionary filled with dataframes from the input directory</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.preprocessor.subset_dfs">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.preprocessor.</span></span><span class="sig-name descname"><span class="pre">subset_dfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/preprocessor.html#subset_dfs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.preprocessor.subset_dfs" title="Link to this definition"></a></dt>
+<dd><p>filters dataframes based on the values within the set</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>all_frames</strong><span class="classifier">dictionary</span></dt><dd><p>dictionary of dataframes where the key is the file name and the value is the table data</p>
+</dd>
+<dt><strong>setin</strong><span class="classifier">class</span></dt><dd><p>contains an initial batch of sets that are used to solve electricity model</p>
+</dd>
+<dt><strong>i</strong><span class="classifier">string</span></dt><dd><p>name of the set contained within the setin class that the df will be filtered based on.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>dictionary</dt><dd><p>completed dictionary filled with dataframes filtered based on set inputs specified</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.models.electricity.scripts.runner">
+<span id="src-models-electricity-scripts-runner-module"></span><h2>src.models.electricity.scripts.runner module<a class="headerlink" href="#module-src.models.electricity.scripts.runner" title="Link to this heading"></a></h2>
+<p>This file is a collection of functions that are used to build, run, and solve the electricity model.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.build_elec_model">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">build_elec_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_frames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">setin</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.models.electricity.scripts.electricity_model.PowerModel" title="src.models.electricity.scripts.electricity_model.PowerModel"><span class="pre">PowerModel</span></a></span></span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#build_elec_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.build_elec_model" title="Link to this definition"></a></dt>
+<dd><p>building pyomo electricity model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>all_frames</strong><span class="classifier">dict of pd.DataFrame</span></dt><dd><p>input data frames</p>
+</dd>
+<dt><strong>setin</strong><span class="classifier">Set</span></dt><dd><p>input settings Set</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>PowerModel</dt><dd><p>built (but unsolved) electricity model</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.cost_learning_func">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">cost_learning_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#cost_learning_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.cost_learning_func" title="Link to this definition"></a></dt>
+<dd><p>function for updating learning costs by technology and year</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">PowerModel</span></dt><dd><p>electricity pyomo model</p>
+</dd>
+<dt><strong>pt</strong><span class="classifier">int</span></dt><dd><p>technology type</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">int</span></dt><dd><p>year</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>int</dt><dd><p>updated capital cost based on learning calculation</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.init_old_cap">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">init_old_cap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#init_old_cap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.init_old_cap" title="Link to this definition"></a></dt>
+<dd><p>initialize capacity for 0th iteration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">PowerModel</span></dt><dd><p>unsolved electricity model</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.run_model">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">run_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solve</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#src.models.electricity.scripts.electricity_model.PowerModel" title="src.models.electricity.scripts.electricity_model.PowerModel"><span class="pre">PowerModel</span></a></span></span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#run_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.run_model" title="Link to this definition"></a></dt>
+<dd><p>build electricity model (and solve if solve=True) after passing in settings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>settings</strong><span class="classifier">Config_settings</span></dt><dd><p>Configuration settings</p>
+</dd>
+<dt><strong>solve</strong><span class="classifier">bool, optional</span></dt><dd><p>solve electricity model?, by default True</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>PowerModel</dt><dd><p>electricity model</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.select_solver">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">select_solver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#select_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.select_solver" title="Link to this definition"></a></dt>
+<dd><p>Select solver based on learning method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">PowerModel</span></dt><dd><p>electricity pyomo model</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>solver type (?)</dt><dd><p>The pyomo solver</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.set_new_cap">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">set_new_cap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#set_new_cap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.set_new_cap" title="Link to this definition"></a></dt>
+<dd><p>calculate new capacity after solve iteration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">PowerModel</span></dt><dd><p>solved electricity pyomo model</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.solve_elec_model">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">solve_elec_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#solve_elec_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.solve_elec_model" title="Link to this definition"></a></dt>
+<dd><p>solve electicity model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">PowerModel</span></dt><dd><p>built (but not solved) electricity pyomo model</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.runner.update_cost">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.runner.</span></span><span class="sig-name descname"><span class="pre">update_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/runner.html#update_cost"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.runner.update_cost" title="Link to this definition"></a></dt>
+<dd><p>update capital cost based on new capacity learning</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>instance</strong><span class="classifier">PowerModel</span></dt><dd><p>electricity pyomo model</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-src.models.electricity.scripts.utilities">
+<span id="src-models-electricity-scripts-utilities-module"></span><h2>src.models.electricity.scripts.utilities module<a class="headerlink" href="#module-src.models.electricity.scripts.utilities" title="Link to this heading"></a></h2>
+<p>This file is a collection of functions that are used in support of the electricity model.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.declare_param">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">declare_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mutable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#declare_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.declare_param" title="Link to this definition"></a></dt>
+<dd><p>Assigns the df to be a pyomo parameter using the name specified.
+Adds the name and index column names to the column dictionary used for post pocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>pname</strong><span class="classifier">string</span></dt><dd><p>name of the parameter to be declared</p>
+</dd>
+<dt><strong>p_set</strong><span class="classifier">pyomo set</span></dt><dd><p>the pyomo set that cooresponds to the parameter data</p>
+</dd>
+<dt><strong>df</strong><span class="classifier">dataframe</span></dt><dd><p>dataframe used generate the parameter</p>
+</dd>
+<dt><strong>default</strong><span class="classifier">int, optional</span></dt><dd><p>by default 0</p>
+</dd>
+<dt><strong>mutable</strong><span class="classifier">bool, optional</span></dt><dd><p>by default False</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pyomo parameter</dt><dd><p>a pyomo parameter</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.declare_set">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">declare_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#declare_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.declare_set" title="Link to this definition"></a></dt>
+<dd><p>Assigns the index from the df to be a pyomo set using the name specified.
+Adds the name and index column names to the column dictionary used for post pocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sname</strong><span class="classifier">string</span></dt><dd><p>name of the set to be declared</p>
+</dd>
+<dt><strong>df</strong><span class="classifier">dataframe</span></dt><dd><p>dataframe from which the index will be grabbed to generate the set</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pyomo set</dt><dd><p>a pyomo set</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.declare_var">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">declare_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_set</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#declare_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.declare_var" title="Link to this definition"></a></dt>
+<dd><p>Assigns the set to be the index for the pyomo variable being declared.
+Adds the name and index column names to the column dictionary used for post pocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vname</strong><span class="classifier">string</span></dt><dd><p>name of the variable to be declared</p>
+</dd>
+<dt><strong>sname</strong><span class="classifier">string</span></dt><dd><p>the name of the set</p>
+</dd>
+<dt><strong>v_set</strong><span class="classifier">pyomo set</span></dt><dd><p>the pyomo set that the variable data will be indexed by</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>pyomo variable</dt><dd><p>a pyomo variable</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.populate_RM_sets_rule">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">populate_RM_sets_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#populate_RM_sets_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.populate_RM_sets_rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.populate_by_hour_sets_rule">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">populate_by_hour_sets_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#populate_by_hour_sets_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.populate_by_hour_sets_rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.populate_demand_balance_sets_rule">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">populate_demand_balance_sets_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#populate_demand_balance_sets_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.populate_demand_balance_sets_rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.populate_sets_rule">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">populate_sets_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_base_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_base2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#populate_sets_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.populate_sets_rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="src.models.electricity.scripts.utilities.populate_trade_sets_rule">
+<span class="sig-prename descclassname"><span class="pre">src.models.electricity.scripts.utilities.</span></span><span class="sig-name descname"><span class="pre">populate_trade_sets_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/models/electricity/scripts/utilities.html#populate_trade_sets_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.models.electricity.scripts.utilities.populate_trade_sets_rule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-src.models.electricity.scripts">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.models.electricity.scripts" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Energy Information Administration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
