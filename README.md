@@ -5,7 +5,6 @@
         - [Prototype Capabilities](#prototype-capabilities)
         - [Modules](#modules)
         - [Model Complexity and Computational Efficiency](#model-complexity-and-computational-efficiency)
-        - [Feedback](#feedback)
     - [Documentation](#documentation)
         - [Model Documentation](#model-documentation)
         - [Code Documentation](#code-documentation)
@@ -77,25 +76,6 @@ The prototype provides three features that address model complexity and make sol
 2. The prototype provides two different methods to solve the integrated model. The Gauss-Seidel method is made efficient through the first step of calling Python models through a Python script and storing information that has to be passed through in memory. Further, in the Gauss-Seidel and other iterative methods in the prototype (such as the linearization of nonlinear learning in the Electricity module) the starting point for the next iteration is already stored in memory and speeds up computation. This can be seen when looking at the times for iterative solves for the modules, which decrease as the iterations progress. The second method, a unified optimization method, integrates the modules into one mathematical structure that can contain a potentially diverse set of governing dynamics. Theoretically, if an efficient mathematical structure can be found, these methods are computationally more efficient than iterative methods of achieving equilibrium.  For example, in solving formulations with multiple players, iterative methods such as Gauss-Seidel (also referred to as diagonalization in the literature) tend to converge slower than combining problems into a nonlinear optimization problem ([Leyffer and Munson, 2010](https://www.tandfonline.com/doi/abs/10.1080/10556780903448052); [Ralph and Smeers, 2006](https://ieeexplore.ieee.org/abstract/document/4075721)). They take advantage of the mathematical structure of individual modules to produce a larger problem where the existence and uniqueness properties can be studied. The prototype shows this as the unified optimization method solves problems zzz times faster.
 3. The prototype is flexible on the number of regions and years it needs to solve for, both in the modules and in integrated solves. The prototype can also be started in later years and does not need a particular starting and stopping year. This flexibility allows testing new complexity additions on small versions of the model without having to test on a full version.
 
-
-### Feedback
-We encourage feedback on the mathematical formulation and code implementation of the prototype. Any feedback or questions should be posted in the [Teams Channel](https://teams.microsoft.com/l/channel/19%3Ab0d4d80737a74fccbf47a2540074d48d%40thread.tacv2/Blue%20Sky%20-%20ALL%20EIA?groupId=46a5f4fe-7edb-4841-8fa2-9b315e675359&tenantId=545f0b0b-e440-4054-9c17-d250cf3556b2). In particular, we are soliciting feedback on the following questions:
-
-(Group 1)
-* How can we make it easier to understand the documentation, download the code, modify it, and run it?
-* Are there general coding best-practices you have suggestions on?
-* Is it easy to identify some advantages of this code implementation over what we currently have in NEMS/WEPS?
-* Is it easy to identify some disadvantages of this code implementation over what we currently have in NEMS/WEPS?
-* Are there portions of the optimization implementation that would be easier to do in AIMMS beyond sparse indexing and general advantages of AIMMS such as naming or sets, variables, and parameters?
-
-(Groups 1 and 2)
-* Is this framework nimble and flexible enough to code up the current capabilities of NEMS/WEPS?
-* What are some capabilities you would like to see tested in this framework?
-* Are we conveying a clear message with regards to the purpose of the prototype?
-* Can you understand how the prototype and eventual next generation model will be an advancement from NEMS/WEPS and also different from other existing external models?
-* Is there anything in the prototype that we should not release to the public because it is proprietary information or because it will pre-empt any other EIA analysis such as AEO2025?
-
-We do not need feedback on the energy system representation or results at this point. We also do not have capabilities for debugging developed right now, and suggestions on those are welcome.
  
 
 ## Documentation
@@ -139,7 +119,7 @@ To set up the appropriate Python environment, you will need to install the follo
 1. **Clone the bluesky_prototype repo** 
 
 ```base
-https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype.git
+https://github.com/EIAgov/BlueSky.git
 ```
 
 2. **Set up VSCode**
@@ -156,7 +136,6 @@ https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype.git
 3. **Create the 'bsky' Conda environment**
    * The libraries needed to run any bluesky module are contained in the `bsky` conda environment described in conda_env.yml
 
-      - If you are working from an Anaconda prompt outside of your IDE, [navigate to Anaconda and open an Anaconda Prompt](https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype/-/wikis/Clone-repo-and-create-environment-with-GitBash-and-Anaconda-prompt)
       - If you are working from a terminal within VSCode, use this terminal to execute the commands in the next few steps
 
    * Check existing environments and run `conda info --envs`
@@ -183,9 +162,9 @@ https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype.git
 1. **Clone the bluesky_prototype repo** 
 
 ```base
-git clone https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype.git
+git clone https://github.com/EIAgov/BlueSky.git
 ```
-Helpful resources can be found in the [FAQ section](https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype/-/wikis/Frequently-Asked-Questions-(FAQ)) of the wiki page.
+
 
 2. Open the `env-setup.bat` file in a text editor (**VS-Code** or **Notepadd++**)
 
@@ -254,11 +233,7 @@ See the `--help` command as described above to see the available modes! More inf
 
 ## Support
 
-Please check out the [Frequently Asked Questions (FAQ)](https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype/-/wikis/Frequently-Asked-Questions-(FAQ)) section for helpful resources
-
-
 Please reach out to BlueSky team members for assistance:
-[Teams Channel](https://teams.microsoft.com/l/channel/19%3Ab0d4d80737a74fccbf47a2540074d48d%40thread.tacv2/Blue%20Sky%20-%20ALL%20EIA?groupId=46a5f4fe-7edb-4841-8fa2-9b315e675359&tenantId=545f0b0b-e440-4054-9c17-d250cf3556b2) 
 `Sauleh.Siddiqui@eia.gov`
 `Adam.Heisey@eia.gov`
 `Cara.Marcy@eia.gov`
@@ -276,33 +251,10 @@ We welcome contributions to our project and appreciate your effort to improve it
 
 ### Steps to Contribute
 
-1. **Clone the Repository**: Start by cloning the main repository to your local machine.
-   ```bash
-   git clone https://git.eia.gov/oea/nextgen-bluesky/bluesky_prototype.git
-   cd main-repo
-   ```
-
-2. **Create a New Branch**: In the cloned repository, create a new branch for your contribution. Use a descriptive name for your branch that reflects the nature of your changes. For example:
-   ```bash
-   git checkout -b feature/new-awesome-feature
-   ```
-
-3. **Make Your Changes**: Implement your changes in the new branch. Make sure to follow our coding standards and include appropriate tests and documentation.
-
-4. **Commit Your Changes**: Once your changes are ready, commit them with a meaningful commit message. Please make sure your commit messages are clear and concise.
-
-5. **Push Your Branch**: Push your branch to the main repository on GitLab:
-   ```bash
-   git push origin feature/new-awesome-feature
-   ```
-
-6. **Open a Merge Request**: Open a merge request (MR) from your branch to the `main` branch of the main repository. Provide a detailed description of your changes and any relevant information that will help in reviewing your MR.
-
-7. **Request a BlueSky Member for Merge**: Once your MR is ready for review, request a BlueSky member to review and merge your changes into the `main` branch. You can do this by tagging a BlueSky member in your merge request comments or by reaching out to them directly.
+TO DO: add contribution instructions
 
 ### Guidelines
 
-- **Code Quality**: Ensure your code adheres to the project's [coding standards](https://git.eia.gov/oea/nextgen-bluesky/bluesky-sandbox/-/wikis/Documentation:-autodocstring) and is well-documented.
 - **Documentation**: Update or add documentation as needed to explain your changes and how to use any new features.
 - **Discussions**: Feel free to start a discussion if you have any questions or need clarification on any aspect of the project.
 
